@@ -187,7 +187,7 @@
           </div>
           <div class="d-flex gap-2">
             <div class="mb-10 flex-1">
-              <label for="productCategory" class="required form-label">Category</label>
+              <label for="productCategory" class="required form-label">Category </label>
               <select class="form-select form-select-solid" id="productCategory">
                 <option value="1">Category 1</option>
               </select>
