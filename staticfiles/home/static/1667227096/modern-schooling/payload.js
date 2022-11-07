@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/modern-schooling", {data:[{}],fetch:{},mutations:void 0});
