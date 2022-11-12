@@ -1,15 +1,15 @@
 <template>
   <!--begin::Row-->
-  <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+  <div class="row g-5 g-xl-10 mb-5 mb-xl-10 stagger">
     <!--begin::Col-->
-    <div class="col-xl-6">
+    <div class="col-xl-6 animate__animated animate__faster animate__backInUp">
       <ProductTable
         widget-classes="card-xl-stretch mb-xl-8 h-md-100"
         chart-color="primary"
         chart-height="150"
       ></ProductTable>
     </div>
-    <div class="col-xl-6">
+    <div class="col-xl-6 animate__animated animate__faster animate__backInUp">
       <OrdersTable
         widget-classes="card-xl-stretch mb-xl-8 h-md-100"
         chart-color="primary"

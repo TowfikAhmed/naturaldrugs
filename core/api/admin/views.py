@@ -19,6 +19,7 @@ from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework.decorators import authentication_classes
+from decimal import Decimal
 
 class JWTAuthenticationSafe(JWTAuthentication):
     def authenticate(self, request):
@@ -45,7 +46,29 @@ def fundlist(request):
     return Response(data)
 
 @api_view(['GET'])
+def categorylist(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
 def productlist(request):
+    if request.method == 'POST':
+        data = request.data['data']
+        # {'name': 'asdfaddddd', 'description': 'asdfasdf', 'category': '', 'type': '', 'tradePrice': '', 'mrp': '', 'code': '', 'points': '', 'imagelist': [], 'customfunds': [{'name': 'Company’s Profit', 'percentage': 3}, {'name': 'Production Fund', 'percentage': 22}], 'specifications': [{'name': 'aaaaaaa', 'value': 'fffffffff'}, {'name': 'vv', 'value': 'aaaaaaa'}]}
+        print(data)
+        product = Product.objects.create(
+            title = data['title'],
+            description = data['description'],
+            category = Category.objects.get(name = data['category']),
+            type = data['type'],
+            trade_price = Decimal(data['trade_price']),
+            mrp = Decimal(data['mrp']),
+            code = data['code'],
+            point = Decimal(data['point']),
+            features = data['specifications'],
+            customfunds = data['customfunds'],
+        )
     paginator = PageNumberPagination()
     paginator.page_size = 10
     products = Product.objects.all().order_by('-id')

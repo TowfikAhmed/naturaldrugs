@@ -16,11 +16,11 @@
       <!--begin::Menu-->
       <div
         id="#kt_app_sidebar_menu"
-        class="menu menu-column menu-rounded menu-sub-indention px-3"
+        class="menu menu-column menu-rounded menu-sub-indention px-3 stagger"
         data-kt-menu="true"
       >
         <template v-for="(item, i) in MainMenuConfig" :key="i">
-          <div v-if="item.heading" class="menu-item pt-5">
+          <div v-if="item.heading" class="menu-item pt-5 animate__animated animate__faster animate__backInUp">
             <div class="menu-content">
               <span class="menu-heading fw-bold text-uppercase fs-7">
                 {{ translate(item.heading) }}
@@ -29,7 +29,7 @@
           </div>
           <template v-for="(menuItem, j) in item.pages" :key="j">
             <template v-if="menuItem.heading">
-              <div class="menu-item">
+              <div class="menu-item animate__animated animate__faster animate__backInUp">
                 <router-link
                   class="menu-link"
                   active-class="active"

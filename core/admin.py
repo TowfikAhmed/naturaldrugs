@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Product, Fund, Fund_transfer, Sales, Withdraw, Bonus
+from .models import Product, Category, Fund, Fund_transfer, Sales, Withdraw, Bonus
 # Register your models here.
+admin.site.register(Category)
 admin.site.register(Product)
 class FundAdmin(admin.ModelAdmin):
     list_display = ('name', 'reserve', 'cash_in', 'expense', 'transferred', 'recieved', 'percentage', 'type')

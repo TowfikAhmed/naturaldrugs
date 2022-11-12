@@ -2,7 +2,7 @@
 <section>
 
   <!--begin::Tables Widget 10-->
-  <div :class="widgetClasses" class="card">
+  <div class="card">
     <!--begin::Header-->
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
@@ -49,9 +49,9 @@
           <!--end::Table head-->
 
           <!--begin::Table body-->
-          <tbody>
+          <tbody class="stagger">
             <template v-for="item in products.results" :key="item.id">
-              <tr>
+              <tr class="animate__animated animate__faster animate__backInUp">
                 <td>
                   <div class="d-flex align-items-center">
                     <!--begin::Avatar-->
@@ -179,22 +179,23 @@
         <div class="modal-body">
           <div class="mb-10">
             <label for="producttitle" class="required form-label">Product Name</label>
-            <input type="email" id="producttitle" class="form-control form-control-solid" placeholder=""/>
+            <input type="email" id="producttitle" class="form-control" placeholder="" v-model="newProduct.title"/>
           </div>
           <div class="mb-10">
             <label for="productDesc" class="required form-label">Product Description</label>
-            <textarea class="form-control form-control-solid" id="productDesc" rows="3"></textarea>
+            <textarea class="form-control" id="productDesc" rows="3" v-model="newProduct.description"></textarea>
           </div>
           <div class="d-flex gap-2">
-            <div class="mb-10 flex-1">
+            <div class="mb-10 flex-1" v-if="categories">
               <label for="productCategory" class="required form-label">Category </label>
-              <select class="form-select form-select-solid" id="productCategory">
-                <option value="1">Category 1</option>
+              <select class="form-select" id="productCategory" @change="catChanged" v-model="newProduct.category">
+                <option value="">Select Category</option>
+                <option v-for="category in categories" :value="category.name" :key="category.id">{{ category.name }}</option>
               </select>
             </div>
             <div class="mb-10 flex-1">
               <label for="productType" class="required form-label">Type</label>
-              <select class="form-select form-select-solid" id="productType">
+              <select class="form-select" id="productType" v-model="newProduct.type">
                 <option value="Medical">Medical</option>
                 <option value="Non-Medical">Non-Medical</option>
               </select>
@@ -203,23 +204,71 @@
           <div class="d-flex gap-2">
             <div class="mb-10 flex-1">
               <label for="productTradePrice" class="required form-label">Trade Price</label>
-              <input type="email" id="productTradePrice" class="form-control form-control-solid" placeholder=""/>
+              <input type="number" id="productTradePrice" class="form-control" placeholder="" v-model="newProduct.trade_price"/>
             </div>
             <div class="mb-10 flex-1">
               <label for="productMRP" class="required form-label">MRP</label>
-              <input type="email" id="productMRP" class="form-control form-control-solid" placeholder=""/>
+              <input type="number" id="productMRP" class="form-control" placeholder="" v-model="newProduct.mrp"/>
             </div>
           </div>
           <div class="d-flex gap-2">
             <div class="mb-10 flex-1">
               <label for="productCode" class="required form-label">Code</label>
-              <input type="email" id="productCode" class="form-control form-control-solid" placeholder=""/>
+              <input type="email" id="productCode" class="form-control" placeholder="" v-model="newProduct.code"/>
             </div>
             <div class="mb-10 flex-1">
               <label for="productPoints" class="required form-label">Points</label>
-              <input type="email" id="productPoints" class="form-control form-control-solid" placeholder=""/>
+              <input type="number" step="2" id="productPoints" class="form-control" placeholder="" v-model="newProduct.point"/>
             </div>
           </div>
+          <label for="productTradePrice" class="required form-label">Product Images</label>
+          <div class="mb-10 images">
+            <div v-for="image in newProduct.imagelist" :key="image" class="image animate__animated animate__faster animate__lightSpeedInRight">
+              <img :src="image" alt="" />
+              <span class="remove" @click="removeImage(image)">X</span>
+            </div>
+            <div class="adder">
+              <inline-svg
+                src="/static/dashboard/media/icons/duotune/general/gen006.svg" class="imageicon" height="50px" width="50px"
+              />
+              <input type="file" id="productImage" class="form-control" @change="imageAdded($event)" placeholder=""/>
+            </div>
+          </div>
+
+          <div class="customfunding" v-if="funds">
+            <label for="productTradePrice" class="required form-label">Custom Fund Management</label>
+            <div class="d-flex gap-5 p-4 bg-secondary animate__animated animate__faster animate__lightSpeedInRight" v-for="cf in newProduct.customfunds" :key="cf">
+              <b>{{cf.name}}</b>
+              <span>-</span>
+              <span>{{cf.percentage}}%</span>
+              <button class="badge badge-danger border-0" @click="removeFund(cf)">x</button>
+            </div>
+            <div class="adder d-flex gap-1 my-3">
+              <select name="" id="" class="form-select mw-325px" v-model="customfundname">
+                <option value="">Select Fund</option>
+                <option :value="fn.name" v-for="fn in funds.cm" :key="fn.id">CM - {{fn.name}} ({{fn.percentage}}%)</option>
+                <option :value="fn.name" v-for="fn in funds.pm" :key="fn.id">PM - {{fn.name}} ({{fn.percentage}}%)</option>
+              </select>
+              <input type="number" class="form-control mw-100px" placeholder="%" v-model="customFundPer" />
+              <button class="btn btn-primary" @click="setCustomFund">Set</button>
+            </div>
+          </div>
+
+          <div class="specifications">
+            <label for="productTradePrice" class="required form-label">Product Specifications</label>
+            <div class="d-flex gap-5 p-4 bg-secondary animate__animated animate__faster animate__lightSpeedInRight" v-for="sp in newProduct.specifications" :key="sp">
+              <b>{{sp.name}}</b>
+              <span>:</span>
+              <span>{{sp.value}}</span>
+              <button class="badge badge-danger border-0" @click="removeSpec(sp)">x</button>
+            </div>
+            <div class="adder d-flex gap-1 my-3">
+              <input type="text" class="form-control mw-325px" placeholder="Name" v-model="specname" />
+              <input type="text" class="form-control mw-325px" placeholder="Value" v-model="specvalue" />
+              <button class="btn btn-primary" @click="addSpec">Set</button>
+            </div>
+          </div>
+
         </div>
 
         <div class="modal-footer">
@@ -230,8 +279,8 @@
           >
             Close
           </button>
-          <button type="button" class="btn btn-primary">
-            Save changes
+          <button type="button" class="btn btn-primary" @click="submitProduct">
+            Submit Product
           </button>
         </div>
       </div>
@@ -241,17 +290,56 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import ApiService from "@/core/services/ApiService";
+interface NewProduct {
+  title: "",
+  description: "",
+  category: "",
+  type: "",
+  trade_price: number,
+  mrp: number,
+  code: "",
+  point: number,
+  imagelist: string[],
+  customfunds: object[],
+  specifications: object[]
+}
 export default defineComponent({
   name: "main-dashboard",
   data() {
     return {
       products: "",
+      categories: "",
+      funds: "",
+      customfundname: "",
+      customFundPer: "",
+      specname: "",
+      specvalue: "",
+    };
+  },
+  setup() {
+    const newProduct = ref<NewProduct>({
+      title: "",
+      description: "",
+      category: "",
+      type: "",
+      trade_price: 0,
+      mrp: 0,
+      code: "",
+      point: 0,
+      imagelist: [],
+      customfunds: [],
+      specifications: []
+    });
+    return {
+      newProduct,
     };
   },
   mounted() {
     this.getProducts();
+    this.getCategories();
+    this.getFunds();
   },
   methods: {
     getProducts() {
@@ -260,6 +348,129 @@ export default defineComponent({
         this.products = response.data;
       });
     },
+    getCategories() {
+      ApiService.get("categorylist/").then((response) => {
+        console.log(response.data);
+        this.categories = response.data;
+      });
+    },
+    catChanged() {
+      console.log(this.newProduct.category);
+    },
+    getFunds() {
+      ApiService.get("fundlist/").then((response) => {
+        console.log(response.data);
+        this.funds = response.data;
+      });
+    },
+    setCustomFund() {
+      console.log(this.customfundname, this.customFundPer);
+      var data = {
+        name: this.customfundname,
+        percentage: this.customFundPer,
+      }; 
+      this.newProduct.customfunds.push({
+        name: this.customfundname,
+        percentage: this.customFundPer,
+      });
+      this.customfundname = "";
+      this.customFundPer = "";
+    },
+    removeFund(fund) {
+      console.log(fund);
+      this.newProduct.customfunds = this.newProduct.customfunds.filter((f) => f != fund);
+    },
+    addSpec() {
+      console.log(this.specname, this.specvalue);
+      this.newProduct.specifications.push({
+        name: this.specname,
+        value: this.specvalue,
+      });
+      this.specname = "";
+      this.specvalue = "";
+    },
+    removeSpec(spec) {
+      console.log(spec);
+      this.newProduct.specifications = this.newProduct.specifications.filter((s) => s != spec);
+    },
+    imageAdded (event: any) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.newProduct.imagelist.push(reader.result as string);
+      };
+      console.log(this.newProduct);
+    },
+    removeImage (image: string) {
+      this.newProduct.imagelist = this.newProduct.imagelist.filter((item) => item !== image);
+    },
+    submitProduct() {
+      console.log(this.newProduct);
+      ApiService.post("productlist/", {data: this.newProduct}).then((response) => {
+        console.log(response.data);
+        this.getProducts();
+      });
+    },
   },
 });
 </script>
+
+<style scoped>
+.images {
+  display: flex;
+  flex-wrap: wrap;
+}
+.images > * {
+  width: 130px;
+  height: 130px;
+  margin: 5px;
+  border-radius: 8px;
+  position: relative;
+  background: #f8e5e5bb;
+  box-shadow: 1px 1px 5px #00000033;
+}
+.images input{
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+}
+.images img{
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+}
+.images .remove{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #f8e5e5f6;
+  color: #000000;
+  height: 30px;
+  width: 30px;
+  padding: 3px 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 0 #fffffff6;
+  cursor: pointer;
+  border: 3px solid #fffffff6;
+}
+.images .adder .imageicon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  height: 50px;
+  
+}
+.images .adder input{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+</style>

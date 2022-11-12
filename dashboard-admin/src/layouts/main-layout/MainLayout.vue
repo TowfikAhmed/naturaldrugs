@@ -177,4 +177,79 @@ export default defineComponent({
   }
   }
 
+  .stagger > *:nth-child(1){
+    animation-delay: 0s;
+  }
+  .stagger > *:nth-child(2){
+    animation-delay: .05s;
+  }
+  .stagger > *:nth-child(3){
+    animation-delay: .1s;
+  }
+  .stagger > *:nth-child(4){
+    animation-delay: .15s;
+  }
+  .stagger > *:nth-child(5){
+    animation-delay: .2s;
+  }
+  .stagger > *:nth-child(6){
+    animation-delay: .25s;
+  }
+  .stagger > *:nth-child(7){
+    animation-delay: .3s;
+  }
+  .stagger > *:nth-child(8){
+    animation-delay: .35s;
+  }
+  .stagger > *:nth-child(9){
+    animation-delay: .4s;
+  }
+  .stagger > *:nth-child(10){
+    animation-delay: .45s;
+  }
+  .stagger > *:nth-child(11){
+    animation-delay: .5s;
+  }
+  .stagger > *:nth-child(12){
+    animation-delay: .55s;
+  }
+  .stagger > *:nth-child(13){
+    animation-delay: .6s;
+  }
+  .stagger > *:nth-child(14){
+    animation-delay: .65s;
+  }
+  .stagger > *:nth-child(15){
+    animation-delay: .7s;
+  }
+  .stagger > *:nth-child(16){
+    animation-delay: .75s;
+  }
+  .stagger > *:nth-child(17){
+    animation-delay: .8s;
+  }
+  .stagger > *:nth-child(18){
+    animation-delay: .85s;
+  }
+  .stagger > *:nth-child(19){
+    animation-delay: .9s;
+  }
+  .stagger > *:nth-child(20){
+    animation-delay: .95s;
+  }
+  .stagger > *:nth-child(21){
+    animation-delay: 1s;
+  }
+  .stagger > *:nth-child(22){
+    animation-delay: 1.05s;
+  }
+  .stagger > *:nth-child(23){
+    animation-delay: 1.1s;
+  }
+  .stagger > *:nth-child(24){
+    animation-delay: 1.15s;
+  }
+  .stagger > *:nth-child(25){
+    animation-delay: 1.2s;
+  }
 </style>

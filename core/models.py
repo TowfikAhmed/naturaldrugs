@@ -59,6 +59,7 @@ class Product(models.Model):
     )
     type = models.CharField(max_length=20, choices=TYPE_CHOICES, default='Medical')
     features = models.JSONField(null=False, blank=False, default=list)
+    customfunds = models.JSONField(null=False, blank=False, default=list)
     date = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.title

@@ -1,8 +1,8 @@
 <template>
 <section v-if="funds">
 
-  <div class="mb-5 cardgrid">
-    <div class="card card-flush" v-for="fund in funds.cm" :key="fund.id">
+  <div class="mb-5 cardgrid stagger">
+    <div class="card card-flush animate__animated animate__faster animate__backInUp" v-for="fund in funds.cm" :key="fund.id">
       <!--begin::Header-->
       <div class="card-header pt-5 p-4">
         <!--begin::Title-->

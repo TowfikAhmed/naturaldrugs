@@ -7,8 +7,8 @@ import { AxiosResponse, AxiosRequestConfig } from "axios";
 /**
  * @description service to call HTTP request via Axios
  */
-export const baseURL = "http://localhost:8000";
-// export const baseURL = "";
+// export const baseURL = "http://localhost:8000";
+export const baseURL = "";
 class ApiService {
   /**
    * @description property to share vue instance

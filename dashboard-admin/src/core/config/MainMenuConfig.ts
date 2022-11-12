@@ -38,6 +38,12 @@ const DocMenuConfig = [
     route: "/members",
     pages: [
       {
+        heading: "Add User",
+        route: "/members",
+        svgIcon: "/static/dashboard/media/icons/duotune/general/gen041.svg",
+        fontIcon: "bi-cart",
+      },
+      {
         heading: "Members",
         route: "/members",
         svgIcon: "/static/dashboard/media/icons/duotune/abstract/abs032.svg",
