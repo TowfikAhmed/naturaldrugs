@@ -41,10 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
-    'ecommerce',
-    'funds',
-    'stockiest',
-    'member',
 ]
 
 REST_FRAMEWORK = {

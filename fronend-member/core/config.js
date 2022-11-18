@@ -1,5 +1,5 @@
-let baseURL = 'http://localhost:8000'
-// let baseURL = ''
+// let baseURL = 'http://localhost:8000'
+let baseURL = ''
 
 // export baseURL veriable
 

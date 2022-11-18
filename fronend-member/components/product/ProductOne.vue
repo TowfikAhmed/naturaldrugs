@@ -3,7 +3,9 @@
         <div class="inner">
             <div class="thumbnail">
                 <n-link to="/shop/product-details">
-                    <img :src="baseUrl + product.image" :alt="(product.title) + ' Thumbnail'" />
+                    <swiper class="productslider swiper" :options="swiperOptions">
+                        <img class="swiper-slide" :src="baseUrl + img.thumbnail" v-for="img in product.productimage_set" :key="img.id" :alt="(product.title) + ' Thumbnail'" />
+                    </swiper>
                 </n-link>
                 <div class="product-hover-info">
                     <ul>
@@ -27,19 +29,42 @@
                     </div>
                     <span class="rating-count">({{ product.rating }})</span>
                 </div>
-                <div class="price">${{ product.price }}</div>
+                <div class="price">${{ product.trade_price }}</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import baseUrl from '@/core/config.js'
+    import baseUrl from '@/core/config.js';
     export default {
         props: ['extraClass', 'product'],
         data() {
             return {
-                baseUrl: baseUrl
+                baseUrl: baseUrl,
+                swiperOptions: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: true,
+                    grabCursor: true,
+                    speed: 1000,
+                    autoplay: {
+                        delay: 3000
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1
+                        },
+                        992: {
+                            slidesPerView: 1
+                        }
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'bullets',
+                        clickable: true
+                    }
+                },
             }
         },
         mounted() {
@@ -51,5 +76,12 @@
 <style scoped>
 .inner{
     border: 1px solid #ebebeb;
+}
+.productslider img{
+    width: 100%;
+    height: 100%;
+    padding: 0px !important;
+    max-height: 200px;
+    object-fit: cover;
 }
 </style>

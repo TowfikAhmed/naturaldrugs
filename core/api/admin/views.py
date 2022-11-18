@@ -20,6 +20,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework.decorators import authentication_classes
 from decimal import Decimal
+import base64 
+from django.core.files.base import ContentFile 
 
 class JWTAuthenticationSafe(JWTAuthentication):
     def authenticate(self, request):
@@ -51,12 +53,11 @@ def categorylist(request):
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 def productlist(request):
     if request.method == 'POST':
         data = request.data['data']
         # {'name': 'asdfaddddd', 'description': 'asdfasdf', 'category': '', 'type': '', 'tradePrice': '', 'mrp': '', 'code': '', 'points': '', 'imagelist': [], 'customfunds': [{'name': 'Company’s Profit', 'percentage': 3}, {'name': 'Production Fund', 'percentage': 22}], 'specifications': [{'name': 'aaaaaaa', 'value': 'fffffffff'}, {'name': 'vv', 'value': 'aaaaaaa'}]}
-        print(data)
         product = Product.objects.create(
             title = data['title'],
             description = data['description'],
@@ -69,6 +70,18 @@ def productlist(request):
             features = data['specifications'],
             customfunds = data['customfunds'],
         )
+        for image in data['imagelist']:
+            format, imgstr = image.split(';base64,') 
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+            ProductImage.objects.create(
+                product = product,
+                image = data,
+            )
+    if request.method == 'DELETE':
+        product = Product.objects.get(id = request.GET.get('id'))
+        product.delete()
+        return Response('success')
     paginator = PageNumberPagination()
     paginator.page_size = 10
     products = Product.objects.all().order_by('-id')
@@ -82,11 +95,9 @@ def productlist(request):
 class LoginView(APIView):
     def post(self, request, format=None):
         data = json.loads(request.body)
-        print(data)
         email = data['email']
         password = data['password']
         user = User.objects.filter(email=email).first()
-        print(user)
         if user is not None:
             if user.check_password(password):
                 jwt_token = MyTokenObtainPairSerializer.get_token(user).access_token
@@ -109,8 +120,6 @@ class LoginView(APIView):
 @api_view(['GET', 'POST'])
 def verify_token(request):
     user = request.user
-    print(user)
-    print(request.headers)
     if user.is_authenticated:
         return Response({'status': 'ok'})
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)

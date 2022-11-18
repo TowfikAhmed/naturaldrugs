@@ -51,16 +51,22 @@
           <!--begin::Table body-->
           <tbody class="stagger">
             <template v-for="item in products.results" :key="item.id">
-              <tr class="animate__animated animate__faster animate__backInUp">
+              <tr class="animate__animated animate__faster animate__backInUp" :id="'id-'+item.id">
                 <td>
                   <div class="d-flex align-items-center">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-45px me-5">
-                      <img
-                        v-if="item.thumbnail"
-                        alt="Pic"
-                        :src="item.thumbnail"
-                      />
+                      <div
+                        id="kt_carousel_1_carousel"
+                        class="carousel carousel-custom slide w-50px"
+                        data-bs-ride="carousel"
+                        data-bs-interval="1500"
+                        v-if="item.productimage_set.length"
+                      >
+                        <div class="carousel-inner pt-0">
+                          <img class="carousel-item active w-50px h-50px" :src="baseUrl+img.thumbnail" alt="" v-for="img in item.productimage_set" :key="img">
+                        </div>
+                      </div>
                       <span
                         v-else
                         :class="`bg-light-${item.state} text-${item.state}`"
@@ -117,7 +123,9 @@
 
                 <td class="text-end">
                   <a
-                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#kt_modal_preview"
+                    @click="preview = item"
                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                   >
                     <span class="svg-icon svg-icon-3">
@@ -137,7 +145,7 @@
                   </a>
 
                   <a
-                    href="#"
+                    @click="delProduct(item.id)"
                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                   >
                     <span class="svg-icon svg-icon-3">
@@ -271,6 +279,7 @@
 
         </div>
 
+        <p class="text-danger text-center px-7 fs-4 animate__animated animate__faster animate__backInUp" v-if="newProduct.error">{{newProduct.error}}</p>
         <div class="modal-footer">
           <button
             type="button"
@@ -286,24 +295,89 @@
       </div>
     </div>
   </div>
+
+  <div class="modal modal-fullscreen fade" tabindex="-1" id="kt_modal_preview">
+    <div class="modal-dialog w-95 mw-900px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-capitalize">Name: {{preview.title}}</h5>
+
+          <!--begin::Close-->
+          <div
+            class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span class="svg-icon svg-icon-2x"></span>
+          </div>
+          <!--end::Close-->
+        </div>
+
+        <div class="modal-body">
+          <p class="p-1 mb-0"> <b>Product Images:</b></p>
+          <div class="images">
+            <div v-for="image in preview.productimage_set" :key="image.id" class="image">
+              <img :src="baseUrl+image.thumbnail" alt="" />
+            </div>
+          </div>
+          <p class="p-1"> <b>Description:</b> {{preview.description}}</p>
+          <p class="p-1"> <b>Trade Price:</b> {{preview.trade_price}}</p>
+          <p class="p-1"> <b>M.R.P:</b> {{preview.mrp}}</p>
+          <p class="p-1"> <b>Points:</b> {{preview.points}}</p>
+          <p class="p-1"> <b>Code:</b> {{preview.code}}</p>
+          <p class="p-1"> <b>Category:</b> {{preview.category}}</p>
+          <p class="p-1"> <b>Brand:</b> {{preview.brand}}</p>
+          <p class="p-1"> <b>Type:</b> {{preview.type}}</p>
+          <p class="p-1"> <b>Stock:</b> {{preview.stock}}</p>
+          <p class="p-1"> <b>Date Added:</b> {{preview.date}}</p>
+          <p class="p-1"> <b>Custom Fund Management:</b></p>
+          <div class="d-flex gap-5 p-4 bg-secondary" v-for="cf in preview.customfunds" :key="cf">
+            <b>{{cf.name}}</b>
+            <span>-</span>
+            <span>{{cf.percentage}}%</span>
+          </div>
+          <p class="p-1"> <b>Specifications:</b></p>
+          <div class="d-flex gap-5 p-4 bg-secondary" v-for="sp in preview.specifications" :key="sp">
+            <b>{{sp.name}}</b>
+            <span>:</span>
+            <span>{{sp.value}}</span>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-light"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import ApiService from "@/core/services/ApiService";
+import ApiService, { baseUrl } from "@/core/services/ApiService";
+import { hideModal } from "@/core/helpers/dom";
+import Swal from "sweetalert2";
 interface NewProduct {
   title: "",
   description: "",
   category: "",
-  type: "",
+  type: "Medical",
   trade_price: number,
   mrp: number,
   code: "",
   point: number,
   imagelist: string[],
   customfunds: object[],
-  specifications: object[]
+  specifications: object[],
+  error: string,
 }
 export default defineComponent({
   name: "main-dashboard",
@@ -316,6 +390,8 @@ export default defineComponent({
       customFundPer: "",
       specname: "",
       specvalue: "",
+      preview: "",
+      baseUrl: baseUrl,
     };
   },
   setup() {
@@ -323,14 +399,15 @@ export default defineComponent({
       title: "",
       description: "",
       category: "",
-      type: "",
+      type: "Medical",
       trade_price: 0,
       mrp: 0,
       code: "",
       point: 0,
       imagelist: [],
       customfunds: [],
-      specifications: []
+      specifications: [],
+      error: "",
     });
     return {
       newProduct,
@@ -406,10 +483,63 @@ export default defineComponent({
       this.newProduct.imagelist = this.newProduct.imagelist.filter((item) => item !== image);
     },
     submitProduct() {
+      if (this.newProduct.title == "") {
+        this.newProduct.error = "Title is required";
+        return;
+      }
+      if (this.newProduct.description == "") {
+        this.newProduct.error = "Description is required";
+        return;
+      }
+      if (this.newProduct.category == "") {
+        this.newProduct.error = "Category is required";
+        return;
+      }
+      if (this.newProduct.imagelist.length == 0) {
+        this.newProduct.error = "Atleast one image is required";
+        return;
+      }
       console.log(this.newProduct);
       ApiService.post("productlist/", {data: this.newProduct}).then((response) => {
         console.log(response.data);
+        var modal = document.getElementById("kt_modal_addp");
+        hideModal(modal);
+        this.newProduct = {
+          title: "",
+          description: "",
+          category: "",
+          type: "Medical",
+          trade_price: 0,
+          mrp: 0,
+          code: "",
+          point: 0,
+          imagelist: [],
+          customfunds: [],
+          specifications: [],
+          error: "",
+        };
         this.getProducts();
+      });
+    },
+    delProduct(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          ApiService.delete("productlist/?id=" + id + "&r=1").then((response) => {
+            document.getElementById("id-" + id)!.classList.add("animate__lightSpeedOutRight");
+            setTimeout(() => {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              document.getElementById("id-" + id)!.remove();
+            }, 500);
+          });
+        }
       });
     },
   },

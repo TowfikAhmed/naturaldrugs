@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from io import BytesIO
 import sys
@@ -36,6 +37,47 @@ def compressImage(uploadedImage, width, height):
     return uploadedImage
 
 
+
+# members
+
+class Member(models.Model):
+    TYPE_CHOICES = (
+        ('MEMBER', 'MEMBER'),
+        ('AGENT', 'AGENT'),
+        ('DEALER', 'DEALER'),
+        ('DEPOT', 'DEPOT'),
+    )
+    GEN_CHOICES = (
+        ('MALE', 'MALE'),
+        ('FEMALE', 'FEMALE'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='MEMBER')
+    name = models.CharField(max_length=100)
+    mobile = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    im = models.CharField(max_length=100, null=True, blank=True)
+    sponsor_memeber = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_member')
+    sponsor_agent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_agent')
+    sponsor_dealer = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_dealer')
+    sponsor_depot = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_depot')
+    passwd = models.CharField(max_length=100, blank=True, null=True)
+    image = models.ImageField(upload_to='members', null=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+    current_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    blocked = models.BooleanField(default=False)
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compressImage(self.image, 300, 300)
+        super(Member, self).save(*args, **kwargs)
+    def __str__(self):
+        return self.name
+        
+# product 
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
@@ -68,14 +110,31 @@ class Product(models.Model):
             self.thumbnail = compressImage(self.image, 300, 300)
         super(Product, self).save(*args, **kwargs)
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="media/product", null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="media/product/thumbnail", null=True, blank=True)
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.thumbnail = compressImage(self.image, 300, 300)
+        super(ProductImage, self).save(*args, **kwargs)
+    def __str__(self):
+        return self.product.title
+
 
 class Fund(models.Model):
     TYPE_CHOICES = (
         ('Company Management', 'Company Management'),
         ('Payout Management', 'Payout Management'),
     )
+    CALCULATE_ON_CHOICES = (
+        ('POINT', 'POINT'),
+        ('TP', 'TP'),
+        ('MRP', 'MRP'),
+    )
     name = models.CharField(max_length=100)
     percentage = models.IntegerField(default=1, verbose_name="Percentage(%)")
+    calculate_on = models.CharField(max_length=20, choices=CALCULATE_ON_CHOICES, default='POINT')
     type = models.CharField(max_length=100, choices=TYPE_CHOICES, default='Company Management')
     reserve = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     cash_in = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

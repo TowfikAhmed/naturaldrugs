@@ -8,8 +8,8 @@
         <!--begin::Title-->
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label fw-bold text-dark">{{fund.name}}</span>
-          <span class="text-gray-400 mt-1 fw-semibold fs-6"
-            >Company Management - {{fund.percentage}}%</span
+          <span class="text-gray-400 mt-1 fw-semibold fs-7"
+            >Company Management - {{fund.percentage}}% on {{fund.calculate_on}}</span
           >
         </h3>
         <!--end::Title-->
@@ -151,7 +151,7 @@
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label fw-bold text-dark">{{fund.name}}</span>
           <span class="text-gray-400 mt-1 fw-semibold fs-6"
-            >Company Management - {{fund.percentage}}%</span
+            >Company Management - {{fund.percentage}}% on {{fund.calculate_on}}</span
           >
         </h3>
         <!--end::Title-->

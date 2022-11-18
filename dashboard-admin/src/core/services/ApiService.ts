@@ -7,8 +7,8 @@ import { AxiosResponse, AxiosRequestConfig } from "axios";
 /**
  * @description service to call HTTP request via Axios
  */
-// export const baseURL = "http://localhost:8000";
-export const baseURL = "";
+// export const baseUrl = "http://localhost:8000";
+export const baseUrl = "";
 class ApiService {
   /**
    * @description property to share vue instance
@@ -22,7 +22,7 @@ class ApiService {
     ApiService.vueInstance = app;
     ApiService.vueInstance.use(VueAxios, axios);
     // ApiService.vueInstance.axios.defaults.baseURL = process.env.VUE_APP_API_URL;
-    ApiService.vueInstance.axios.defaults.baseURL = baseURL + "/api/admin/";
+    ApiService.vueInstance.axios.defaults.baseURL = baseUrl + "/api/admin/";
   }
 
   /**
