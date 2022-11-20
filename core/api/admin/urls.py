@@ -6,4 +6,5 @@ urlpatterns = [
     path('productlist/', views.productlist),
     path('login', views.LoginView.as_view()),
     path('verify_token', views.verify_token),
+    path('members', views.members),
 ]

@@ -123,3 +123,10 @@ def verify_token(request):
     if user.is_authenticated:
         return Response({'status': 'ok'})
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET'])
+@csrf_exempt
+def members(request):
+    members = Member.objects.all()
+    serializer = MemberSerializer(members, many=True)
+    return Response(serializer.data)
