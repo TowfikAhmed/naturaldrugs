@@ -125,7 +125,7 @@ def verify_token(request):
         return Response({'status': 'ok'})
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 @csrf_exempt
 def members(request):
     if request.method == 'POST':
@@ -142,7 +142,7 @@ def members(request):
         member = Member.objects.create(
             user = user,
             name = data['info']['name'],
-            type = data['type'],
+            type = data['type'].upper(),
             sponsor_member = spn,
             mobile = data['info']['mobile'],
             address = data['info']['address'],
@@ -151,7 +151,16 @@ def members(request):
             passwd = data['info']['passwd'],
         )
         return Response('success')
-    members = Member.objects.all()
+    if request.method == 'DELETE':
+        member = Member.objects.get(id = request.GET.get('id'))
+        user = member.user
+        user.delete()
+        return Response('success')
+    type = request.GET.get('type')
+    if type:
+        members = Member.objects.filter(type = type)
+    else:
+        members = Member.objects.all()
     paginator = PageNumberPagination()
     paginator.page_size = 10
     result_page = paginator.paginate_queryset(members, request)
@@ -166,4 +175,13 @@ def check_user(request):
     if member:
         data  = MemberSerializer(member).data
         return Response(data)
+    return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET'])
+@csrf_exempt
+def check_username(request):
+    username = request.GET.get('username')
+    user = User.objects.filter(username = username).first()
+    if user:
+        return Response(('Username already exists'))
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)

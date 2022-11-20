@@ -8,4 +8,5 @@ urlpatterns = [
     path('verify_token', views.verify_token),
     path('members', views.members),
     path('check-user', views.check_user),
+    path('check-username', views.check_username),
 ]

@@ -560,7 +560,7 @@ export default defineComponent({
         data.usernameAvailable = "";
         return;
       }
-      ApiService.get("/check-user?username="+data.username)
+      ApiService.get("/check-username?username="+data.username)
         .then((res) => {
           data.usernameAvailable = "no";
         })

@@ -13,16 +13,6 @@
         >
       </h3>
       <div class="card-toolbar">
-        <!--begin::Menu-->
-        <button
-          type="button"
-          class="btn btn-sm btn-primary text-wrap-nowrap"
-          data-bs-toggle="modal"
-          data-bs-target="#kt_modal_addp"
-        >
-          Add Product
-        </button>
-        <!--end::Menu-->
       </div>
     </div>
     <!--end::Header-->
@@ -58,8 +48,8 @@
                     <div>
                       <div class="carousel-inner pt-0">
                         <img class="carousel-item active w-50px h-50px" :src="baseUrl+item.image" alt="" v-if="item.image">
-                        <img class="carousel-item active w-50px h-50px" src="/static/dashboard/media/avatars/male.jpg" alt="" v-else-if="item.gender == 'FEMALE'">
-                        <img class="carousel-item active w-50px h-50px" src="/static/dashboard/media/avatars/female.jpg" alt="" v-else>
+                        <img class="carousel-item active w-50px h-50px" src="/static/dashboard/media/avatars/male.jpg" alt="" v-else-if="item.gender == 'MALE'">
+                        <img class="carousel-item active w-50px h-50px" src="/static/dashboard/media/avatars/female.jpg" alt="" v-else-if="item.gender == 'FEMALE'">
                       </div>
                     </div>
                   </div>
@@ -85,7 +75,7 @@
                 </div>
               </td>
 
-              <td class="text-end">
+              <td class="text-end" v-if="item.sponsor_member">
                 <a
                   href="#"
                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6"
@@ -133,7 +123,7 @@
                 </a>
 
                 <a
-                  @click="delProduct(item.id)"
+                  @click="delMember(item.id)"
                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                 >
                   <span class="svg-icon svg-icon-3">
@@ -156,10 +146,10 @@
   <!--end::Tables Widget 10-->
 
   <div class="modal modal-fullscreen fade" tabindex="-1" id="kt_modal_preview">
-    <div class="modal-dialog w-95 mw-900px">
+    <div class="modal-dialog w-95 mw-700px">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-capitalize">Name: {{preview.title}}</h5>
+          <h5 class="modal-title text-capitalize">Name: {{preview.name}}</h5>
 
           <!--begin::Close-->
           <div
@@ -173,35 +163,18 @@
         </div>
 
         <div class="modal-body">
-          <p class="p-1 mb-0"> <b>Product Images:</b></p>
-          <div class="images">
-            <div v-for="image in preview.productimage_set" :key="image.id" class="image">
-              <img :src="baseUrl+image.thumbnail" alt="" />
-            </div>
-          </div>
-          <p class="p-1"> <b>Description:</b> {{preview.description}}</p>
-          <p class="p-1"> <b>Trade Price:</b> {{preview.trade_price}}</p>
-          <p class="p-1"> <b>M.R.P:</b> {{preview.mrp}}</p>
-          <p class="p-1"> <b>Points:</b> {{preview.points}}</p>
-          <p class="p-1"> <b>Code:</b> {{preview.code}}</p>
-          <p class="p-1"> <b>Category:</b> {{preview.category}}</p>
-          <p class="p-1"> <b>Brand:</b> {{preview.brand}}</p>
-          <p class="p-1"> <b>Type:</b> {{preview.type}}</p>
-          <p class="p-1"> <b>Stock:</b> {{preview.stock}}</p>
-          <p class="p-1"> <b>Date Added:</b> {{preview.date}}</p>
-          <p class="p-1"> <b>Custom Fund Management:</b></p>
-          <div class="d-flex gap-5 p-4 bg-secondary" v-for="cf in preview.customfunds" :key="cf">
-            <b>{{cf.name}}</b>
-            <span>-</span>
-            <span>{{cf.percentage}}%</span>
-          </div>
-          <p class="p-1"> <b>Specifications:</b></p>
-          <div class="d-flex gap-5 p-4 bg-secondary" v-for="sp in preview.specifications" :key="sp">
-            <b>{{sp.name}}</b>
-            <span>:</span>
-            <span>{{sp.value}}</span>
-          </div>
-
+          <p class="p-1"> <b>UID:</b> {{preview.username}}</p>
+          <p class="p-1"> <b>Mobile:</b> {{preview.mobile}}</p>
+          <p class="p-1"> <b>Email:</b> {{preview.email}}</p>
+          <p class="p-1"> <b>Address:</b> {{preview.address}}</p>
+          <p class="p-1"> <b>Whatsapp:</b> {{preview.im}}</p>
+          <p class="p-1" v-if="preview.sponsor_member"> <b>Sponsor:</b> {{preview.sponsor_member.name}}</p>
+          <p class="p-1" v-if="preview.sponsor_member"> <b>Sponsor UID:</b> {{preview.sponsor_member.username}}</p>
+          <p class="p-1"> <b>Created at:</b> {{preview.created_at}}</p>
+          <p class="p-1"> <b>Updated at:</b> {{preview.updated_at}}</p>
+          <p class="p-1"> <b>Current balance:</b> {{preview.current_balance}}</p>
+          <p class="p-1"> <b>Total Earned:</b> {{preview.total_earned}}</p>
+          <p class="p-1"> <b>Blocked:</b> {{preview.blocked}}</p>
         </div>
 
         <div class="modal-footer">
@@ -252,9 +225,32 @@ export default defineComponent({
   },
   methods: {
     getMembers() {
-      ApiService.get("members").then((response) => {
+      ApiService.get("members?type=MEMBER").then((response) => {
         console.log(response.data);
         this.members = response.data;
+      });
+    },
+    delMember(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          ApiService.delete("members?id=" + id).then((response) => {
+            document.getElementById("id-" + id)!.classList.add("animate__lightSpeedOutRight");
+            setTimeout(() => {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              document.getElementById("id-" + id)!.remove();
+            }, 500);
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+        }
       });
     },
   },

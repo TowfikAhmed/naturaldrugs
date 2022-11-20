@@ -1,36 +1,21 @@
 <template>
-  <!--begin::Row-->
-  <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-    <!--begin::Col-->
-    <div class="col-xl-6">
-      <ProductTable
-        widget-classes="card-xl-stretch mb-xl-8 h-md-100"
-        chart-color="primary"
-        chart-height="150"
-      ></ProductTable>
-    </div>
-    <div class="col-xl-6">
-      <OrdersTable
-        widget-classes="card-xl-stretch mb-xl-8 h-md-100"
-        chart-color="primary"
-        chart-height="150"
-      ></OrdersTable>
-    </div>
-    <!--end::Col-->
-  </div>
-  <!--end::Row-->
+  <section>
+    <h1 class="mx-auto p-10 w-100 text-center">{{store.state.AuthModule.user.type}} dashboard</h1>
+    {{store.state.AuthModule.user}}
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ProductTable from "@/components/widgets/tables/Widget5.vue";
-import OrdersTable from "@/components/widgets/tables/Widget7.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "main-dashboard",
+  setup() {
+    const store = useStore();
+    return { store };
+  },
   components: {
-    ProductTable,
-    OrdersTable,
   },
 });
 </script>

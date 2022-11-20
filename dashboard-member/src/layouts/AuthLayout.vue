@@ -55,7 +55,7 @@
         <h1
           class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7"
         >
-          NaturalDrugs Administrator panel
+          NaturalDrugs Dashboard Login
         </h1>
         <!--end::Title-->
 

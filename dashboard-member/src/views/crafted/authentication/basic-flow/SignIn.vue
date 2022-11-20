@@ -11,7 +11,7 @@
       <!--begin::Heading-->
       <div class="text-center mb-10">
         <!--begin::Title-->
-        <h1 class="text-dark mb-3">Administrator Sign In</h1>
+        <h1 class="text-dark mb-3"> Dashboard Sign In</h1>
         <!--end::Title-->
       </div>
       <!--begin::Heading-->
@@ -25,7 +25,7 @@
         <!--begin::Input-->
         <Field
           tabindex="1"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg form-control"
           type="text"
           name="email"
           autocomplete="off"
@@ -58,7 +58,7 @@
         <!--begin::Input-->
         <Field
           tabindex="2"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg form-control"
           type="password"
           name="password"
           autocomplete="off"

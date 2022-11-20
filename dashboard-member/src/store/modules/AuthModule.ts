@@ -56,6 +56,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   [Mutations.SET_AUTH](user) {
     this.isAuthenticated = true;
     this.user = user;
+    console.log('user',user)
     this.errors = {};
     JwtService.saveToken(user.api_token);
   }

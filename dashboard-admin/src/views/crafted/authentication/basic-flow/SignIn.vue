@@ -25,7 +25,7 @@
         <!--begin::Input-->
         <Field
           tabindex="1"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg form-control"
           type="text"
           name="email"
           autocomplete="off"
@@ -58,7 +58,7 @@
         <!--begin::Input-->
         <Field
           tabindex="2"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg form-control"
           type="password"
           name="password"
           autocomplete="off"

@@ -22,15 +22,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/funds",
-        name: "funds",
-        component: () => import("@/views/Funds.vue"),
-        meta: {
-          pageTitle: "Fund Management",
-          breadcrumbs: ["Fund"],
-        },
-      },
-      {
         path: "/products",
         name: "products",
         component: () => import("@/views/Products.vue"),

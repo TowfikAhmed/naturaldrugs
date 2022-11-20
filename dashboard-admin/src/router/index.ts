@@ -40,6 +40,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: "/administrator/orders",
+        name: "orders",
+        component: () => import("@/views/Orders.vue"),
+        meta: {
+          pageTitle: "Orders",
+          breadcrumbs: ["Orders"],
+        },
+      },
+      {
         path: "/administrator/adduser",
         name: "adduser",
         component: () => import("@/views/AddUser.vue"),

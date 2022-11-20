@@ -7,3 +7,5 @@ def index(request):
 
 def dashboard(request):
     return render(request, 'dashboard/index.html')
+def administrator(request):
+    return render(request, 'administrator/index.html')

@@ -26,7 +26,7 @@ const DocMenuConfig = [
         fontIcon: "bi-layers",
       },
       {
-        heading: "Orders",
+        heading: "Requisition Orders",
         route: "/administrator/orders",
         svgIcon: "/static/dashboard/media/icons/duotune/ecommerce/ecm007.svg",
         fontIcon: "bi-cart",
