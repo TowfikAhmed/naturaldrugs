@@ -26,6 +26,12 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MemberSerializer(serializers.ModelSerializer):
+    sponsor_member = serializers.SerializerMethodField()
+    username = serializers.SerializerMethodField()
+    def get_username(self, obj):
+        return obj.user.username
+    def get_sponsor_member(self, obj):
+        return MemberSerializer(obj.sponsor_member, allow_null=True).data
     class Meta:
         model = Member
         fields = '__all__'

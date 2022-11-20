@@ -22,6 +22,7 @@ from rest_framework.decorators import authentication_classes
 from decimal import Decimal
 import base64 
 from django.core.files.base import ContentFile 
+from django.contrib.auth.hashers import make_password
 
 class JWTAuthenticationSafe(JWTAuthentication):
     def authenticate(self, request):
@@ -124,9 +125,45 @@ def verify_token(request):
         return Response({'status': 'ok'})
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @csrf_exempt
 def members(request):
+    if request.method == 'POST':
+        data = request.data['data']
+        print(data)
+        # {'info': {'name': 'Towfik Ahmed', 'gender': 'MALE', 'mobile': '+8801727567764', 'email': 'shimul929@gmail.com', 'address': 'Lalon Shah mazar chewria', 'im': '', 'passwd': 'asdf', 'passwd2': 'asdf', 'sponsor': 'asdf', 'sponsorStatus': {'id': 1, 'type': 'MEMBER', 'name': 'Test 1', 'gender': 'MALE', 'mobile': None, 'email': None, 'address': None, 'im': None, 'passwd': None, 'image': None, 'created_at': 'November 15 2022, 04:27 PM', 'updated_at': 'November 15 2022, 04:28 PM', 'current_balance': '0.00', 'total_earned': '0.00', 'blocked': False, 'user': 1, 'sponsor_memeber': None, 'sponsor_agent': None, 'sponsor_dealer': None, 'sponsor_depot': None}}, 'type': 'Member'}
+        user = User.objects.create(
+            username = data['info']['username'],
+            first_name = data['info']['name'],
+            email = data['info']['email'],
+            password = make_password(data['info']['passwd']),
+        )
+        spn = Member.objects.get(user__username = data['info']['sponsor'])
+        member = Member.objects.create(
+            user = user,
+            name = data['info']['name'],
+            type = data['type'],
+            sponsor_member = spn,
+            mobile = data['info']['mobile'],
+            address = data['info']['address'],
+            email = data['info']['email'],
+            im = data['info']['im'],
+            passwd = data['info']['passwd'],
+        )
+        return Response('success')
     members = Member.objects.all()
-    serializer = MemberSerializer(members, many=True)
-    return Response(serializer.data)
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(members, request)
+    serializer = MemberSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
+@api_view(['GET'])
+@csrf_exempt
+def check_user(request):
+    username = request.GET.get('username')
+    member = Member.objects.filter(user__username = username).first()
+    if member:
+        data  = MemberSerializer(member).data
+        return Response(data)
+    return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)

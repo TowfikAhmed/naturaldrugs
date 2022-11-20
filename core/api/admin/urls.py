@@ -7,4 +7,5 @@ urlpatterns = [
     path('login', views.LoginView.as_view()),
     path('verify_token', views.verify_token),
     path('members', views.members),
+    path('check-user', views.check_user),
 ]

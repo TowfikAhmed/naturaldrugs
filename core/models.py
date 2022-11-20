@@ -59,7 +59,7 @@ class Member(models.Model):
     email = models.EmailField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     im = models.CharField(max_length=100, null=True, blank=True)
-    sponsor_memeber = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_member')
+    sponsor_member = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_member')
     sponsor_agent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_agent')
     sponsor_dealer = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_dealer')
     sponsor_depot = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Sponsor_depot')
