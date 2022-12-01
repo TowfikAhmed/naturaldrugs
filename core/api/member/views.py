@@ -54,9 +54,9 @@ def productlist(request):
 class LoginView(APIView):
     def post(self, request, format=None):
         data = json.loads(request.body)
-        email = data['email']
+        username = data['email']
         password = data['password']
-        user = User.objects.filter(email=email).first()
+        user = User.objects.filter(username=username).first()
         if user is not None:
             if user.check_password(password):
                 jwt_token = MyTokenObtainPairSerializer.get_token(user).access_token

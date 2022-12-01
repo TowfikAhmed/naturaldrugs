@@ -120,12 +120,15 @@
                   >
                     View
                   </a>
+                </td>
+
+                <td class="text-end">
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-info px-6 btn-active-color-primary btn-sm me-1"
+                    class="btn btn-info px-6 btn-active-color-primary btn-sm me-1"
                   >
-                    Cart
+                    Add To Cart
                   </a>
                 </td>
               </tr>

@@ -19,7 +19,7 @@
       <!--begin::Input group-->
       <div class="fv-row mb-10">
         <!--begin::Label-->
-        <label class="form-label fs-6 fw-bold text-dark">Email</label>
+        <label class="form-label fs-6 fw-bold text-dark">Username</label>
         <!--end::Label-->
 
         <!--begin::Input-->
@@ -146,7 +146,7 @@ export default defineComponent({
 
     //Create form validation object
     const login = Yup.object().shape({
-      email: Yup.string().email().required().label("Email"),
+      email: Yup.string().required().label("Email"),
       password: Yup.string().min(4).required().label("Password"),
     });
 

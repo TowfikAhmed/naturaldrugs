@@ -22,12 +22,21 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/products",
+        path: "/dashboard/products",
         name: "products",
         component: () => import("@/views/Products.vue"),
         meta: {
           pageTitle: "Products",
           breadcrumbs: ["Products"],
+        },
+      },
+      {
+        path: "/dashboard/myproducts",
+        name: "myproducts",
+        component: () => import("@/views/Products.vue"),
+        meta: {
+          pageTitle: "My Products",
+          breadcrumbs: ["My Products"],
         },
       },
       {
