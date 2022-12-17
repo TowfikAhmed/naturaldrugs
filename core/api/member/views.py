@@ -60,16 +60,9 @@ class LoginView(APIView):
         if user is not None:
             if user.check_password(password):
                 jwt_token = MyTokenObtainPairSerializer.get_token(user).access_token
-                data = {
-                    'api_token': str(jwt_token),
-                    'id': user.id,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'email': user.email,
-                    'email_verified_at': user.date_joined,
-                    'created_at': user.date_joined,
-                    'updated_at': user.date_joined,
-                }
+                member = Member.objects.filter(user=user).first()
+                data = MemberSerializer(member).data
+                data['api_token'] = str(jwt_token)
                 return Response(data, status=status.HTTP_200_OK)
         # 401 Unauthorized
         return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
@@ -104,3 +97,16 @@ def check_username(request):
     if user:
         return Response(('Username already exists'))
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET'])
+@csrf_exempt
+def placement(request):
+    member = Member.objects.get(id=19)
+    data = placementSerializer(member).data
+    return Response(data)
+
+@api_view(['GET'])
+def products(request):
+    qs = Product.objects.all()
+    data = ProductSerializer(qs, many=True).data
+    return Response(data, status=status.HTTP_200_OK)

@@ -22,6 +22,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: "/dashboard/tree",
+        name: "tree",
+        component: () => import("@/views/MyTemTree.vue"),
+        meta: {
+          pageTitle: "Tree",
+          breadcrumbs: ["Tree"],
+        },
+      },
+      {
         path: "/dashboard/products",
         name: "products",
         component: () => import("@/views/Products.vue"),

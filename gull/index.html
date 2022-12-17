@@ -1,0 +1,97 @@
+<!--
+File: index.html
+Project: Gull
+File Created: Wednesday, 3rd November 2021 8:57:46 am
+Author: Naime Hossain & ui-lib -> https://ui-lib.com/ (support@ui-lib.com)
+-----
+Last Modified: Sunday, 23rd October 2022 1:14:05 pm
+Modified By: Naime Hossain & ui-lib -> https://ui-lib.com/ (support@ui-lib.com>)
+-----
+Copyright 2019 - 2022 ui-lib  , ui-lib  ( https://ui-lib.com/ )
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <style>
+            .clickanimate{
+                position: relative;
+                cursor: pointer;
+            }
+            .clickanimate .animation{
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 200px;
+                min-height: 150%;
+                min-width: 150%;
+            }
+            .loading_wrap {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: #fff;
+                display: block;
+                position: absolute;
+            }
+
+            .loader_logo {
+                height: 80px;
+                width: 80px;
+                position: absolute;
+                left: calc(50% - 50px);
+                top: 38%;
+            }
+
+            .loader_logo img {
+                height: 100%;
+                width: 100%;
+            }
+
+            .loading {
+                border: 3px solid rgba(102, 51, 153, 0.45);
+                position: absolute;
+                left: calc(50% - 35px);
+                top: 50%;
+                width: 55px;
+                height: 55px;
+                border-radius: 50%;
+                border-top-color: #a855f7;
+                animation: loader 1s ease-in-out infinite;
+                -webkit-animation: loader 1s ease-in-out infinite;
+            }
+
+            @keyframes loader {
+                to {
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+
+            @-webkit-keyframes loader {
+                to {
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+        </style>
+
+        <title>vuejs 3 & Tailwind Admin dashboard Template</title>
+    </head>
+    <body>
+        <!-- built files will be auto injected -->
+        <div class="loading_wrap" id="loading_wrap">
+            <div class="loader_logo">
+                <!-- <img src="/images/logo.png" class="" alt="logo" /> -->
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_rPGSco.json" background="transparent" speed="1"  style="height: 200px;width: 200px;" loop autoplay></lottie-player>
+            </div>
+            
+            <!-- <div class="loading"></div> -->
+        </div>
+        <div id="app"></div>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

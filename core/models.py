@@ -70,6 +70,8 @@ class Member(models.Model):
     current_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     total_earned = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     blocked = models.BooleanField(default=False)
+    placement_a = models.ForeignKey("self", null=True, blank=True, on_delete=models.SET_NULL)
+    placement_b = models.ForeignKey("self", null=True, blank=True, related_name="p_b", on_delete=models.SET_NULL)
     def save(self, *args, **kwargs):
         if self.image:
             self.image = compressImage(self.image, 300, 300)

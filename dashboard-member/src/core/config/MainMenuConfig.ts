@@ -13,6 +13,12 @@ const DocMenuConfig = [
         svgIcon: "/static/dashboard/media/icons/duotune/art/art002.svg",
         fontIcon: "bi-app-indicator",
       },
+      {
+        heading: "My Team Tree",
+        route: "/dashboard/tree",
+        svgIcon: "/static/dashboard/media/icons/duotune/art/art002.svg",
+        fontIcon: "bi-app-indicator",
+      },
     ],
   },
   {
