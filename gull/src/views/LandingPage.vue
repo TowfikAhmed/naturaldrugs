@@ -305,7 +305,7 @@ const landingPageItems = ref([
                         >
                             Start With
                             <span
-                                class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
+                                class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-tomato-500"
                                 >Natural Drugs
                             </span>
                             & UIKIT Built with Tailwind and Vue3
@@ -427,7 +427,7 @@ const landingPageItems = ref([
                             target="_blank"
                             href=""
                             xl
-                            class="bg-primary text-white rounded-lg hover:bg-purple-600 mr-3 mb-3 font-normal leading-4 ripple py-2 px-5"
+                            class="bg-rose-500 text-white rounded-lg hover:bg-purple-600 mr-3 mb-3 font-normal leading-4 ripple py-2 px-5"
                             >Get Now ($39)</a
                         >
 
@@ -445,194 +445,31 @@ const landingPageItems = ref([
                     
 
                     <div class="col-span-12 lg:col-span-5 flex justify-end items-center">
-                        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_5ngs2ksb.json" background="transparent"  speed="1"  style="width: 100%;" loop autoplay></lottie-player>
+                        <lottie-player src="lottie/an01.json" background="transparent"  speed=".6"  style="width: 100%;" loop autoplay></lottie-player>
                     </div>
                     <div class="col-span-12 py-10">
                         <div
                             class="relative max-w-screen-sm mx-auto lg:mx-0 lg:max-w-none grid lg:grid-cols-3 gap-10 lg:gap-8 text-sm"
                         >
                             <div class="flex space-x-6">
-                                <svg
-                                    aria-hidden="true"
-                                    width="44"
-                                    height="44"
-                                    fill="none"
-                                    class="flex-none"
-                                >
-                                    <g filter="url(#hero-feature-1-filter)">
-                                        <path
-                                            d="M2 10a8 8 0 018-8h24a8 8 0 018 8v24a8 8 0 01-8 8H10a8 8 0 01-8-8V10z"
-                                            fill="#ff73b5"
-                                        ></path>
-                                    </g>
-                                    <path
-                                        d="M2.75 10A7.25 7.25 0 0110 2.75h24A7.25 7.25 0 0141.25 10v24A7.25 7.25 0 0134 41.25H10A7.25 7.25 0 012.75 34V10z"
-                                        stroke="#334155"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M29 27.335L32.25 29l-6.603 3.382a8 8 0 01-7.294 0L11.75 29 15 27.335M29 20.336L32.25 22l-6.603 3.382a8 8 0 01-7.294 0L11.75 22 15 20.336"
-                                        stroke="#475569"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M11.75 15l9.338-4.783a2 2 0 011.824 0L32.25 15l-6.603 3.382a8 8 0 01-7.294 0L11.75 15z"
-                                        fill="#22D3EE"
-                                        fill-opacity=".2"
-                                        stroke="#22D3EE"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <defs>
-                                        <filter
-                                            id="hero-feature-1-filter"
-                                            x="2"
-                                            y="1"
-                                            width="40"
-                                            height="41"
-                                            filterUnits="userSpaceOnUse"
-                                            color-interpolation-filters="sRGB"
-                                        >
-                                            <feFlood
-                                                flood-opacity="0"
-                                                result="BackgroundImageFix"
-                                            ></feFlood>
-                                            <feBlend
-                                                in="SourceGraphic"
-                                                in2="BackgroundImageFix"
-                                                result="shape"
-                                            ></feBlend>
-                                            <feColorMatrix
-                                                in="SourceAlpha"
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                result="hardAlpha"
-                                            ></feColorMatrix>
-                                            <feOffset dy="-1"></feOffset>
-                                            <feGaussianBlur
-                                                stdDeviation=".5"
-                                            ></feGaussianBlur>
-                                            <feComposite
-                                                in2="hardAlpha"
-                                                operator="arithmetic"
-                                                k2="-1"
-                                                k3="1"
-                                            ></feComposite>
-                                            <feColorMatrix
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
-                                            ></feColorMatrix>
-                                            <feBlend
-                                                in2="shape"
-                                                result="effect1_innerShadow"
-                                            ></feBlend>
-                                        </filter>
-                                    </defs>
-                                </svg>
+                                <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_idaok5ne.json" background="transparent"  speed=".6"  style="width: 100%;max-width:80px" loop autoplay></lottie-player>
                                 <div>
                                     <h5 class="font-semibold text-white mb-2">
-                                        Vue 3 , Vite & TailwindCss
+                                        Start Your Business
                                     </h5>
                                     <p class="leading-normal text-gray-400">
-                                        We used Vue 3 composition API,vite 3 and
-                                        TailwindCss 3 to make your experience
-                                        pleasant. Gull is Beautifully designed,
-                                        expertly crafted components that follow
-                                        all accessibility best practices and are
-                                        easy to customize.
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, nam perferendis facilis officiis nihil optio a. Laborum, incidunt quod numquam quia cupiditate qui sunt ipsa consequuntur a? Tenetur, quidem doloremque?
                                     </p>
                                 </div>
                             </div>
                             <div class="flex space-x-6">
-                                <svg
-                                    aria-hidden="true"
-                                    width="44"
-                                    height="44"
-                                    fill="none"
-                                    class="flex-none"
-                                >
-                                    <g filter="url(#hero-feature-2-filter)">
-                                        <path
-                                            d="M2 10a8 8 0 018-8h24a8 8 0 018 8v24a8 8 0 01-8 8H10a8 8 0 01-8-8V10z"
-                                            fill="#ff73b5"
-                                        ></path>
-                                    </g>
-                                    <path
-                                        d="M2.75 10A7.25 7.25 0 0110 2.75h24A7.25 7.25 0 0141.25 10v24A7.25 7.25 0 0134 41.25H10A7.25 7.25 0 012.75 34V10z"
-                                        stroke="#334155"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M24.25 13.75l-4.5 16.5"
-                                        stroke="#22D3EE"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    ></path>
-                                    <path
-                                        d="M18.75 9.75h-1a4 4 0 00-4 4v4.007a3 3 0 01-.879 2.122v0a3 3 0 000 4.242v0a3 3 0 01.879 2.122v4.007a4 4 0 004 4h1M25.25 9.75h1a4 4 0 014 4v4.007a3 3 0 00.879 2.122v0a3 3 0 010 4.242v0a3 3 0 00-.879 2.122v4.007a4 4 0 01-4 4h-1"
-                                        stroke="#475569"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <defs>
-                                        <filter
-                                            id="hero-feature-2-filter"
-                                            x="2"
-                                            y="1"
-                                            width="40"
-                                            height="41"
-                                            filterUnits="userSpaceOnUse"
-                                            color-interpolation-filters="sRGB"
-                                        >
-                                            <feFlood
-                                                flood-opacity="0"
-                                                result="BackgroundImageFix"
-                                            ></feFlood>
-                                            <feBlend
-                                                in="SourceGraphic"
-                                                in2="BackgroundImageFix"
-                                                result="shape"
-                                            ></feBlend>
-                                            <feColorMatrix
-                                                in="SourceAlpha"
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                result="hardAlpha"
-                                            ></feColorMatrix>
-                                            <feOffset dy="-1"></feOffset>
-                                            <feGaussianBlur
-                                                stdDeviation=".5"
-                                            ></feGaussianBlur>
-                                            <feComposite
-                                                in2="hardAlpha"
-                                                operator="arithmetic"
-                                                k2="-1"
-                                                k3="1"
-                                            ></feComposite>
-                                            <feColorMatrix
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
-                                            ></feColorMatrix>
-                                            <feBlend
-                                                in2="shape"
-                                                result="effect1_innerShadow"
-                                            ></feBlend>
-                                        </filter>
-                                    </defs>
-                                </svg>
+                                <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_maarwknn.json" background="transparent"  speed=".6"  style="width: 100%;max-width:80px" loop autoplay></lottie-player>
                                 <div>
                                     <h5 class="font-semibold text-white mb-2">
-                                        <a href="">Save Time & Money</a>
+                                        <a href="">Buy for youself</a>
                                     </h5>
                                     <p class="leading-normal text-gray-400">
-                                        Boost your Development with Gull . Save
-                                        Thousands of hours of Coding and money
-                                        Accessible, interactive examples for Vue
-                                        powered by
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ratione quod consectetur sit tempore blanditiis. Quaerat molestias voluptate dolorum magni illum vitae praesentium iste adipisci, porro delectus, voluptatibus, consequatur sit?
                                         <a
                                             href="https://headlessui.dev"
                                             class="text-white hover:underline"
@@ -642,106 +479,13 @@ const landingPageItems = ref([
                                 </div>
                             </div>
                             <div class="flex space-x-6">
-                                <svg
-                                    aria-hidden="true"
-                                    width="44"
-                                    height="44"
-                                    fill="none"
-                                    class="flex-none"
-                                >
-                                    <g filter="url(#hero-feature-3-filter)">
-                                        <path
-                                            d="M2 10a8 8 0 018-8h24a8 8 0 018 8v24a8 8 0 01-8 8H10a8 8 0 01-8-8V10z"
-                                            fill="#ff73b5"
-                                        ></path>
-                                    </g>
-                                    <path
-                                        d="M2.75 10A7.25 7.25 0 0110 2.75h24A7.25 7.25 0 0141.25 10v24A7.25 7.25 0 0134 41.25H10A7.25 7.25 0 012.75 34V10z"
-                                        stroke="#334155"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M9.75 23.25v-1.5a4 4 0 014-4h8.5a4 4 0 014 4v8.5a4 4 0 01-4 4h-1.5"
-                                        stroke="#475569"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M29.75 34.25h.5a4 4 0 004-4v-18.5a2 2 0 00-2-2h-18.5a4 4 0 00-4 4v.5"
-                                        stroke="#475569"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <path
-                                        d="M33.5 10.5l-23 23"
-                                        stroke="#22D3EE"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    ></path>
-                                    <path
-                                        d="M27.75 9.75h4.5a2 2 0 012 2v4.5M16.25 34.25h-4.5a2 2 0 01-2-2v-4.5"
-                                        stroke="#22D3EE"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                    <defs>
-                                        <filter
-                                            id="hero-feature-3-filter"
-                                            x="2"
-                                            y="1"
-                                            width="40"
-                                            height="41"
-                                            filterUnits="userSpaceOnUse"
-                                            color-interpolation-filters="sRGB"
-                                        >
-                                            <feFlood
-                                                flood-opacity="0"
-                                                result="BackgroundImageFix"
-                                            ></feFlood>
-                                            <feBlend
-                                                in="SourceGraphic"
-                                                in2="BackgroundImageFix"
-                                                result="shape"
-                                            ></feBlend>
-                                            <feColorMatrix
-                                                in="SourceAlpha"
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                result="hardAlpha"
-                                            ></feColorMatrix>
-                                            <feOffset dy="-1"></feOffset>
-                                            <feGaussianBlur
-                                                stdDeviation=".5"
-                                            ></feGaussianBlur>
-                                            <feComposite
-                                                in2="hardAlpha"
-                                                operator="arithmetic"
-                                                k2="-1"
-                                                k3="1"
-                                            ></feComposite>
-                                            <feColorMatrix
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
-                                            ></feColorMatrix>
-                                            <feBlend
-                                                in2="shape"
-                                                result="effect1_innerShadow"
-                                            ></feBlend>
-                                        </filter>
-                                    </defs>
-                                </svg>
+                                <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_f5nb5n.json" background="transparent"  speed=".6"  style="width: 100%;max-width:80px" loop autoplay></lottie-player>
                                 <div>
                                     <h5 class="font-semibold text-white mb-2">
-                                        Fully Responsive & Super Fast
+                                        Make Ideas
                                     </h5>
                                     <p class="leading-normal text-gray-400">
-                                        Every example is fully responsive and
-                                        carefully designed and implemented to
-                                        look great at any screen size and load
-                                        fast
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam doloribus rerum hic maiores. Repudiandae eum veritatis voluptates consequuntur, consequatur officia, culpa ipsum, quam saepe necessitatibus porro! Impedit consequuntur expedita tempore!
                                     </p>
                                 </div>
                             </div>
@@ -755,43 +499,43 @@ const landingPageItems = ref([
         <div class="container mx-auto flex flex-wrap p-5">
             <a
                 href="#dashboard"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Dashboard
             </a>
             <a
                 href="#apps"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Application
             </a>
             <a
                 href="#components"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Components
             </a>
             <a
                 href="#widgets"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Widgets
             </a>
             <a
                 href="#profile"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Profile
             </a>
             <a
                 href="#credentials"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Credentials
             </a>
             <a
                 href="#charts"
-                class="font-semibold hover:text-primary mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
             >
                 Charts
             </a>
@@ -804,24 +548,24 @@ const landingPageItems = ref([
 
         <div class="absolute inset-0 opacity-25 dark:opacity-50"></div>
         <div class="relative grid grid-cols-1 pb-8 text-center z-1">
-            <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold dark:text-white text-warning">Trusted by more than 10K users</h3>
+            <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold dark:text-white text-success">Trusted by more than 10K users</h3>
 
             <p class="bg-slate-200 p-10 rounded max-w-xl mx-auto">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
         </div><!--end grid-->
 
         <div class="relative grid md:grid-cols-3 grid-cols-1 items-center mt-8 gap-[30px] z-1">
             <div class="counter-box text-center">
-                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-primary dark:text-white"><span class="counter-value" data-target="1548">1548</span>+</h1>
+                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-rose-500 dark:text-white"><span class="counter-value" data-target="1548">1548</span>+</h1>
                 <h5 class="counter-head text-lg font-medium">Properties Sell</h5>
             </div><!--end counter box-->
                     
             <div class="counter-box text-center">
-                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-primary dark:text-white"><span class="counter-value" data-target="25">25</span>+</h1>
+                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-rose-500 dark:text-white"><span class="counter-value" data-target="25">25</span>+</h1>
                 <h5 class="counter-head text-lg font-medium">Award Gained</h5>
             </div><!--end counter box-->
                     
             <div class="counter-box text-center">
-                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-primary dark:text-white"><span class="counter-value" data-target="9">9</span>+</h1>
+                <h1 class="lg:text-5xl text-4xl font-semibold mb-2 text-rose-500 dark:text-white"><span class="counter-value" data-target="9">9</span>+</h1>
                 <h5 class="counter-head text-lg font-medium">Years Experience</h5>
             </div><!--end counter box-->
         </div>
@@ -833,11 +577,11 @@ const landingPageItems = ref([
             <p class="text-slate-400 max-w-xl mx-auto">Create, collaborate, and turn your ideas into incredible products with the definitive platform for digital design.</p>
         </div><!--end grid-->
 
-        <div class="grid lg:grid-cols-12 md:grid-cols-12 grid-cols-1 mt-8 gap-[30px] items-center">
+        <div class="grid lg:grid-cols-12 md:grid-cols-12 grid-cols-1 mt-8 gap-[10px] items-center">
             <div class="lg:col-span-4 md:col-span-6 lg:order-1 order-2">
                 <div class="grid grid-cols-1 gap-[30px]">
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor w-5 h-5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                         </div>
                         <div class="text-right flex-1 md:order-1 order-2 ltr:md:text-right rtl:md:text-left ltr:md:mr-4 rtl:md:ml-4 ltr:md:ml-0 rtl:md:mr-0 ltr:ml-4 rtl:mr-4">
@@ -848,7 +592,7 @@ const landingPageItems = ref([
                     <!--end feature-->
                             
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather w-5 h-5"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
                         </div>
                         <div class="flex-1 text-right md:order-1 order-2 ltr:md:text-right rtl:md:text-left ltr:md:mr-4 rtl:md:ml-4 ltr:md:ml-0 rtl:md:mr-0 ltr:ml-4 rtl:mr-4">
@@ -859,7 +603,7 @@ const landingPageItems = ref([
                     <!--end feature-->
                             
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex md:order-2 order-1 align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye w-5 h-5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </div>
                         <div class="flex-1 text-right md:order-1 order-2 ltr:md:text-right rtl:md:text-left ltr:md:mr-4 rtl:md:ml-4 ltr:md:ml-0 rtl:md:mr-0 ltr:ml-4 rtl:mr-4">
@@ -872,13 +616,13 @@ const landingPageItems = ref([
             </div>
 
             <div class="lg:col-span-4 md:col-span-12 lg:mx-1 lg:order-2 order-1">
-                <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_azjolkac.json" background="transparent" class="icon"  speed="1"  style="height:550px;z-index:-1" loop autoplay></lottie-player>
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_dkamovet.json" background="transparent" class="icon"  speed="1"  style="height:550px;z-index:-1" loop autoplay></lottie-player>
             </div>
 
             <div class="lg:col-span-4 md:col-span-6 order-3">
                 <div class="grid grid-cols-1 gap-[30px]">
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check w-5 h-5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
                         </div>
                         <div class="flex-1 ltr:ml-4 rtl:mr-4">
@@ -889,7 +633,7 @@ const landingPageItems = ref([
                     <!--end feature-->
                             
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone w-5 h-5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                         </div>
                         <div class="flex-1 ltr:ml-4 rtl:mr-4">
@@ -900,7 +644,7 @@ const landingPageItems = ref([
                     <!--end feature-->
                             
                     <div class="group flex transition-all duration-500 ease-in-out xl:p-3">
-                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-warning group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
+                        <div class="flex align-middle justify-center items-center w-14 h-14 mt-1 bg-success group-hover:bg-indigo-600 group-hover:text-white text-white mx-2 rounded-full text-2xl shadow-sm dark:shadow-gray-800 transition-all duration-500 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart w-5 h-5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                         </div>
                         <div class="flex-1 ltr:ml-4 rtl:mr-4">
@@ -947,7 +691,7 @@ const landingPageItems = ref([
 header {
     }
 .header{
-    background: linear-gradient(45deg, #36215a, 70%, rgb(201 153 106 / 87%));
+    background: linear-gradient(45deg, #003320, 70%, #2ddb3ed2);
     overflow: hidden;
     position: relative;
 }

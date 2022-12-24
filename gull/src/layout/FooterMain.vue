@@ -1,7 +1,5 @@
 <template>
     <section class="footer-wrapper bg-gray-100 text-gray-600 relative" style="overflow:hidden">
-        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_sds9ilws.json" background="transparent" class="absolute left-0" style="width:500px; bottom:-70px;opacity:.5"  speed="1" loop autoplay></lottie-player>
-        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_82i2etnb.json" background="transparent" class="absolute right-0" style="width:500px; top:-70px;opacity:.5"  speed="1" loop autoplay></lottie-player>
         <footer class="text-center lg:text-left container mx-auto flex flex-wrap p-5">
           <div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
             <div class="mr-12 hidden lg:block">
