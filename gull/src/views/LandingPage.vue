@@ -443,7 +443,7 @@ const landingPageItems = ref([
                     
 
                     <div class="col-span-12 lg:col-span-5 flex justify-end items-center">
-                        <lottie-player src="lottie/an01.json" background="transparent"  speed=".6"  style="width: 100%;" loop autoplay></lottie-player>
+                        <lottie-player src="https://naturaldrugsbd.com/static/dashboard/lottie/an01.json" background="transparent"  speed=".6"  style="width: 100%;" loop autoplay></lottie-player>
                     </div>
                     <div class="col-span-12 py-10">
                         <div
