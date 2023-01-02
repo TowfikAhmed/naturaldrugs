@@ -2,11 +2,11 @@
     <div class="relative" :class="classnames" v-if="tree">
         <span class="info">
             <span class="avater">
-                <img src="/src/assets/images/avater-bg.svg" alt="">
-                <img src="/src/assets/images/pointer1.svg" alt="" class="pointer" v-if="classnames == 'a'">
-                <img src="/src/assets/images/pointer2.svg" alt="" class="pointer" v-if="classnames == 'b'">
-                <img src="/src/assets/images/pointer0.svg" alt="" class="pointer" v-else>
-                <img src="/src/assets/images/man.png" alt="" class="avt">
+                <img src="@/assets/images/avater-bg.svg" alt="">
+                <img src="@/assets/images/pointer1.svg" alt="" class="pointer" v-if="classnames == 'a'">
+                <img src="@/assets/images/pointer2.svg" alt="" class="pointer" v-if="classnames == 'b'">
+                <img src="@/assets/images/pointer0.svg" alt="" class="pointer" v-else>
+                <img src="@/assets/images/man.png" alt="" class="avt">
             </span>
             <span class="text">
                 <h5>{{tree.name}}</h5>
@@ -21,9 +21,9 @@
         <div class="relative" v-else>
             <span class="info">
                 <span class="avater">
-                    <img src="/src/assets/images/avater-bg.svg" alt="">
-                    <img src="/src/assets/images/pointer3.svg" alt="" class="pointer">
-                    <img src="/src/assets/images/tbd.svg" alt="" class="avt">
+                    <img src="@/assets/images/avater-bg.svg" alt="">
+                    <img src="@/assets/images/pointer3.svg" alt="" class="pointer">
+                    <img src="@/assets/images/tbd.svg" alt="" class="avt">
                 </span>
                 <h5>TBD</h5>
             </span>
@@ -32,9 +32,9 @@
         <div class="relative" v-else>
             <span class="info">
                 <span class="avater">
-                    <img src="/src/assets/images/avater-bg.svg" alt="">
-                    <img src="/src/assets/images/pointer4.svg" alt="" class="pointer">
-                    <img src="/src/assets/images/tbd.svg" alt="" class="avt">
+                    <img src="@/assets/images/avater-bg.svg" alt="">
+                    <img src="@/assets/images/pointer4.svg" alt="" class="pointer">
+                    <img src="@/assets/images/tbd.svg" alt="" class="avt">
                 </span>
                 <h5>TBD</h5>
             </span>

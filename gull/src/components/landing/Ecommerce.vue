@@ -2,9 +2,13 @@
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import { baseUrl } from '@/config/main.js'
 import axios from 'axios'
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+  import 'swiper/css';
 export default {
     components:{
-        breadcrumbs: Breadcrumbs
+        breadcrumbs: Breadcrumbs,
+        Swiper,
+        SwiperSlide,
     },
     data(){
         return {
@@ -30,7 +34,6 @@ export default {
 <template>
     <div class="container mx-auto">
         <breadcrumbs parentTitle="Ecommerce" subParentTitle="Product" />
-        {{products}}
         <div class="grid grid-cols-12 gap-5 mb-5">
             <div class="col-span-12">
                 <div
@@ -39,7 +42,7 @@ export default {
                     <div class="mb-2 flex">
                         <BaseBtn
                             @click="isOpen = !isOpen"
-                            class="mr-2 bg-primary text-white ul-ecommerce-toggle-button lg:hidden block"
+                            class="mr-2 bg-rose-500 text-white ul-ecommerce-toggle-button lg:hidden block"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +61,7 @@ export default {
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="mr-2 border border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +80,7 @@ export default {
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="mr-2 border border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +106,7 @@ export default {
                             />
                             <button
                                 role="button"
-                                class="px-4 bg-primary text-white rounded-r-lg border-t border-b border-r focus:outline-none"
+                                class="px-4 bg-rose-500 text-white rounded-r-lg border-t border-b border-r focus:outline-none"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +132,7 @@ export default {
             <div class="ul-ecommerce-sidebar" :class="isOpen ? 'open' : ''">
                 <BaseCard>
                     <div class="text-center mb-5">
-                        <BaseBtn class="bg-primary text-white" block>
+                        <BaseBtn class="bg-rose-500 text-white" block>
                             View Cart
                             <span
                                 class="bg-warning px-3 rounded py-1 text-white ml-3"
@@ -137,11 +140,11 @@ export default {
                             >
                         </BaseBtn>
                     </div>
-                    <P class="text-primary font-bold mb-2">Price </P>
+                    <P class="text-rose-500 font-bold mb-2">Price </P>
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
@@ -151,18 +154,18 @@ export default {
                     <div class="mb-5">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
                             /><span class="ml-2">High To Low</span>
                         </label>
                     </div>
-                    <P class="text-primary font-bold mb-2">Category </P>
+                    <P class="text-rose-500 font-bold mb-2">Category </P>
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
@@ -172,7 +175,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
@@ -182,7 +185,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
@@ -192,18 +195,18 @@ export default {
                     <div class="mb-5">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-radio bg-gray-200 border border-gray-200 text-primary"
+                                class="form-radio bg-gray-200 border border-gray-200 text-rose-500"
                                 type="radio"
                                 name="accountType"
                                 value="personal"
                             /><span class="ml-2">Watch</span>
                         </label>
                     </div>
-                    <P class="text-primary font-bold mb-2">Brand </P>
+                    <P class="text-rose-500 font-bold mb-2">Brand </P>
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">apple(3)</span>
                         </label>
@@ -211,7 +214,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">Huwaei(1)</span>
                         </label>
@@ -219,7 +222,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">sony(3)</span>
                         </label>
@@ -227,7 +230,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">samsung(2)</span>
                         </label>
@@ -235,7 +238,7 @@ export default {
                     <div class="mb-1">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">xiaomi(2)</span>
                         </label>
@@ -243,7 +246,7 @@ export default {
                     <div class="mb-5">
                         <label class="inline-flex items-center cursor-pointer">
                             <input
-                                class="form-checkbox rounded text-primary border border-gray-200 bg-gray-200"
+                                class="form-checkbox rounded text-rose-500 border border-gray-200 bg-gray-200"
                                 type="checkbox"
                             /><span class="ml-2">asus(2)</span>
                         </label>
@@ -255,10 +258,27 @@ export default {
                     <div
                         v-for="(item, index) in products"
                         :key="index"
-                        class="col-span-12 xl:col-span-4 md:col-span-6"
+                        class="col-span-6 xl:col-span-3 md:col-span-4"
                     >
                         <BaseCard noPadding class="overflow-hidden relative">
-                            <img :src="baseUrl+ item.productimage_set[0].image" class="productImage" />
+                            <swiper
+                                :slides-per-view="1"
+                                :space-between="50"
+                                @swiper="onSwiper"
+                                @slideChange="onSlideChange"
+                                :autoplay="{
+                                    delay: 2000,
+                                }"
+                                :loop="true"
+                              > 
+                                <swiper-slide>
+                                    <img :src="baseUrl+ item.productimage_set[0].image" class="productImage" />
+                                </swiper-slide>
+
+                                <swiper-slide>
+                                    <img :src="baseUrl+ item.productimage_set[1].image" class="productImage" />
+                                </swiper-slide>
+                            </swiper>
                             <div class="p-5">
                                 <div class="mb-1">
                                     <a
@@ -286,11 +306,11 @@ export default {
                                     <p class="font-bold text-base mb-5">MRP: {{item.mrp}}</p>
                                 </div>
                                 <div class="flex justify-between flex-wrap">
-                                    <BaseBtn class="bg-primary text-white mb-2">
+                                    <BaseBtn class="bg-rose-500 text-white mb-2">
                                         Add Cart
                                     </BaseBtn>
                                     <BaseBtn
-                                        class="border border-primary text-primary hover:bg-primary hover:text-white mb-2"
+                                        class="border border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white mb-2"
                                     >
                                         View Cart
                                     </BaseBtn>
@@ -306,7 +326,7 @@ export default {
 
 <style scoped>
 .productImage{
-    max-height: 350px;
+    max-height: 220px;
     width: 100%;
     object-fit: cover;
 }

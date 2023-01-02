@@ -78,7 +78,7 @@ const router = createRouter({
     routes,
 })
 router.beforeEach((to, from, next) => {
-    document.title = `${to.name} - ${import.meta.env.VITE_APP_TITLE}`
+    document.title = to.name
     next()
 })
 router.afterEach(() => {

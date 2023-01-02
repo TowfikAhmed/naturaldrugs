@@ -12,4 +12,10 @@ export default defineConfig({
   server: {
     open: true,
   },
+  base : process.env.NODE_ENV === 'production' ? '/static/dashboard/' : '/',
+
+  build: {
+    outDir: '../static/dashboard',
+    publicPath: process.env.NODE_ENV === 'production' ? '/static/dashboard' : '/',
+  },
 })

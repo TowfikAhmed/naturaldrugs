@@ -3,10 +3,15 @@ import { ref } from 'vue'
 import Footer from '../layout/FooterMain.vue'
 import Testimonials from '../components/landing/Testimonials.vue'
 import Ecommerce from '../components/landing/Ecommerce.vue'
+// router 
+import { useRouter } from 'vue-router'
 
-function animateLottieBtn(e){
-    console.log(e.target)
+var router = useRouter()
+function animateLottieBtn(e, url){
     e.target.load('https://assets3.lottiefiles.com/packages/lf20_u4rxwy4z.json');
+    setTimeout(() => {
+        router.push(url)
+    }, 500);
 }
 
 const landingPageItems = ref([
@@ -288,10 +293,10 @@ const landingPageItems = ref([
 
                 <div class="flex items-center">
                     <a  
-                        class="text-gray font-semibold hover:text-dark-400 flex items-center border px-3 bg-white clickanimate"
-                         @click="animateLottieBtn($event)"
+                        class="bg-rose-500 text-white rounded-lg hover:bg-rose-600 mr-3 mb-3 font-normal leading-4 ripple py-2 px-5 items-center flex gap-2 clickanimate"
+                         @click="animateLottieBtn($event, '/signin')"
                     >   
-                        <lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_quepwpqp.json" background="transparent" class="icon"  speed="1"  style="height: 30px;" loop autoplay></lottie-player>
+                        <i class="i-Checked-User text-sm"></i>
                         <p>LOGIN</p>
                         <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_u4rxwy4z.json" background="transparent" class="animation"  speed="1" autoplay></lottie-player>
                     </a>
@@ -305,7 +310,7 @@ const landingPageItems = ref([
                         >
                             Start With
                             <span
-                                class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-tomato-500"
+                                class="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-tomato-500"
                                 >Natural Drugs
                             </span>
                             & UIKIT Built with Tailwind and Vue3
@@ -424,21 +429,14 @@ const landingPageItems = ref([
                             Project
                         </p>
                         <a
-                            target="_blank"
-                            href=""
+                            @click="animateLottieBtn($event)"
                             xl
-                            class="bg-rose-500 text-white rounded-lg hover:bg-purple-600 mr-3 mb-3 font-normal leading-4 ripple py-2 px-5"
-                            >Get Now ($39)</a
+                            class="bg-rose-500 text-white rounded-lg hover:bg-rose-600 mr-3 mb-3 font-normal leading-4 ripple py-3 px-5 clickanimate"
+                            >
+                                Get Now ($39)
+                                <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_u4rxwy4z.json" background="transparent" class="animation"  speed="1" autoplay></lottie-player>
+                            </a
                         >
-
-                        <router-link
-                            target="_blank"
-                            to="/dashboards/dashboard-version-one"
-                            xl
-                            class="bg-gray-700 text-white rounded-lg hover:bg-gray-800 mr-3 mb-3 font-normal leading-4 ripple py-2 px-5"
-                        >
-                            Preview
-                        </router-link>
                     </div>
 
                     <div class="col-span-12 lg:col-span-1"></div>
@@ -496,46 +494,46 @@ const landingPageItems = ref([
         </div>
     </header>
     <section class="sticky-section shadow sticky z-50 top-0 bg-white lg:px-12">
-        <div class="container mx-auto flex flex-wrap p-5">
+        <div class="container mx-auto flex gap-2 flex-wrap p-0">
             <a
                 href="#dashboard"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Dashboard
             </a>
             <a
                 href="#apps"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Application
             </a>
             <a
                 href="#components"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Components
             </a>
             <a
                 href="#widgets"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Widgets
             </a>
             <a
                 href="#profile"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Profile
             </a>
             <a
                 href="#credentials"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Credentials
             </a>
             <a
                 href="#charts"
-                class="font-semibold hover:text-rose-500 mr-8 p-2 m-2 text-2xl"
+                class="font-semibold hover:text-rose-500 mr-8 p-2 py-5 text-xl"
             >
                 Charts
             </a>
@@ -550,7 +548,10 @@ const landingPageItems = ref([
         <div class="relative grid grid-cols-1 pb-8 text-center z-1">
             <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold dark:text-white text-success">Trusted by more than 10K users</h3>
 
-            <p class="bg-slate-200 p-10 rounded max-w-xl mx-auto">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
+            <p class="bg-slate-200 p-10 rounded max-w-xl mx-auto">
+                Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa suscipit, facere molestias error ea doloribus accusantium cumque natus hic soluta consequuntur beatae quidem ut saepe illum fugiat est, quae rem!
+            </p>
         </div><!--end grid-->
 
         <div class="relative grid md:grid-cols-3 grid-cols-1 items-center mt-8 gap-[30px] z-1">
@@ -660,7 +661,7 @@ const landingPageItems = ref([
     <div class="container md:my-24 my-16">
         <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
             <div class="mx-auto py-4">
-                <img src="@/assets/images/avatar-bg.svg" class="h-6" alt="">
+                <img src="@/assets/images/client/paypal.svg" class="h-6" alt="">
             </div>
 
             <div class="mx-auto py-4">
@@ -691,7 +692,7 @@ const landingPageItems = ref([
 header {
     }
 .header{
-    background: linear-gradient(45deg, #003320, 70%, #2ddb3ed2);
+    background: linear-gradient(45deg, #01531cfa, 70%, #63e46ee1);
     overflow: hidden;
     position: relative;
 }
@@ -704,5 +705,15 @@ header {
     left: 0;
     top: 0;
     opacity: .8;
+}
+@media (max-width: 1300px) {
+    .sticky-section a{
+        margin: 0px;
+        font-size: 18px;
+        flex: 1;
+    }
+    .sticky-section{
+        justify-content: center;
+    }
 }
 </style>
