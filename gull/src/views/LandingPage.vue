@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Footer from '../layout/FooterMain.vue'
 import Testimonials from '../components/landing/Testimonials.vue'
 import Ecommerce from '../components/landing/Ecommerce.vue'
+import Animation from '../components/landing/Animation.vue'
 // router 
 import { useRouter } from 'vue-router'
 
@@ -288,7 +289,7 @@ const landingPageItems = ref([
         <div class="container mx-auto">
             <nav class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <h4 class="font-bold text-gray-200">Natural Drugs</h4>
+                    <h4 class="font-bold text-black-200">Natural Drugs</h4>
                 </div>
 
                 <div class="flex items-center">
@@ -306,7 +307,7 @@ const landingPageItems = ref([
                 <div class="grid grid-cols-12 gap-5 mt-[80px]">
                     <div class="col-span-12 lg:col-span-6 mb-4">
                         <h1
-                            class="leading-normal sm:text-[50px] text-3xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-50 to-purple-100"
+                            class="leading-normal sm:text-[50px] text-3xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-purple-500"
                         >
                             Start With
                             <span
@@ -375,7 +376,7 @@ const landingPageItems = ref([
                                         ></path>
                                     </g>
                                 </svg>
-                                <p class="text-gray-300">Vite</p>
+                                <p class="text-black-300">Vite</p>
                             </div>
                             <div class="flex items-center mr-5">
                                 <svg
@@ -393,7 +394,7 @@ const landingPageItems = ref([
                                         ></path>
                                     </g>
                                 </svg>
-                                <p class="text-gray-300">TailwindCss</p>
+                                <p class="text-black-300">TailwindCss</p>
                             </div>
                             <div class="flex items-center mr-5">
                                 <svg
@@ -419,10 +420,10 @@ const landingPageItems = ref([
                                         </g>
                                     </g>
                                 </svg>
-                                <p class="text-gray-300">Vue ^3.2.6</p>
+                                <p class="text-black-300">Vue ^3.2.6</p>
                             </div>
                         </div>
-                        <p class="text-gray-300 lg:w-9/12 w-full mb-9">
+                        <p class="text-black-300 lg:w-9/12 w-full mb-9">
                             Over 150+ professionally designed, fully responsive,
                             expertly crafted components and Over 50+ Pages
                             examples that will Boost your next Admin Dashboard
@@ -443,7 +444,8 @@ const landingPageItems = ref([
                     
 
                     <div class="col-span-12 lg:col-span-5 flex justify-end items-center">
-                        <lottie-player src="https://naturaldrugsbd.com/static/dashboard/lottie/an01.json" background="transparent"  speed=".6"  style="width: 100%;" loop autoplay></lottie-player>
+
+                        <Animation class="my-6" />
                     </div>
                     <div class="col-span-12 py-10">
                         <div
@@ -455,7 +457,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         Start Your Business
                                     </h5>
-                                    <p class="leading-normal text-gray-400">
+                                    <p class="leading-normal text-black-400">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, nam perferendis facilis officiis nihil optio a. Laborum, incidunt quod numquam quia cupiditate qui sunt ipsa consequuntur a? Tenetur, quidem doloremque?
                                     </p>
                                 </div>
@@ -466,7 +468,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         <a href="">Buy for youself</a>
                                     </h5>
-                                    <p class="leading-normal text-gray-400">
+                                    <p class="leading-normal text-black-400">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ratione quod consectetur sit tempore blanditiis. Quaerat molestias voluptate dolorum magni illum vitae praesentium iste adipisci, porro delectus, voluptatibus, consequatur sit?
                                         <a
                                             href="https://headlessui.dev"
@@ -482,7 +484,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         Make Ideas
                                     </h5>
-                                    <p class="leading-normal text-gray-400">
+                                    <p class="leading-normal text-black-400">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam doloribus rerum hic maiores. Repudiandae eum veritatis voluptates consequuntur, consequatur officia, culpa ipsum, quam saepe necessitatibus porro! Impedit consequuntur expedita tempore!
                                     </p>
                                 </div>
@@ -543,7 +545,7 @@ const landingPageItems = ref([
     
     <div class="container md:mt-24 my-16 mx-auto bg-no-repeat bg-center relative">
         <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_mksle47o.json" background="transparent" class="w-full absolute"  speed="1" loop autoplay></lottie-player>
-
+        
         <div class="absolute inset-0 opacity-25 dark:opacity-50"></div>
         <div class="relative grid grid-cols-1 pb-8 text-center z-1">
             <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold dark:text-white text-success">Trusted by more than 10K users</h3>
@@ -692,9 +694,10 @@ const landingPageItems = ref([
 header {
     }
 .header{
-    background: linear-gradient(45deg, #01531cfa, 70%, #63e46ee1);
+    background: linear-gradient(45deg,rgb(255 254 232 / 98%),70%,rgb(221 255 234 / 80%));
     overflow: hidden;
     position: relative;
+    color: black;
 }
 .header .bgvid{
     position: absolute;
