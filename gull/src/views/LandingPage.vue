@@ -1,11 +1,121 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Footer from '../layout/FooterMain.vue'
 import Testimonials from '../components/landing/Testimonials.vue'
 import Ecommerce from '../components/landing/Ecommerce.vue'
 import Animation from '../components/landing/Animation.vue'
+
+import * as THREE from "three";
+
 // router 
 import { useRouter } from 'vue-router'
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+camera.position.z = 8;
+scene.add( camera );
+
+const light = new THREE.PointLight( 0xffffff, 1, 100 );
+light.position.set( 0, 20, 25 );
+const light2 = new THREE.AmbientLight( 0xffffff, 0.2 );
+light2.position.set( 0, -100, 100 );
+scene.add( light, light2 );
+
+
+
+// sphare 3, 64, 64 with soften edges
+const geometry = new THREE.SphereGeometry( 2, 64, 64 );
+const texture = new THREE.TextureLoader().load( '/static/dashboard/t.png' );
+const material = new THREE.MeshPhongMaterial( {
+    map: texture,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: .9,
+    alphaTest: 0.5,
+} );
+const mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+
+const geometry2 = new THREE.SphereGeometry( 3, 188, 188 );
+const texture2 = new THREE.TextureLoader().load( '/static/dashboard/c1.png' );
+const material2 = new THREE.MeshPhongMaterial( {
+    map: texture2,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: .6,
+    alphaTest: 0.5,
+} );
+const mesh2 = new THREE.Mesh( geometry2, material2 );
+scene.add( mesh2 );
+
+const geometry3 = new THREE.SphereGeometry( 5, 188, 188 );
+const texture3 = new THREE.TextureLoader().load( '/static/dashboard/c.png' );
+const material3 = new THREE.MeshPhongMaterial( {
+    map: texture3,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: .5,
+    alphaTest: 0.5,
+} );
+const mesh3 = new THREE.Mesh( geometry3, material3 );
+scene.add( mesh3 );
+
+const geometry4 = new THREE.SphereGeometry( 2.1, 288, 288 );
+const texture4 = new THREE.TextureLoader().load( '/static/dashboard/c2.png' );
+const material4 = new THREE.MeshPhongMaterial( {
+    map: texture4,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: .9,
+    alphaTest: 0.5,
+} );
+const mesh4 = new THREE.Mesh( geometry4, material4 );
+scene.add( mesh4 );
+
+const geometry5 = new THREE.SphereGeometry( 9, 188, 188 );
+const texture5 = new THREE.TextureLoader().load( '/static/dashboard/sky.png' );
+const material5 = new THREE.MeshPhongMaterial( {
+    map: texture5,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1,
+    alphaTest: 0.5,
+} );
+const mesh5 = new THREE.Mesh( geometry5, material5 );
+scene.add( mesh5 );
+
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.render( scene, camera );
+
+
+function animate() {
+    requestAnimationFrame( animate );
+  mesh.rotation.y -= 0.008;
+  mesh2.rotation.y += 0.015;
+    mesh3.rotation.y -= 0.02;
+    mesh4.rotation.y -= 0.01;
+    mesh5.rotation.y += 0.001;
+  renderer.render( scene, camera );
+}
+
+
+onMounted(() => {
+    var canvas = document.getElementById('canvas');
+    console.log(canvas);
+    canvas.appendChild( renderer.domElement );
+    animate();
+})
+
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
 var router = useRouter()
 function animateLottieBtn(e, url){
@@ -274,18 +384,7 @@ const landingPageItems = ref([
 </script>
 <template>
     <header class="header mx-auto py-10 px-4 lg:px-12 bg-[#112031]">
-        <video autoplay muted loop class="h-100 bgvid">
-            <source src="/landing-page/bg1.mp4" type="video/mp4" />
-            <source src="" type="video/webm" />
-            <p>
-                Your browser doesn't support HTML5 video. Here
-                is a
-                <a href="/images/intro.mp4"
-                    >link to the video</a
-                >
-                instead.
-            </p>
-        </video>
+        <div id="canvas" class="canvas"></div>
         <div class="container mx-auto">
             <nav class="flex justify-between items-center">
                 <div class="flex items-center">
@@ -304,10 +403,16 @@ const landingPageItems = ref([
                 </div>
             </nav>
             <div>
-                <div class="grid grid-cols-12 gap-5 mt-[80px]">
+                <div class="grid grid-cols-12 gap-5 mt-[80px]">                    
+
+                    <div class="col-span-12 lg:col-span-5 flex justify-end items-center">
+
+                        <Animation class="my-6" />
+                    </div>
+                    <div class="col-span-12 lg:col-span-1"></div>
                     <div class="col-span-12 lg:col-span-6 mb-4">
                         <h1
-                            class="leading-normal sm:text-[50px] text-3xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-purple-500"
+                            class="leading-normal sm:text-[50px] text-3xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-500"
                         >
                             Start With
                             <span
@@ -376,7 +481,7 @@ const landingPageItems = ref([
                                         ></path>
                                     </g>
                                 </svg>
-                                <p class="text-black-300">Vite</p>
+                                <p class="text-white">Vite</p>
                             </div>
                             <div class="flex items-center mr-5">
                                 <svg
@@ -394,7 +499,7 @@ const landingPageItems = ref([
                                         ></path>
                                     </g>
                                 </svg>
-                                <p class="text-black-300">TailwindCss</p>
+                                <p class="text-white">TailwindCss</p>
                             </div>
                             <div class="flex items-center mr-5">
                                 <svg
@@ -420,10 +525,10 @@ const landingPageItems = ref([
                                         </g>
                                     </g>
                                 </svg>
-                                <p class="text-black-300">Vue ^3.2.6</p>
+                                <p class="text-white">Vue ^3.2.6</p>
                             </div>
                         </div>
-                        <p class="text-black-300 lg:w-9/12 w-full mb-9">
+                        <p class="text-white lg:w-9/12 w-full mb-9">
                             Over 150+ professionally designed, fully responsive,
                             expertly crafted components and Over 50+ Pages
                             examples that will Boost your next Admin Dashboard
@@ -440,13 +545,7 @@ const landingPageItems = ref([
                         >
                     </div>
 
-                    <div class="col-span-12 lg:col-span-1"></div>
-                    
 
-                    <div class="col-span-12 lg:col-span-5 flex justify-end items-center">
-
-                        <Animation class="my-6" />
-                    </div>
                     <div class="col-span-12 py-10">
                         <div
                             class="relative max-w-screen-sm mx-auto lg:mx-0 lg:max-w-none grid lg:grid-cols-3 gap-10 lg:gap-8 text-sm"
@@ -457,7 +556,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         Start Your Business
                                     </h5>
-                                    <p class="leading-normal text-black-400">
+                                    <p class="leading-normal text-white">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, nam perferendis facilis officiis nihil optio a. Laborum, incidunt quod numquam quia cupiditate qui sunt ipsa consequuntur a? Tenetur, quidem doloremque?
                                     </p>
                                 </div>
@@ -468,7 +567,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         <a href="">Buy for youself</a>
                                     </h5>
-                                    <p class="leading-normal text-black-400">
+                                    <p class="leading-normal text-white">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ratione quod consectetur sit tempore blanditiis. Quaerat molestias voluptate dolorum magni illum vitae praesentium iste adipisci, porro delectus, voluptatibus, consequatur sit?
                                         <a
                                             href="https://headlessui.dev"
@@ -484,7 +583,7 @@ const landingPageItems = ref([
                                     <h5 class="font-semibold text-white mb-2">
                                         Make Ideas
                                     </h5>
-                                    <p class="leading-normal text-black-400">
+                                    <p class="leading-normal text-white">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam doloribus rerum hic maiores. Repudiandae eum veritatis voluptates consequuntur, consequatur officia, culpa ipsum, quam saepe necessitatibus porro! Impedit consequuntur expedita tempore!
                                     </p>
                                 </div>
@@ -694,20 +793,19 @@ const landingPageItems = ref([
 header {
     }
 .header{
-    background: linear-gradient(45deg,rgb(255 254 232 / 98%),70%,rgb(221 255 234 / 80%));
     overflow: hidden;
     position: relative;
     color: black;
+    background: transparent;
 }
-.header .bgvid{
+.header #canvas{
     position: absolute;
     z-index: -1;
-    height: 100%;
+    height: 100vh;
     width: 100vw;
-    object-fit: cover;
     left: 0;
     top: 0;
-    opacity: .8;
+    opacity: 10;
 }
 @media (max-width: 1300px) {
     .sticky-section a{
