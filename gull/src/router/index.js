@@ -34,6 +34,18 @@ const routes = [
                 },
                 children: [
                     {
+                        path: 'products',
+                        name: 'products',
+                        component: () =>
+                            import('../views/dashboards/common/products.vue'),
+                    },
+                    {
+                        path: 'myproducts',
+                        name: 'myproducts',
+                        component: () =>
+                            import('../views/dashboards/common/myproducts.vue'),
+                    },
+                    {                    // MEMBER
                         path: 'member',
                         name: 'member-dash',
                         component: () =>

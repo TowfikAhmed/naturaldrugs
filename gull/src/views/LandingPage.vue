@@ -759,7 +759,7 @@ const landingPageItems = ref([
             </div>
         </div><!--end grid-->
     </div>
-    <div class="container md:my-24 my-16">
+    <div class="container md:my-24 my-16 mx-auto">
         <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
             <div class="mx-auto py-4">
                 <img src="@/assets/images/client/paypal.svg" class="h-6" alt="">

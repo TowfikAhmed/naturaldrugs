@@ -237,13 +237,13 @@ let toggleSubMenu = (e) => {
                     :class="selectedParentMenu == 'products' ? 'block' : 'hidden'"
                 >
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/chat">
+                        <router-link tag="a" class to="/dashboards/products">
                             <i class="nav-icon i-Shopping-Basket text-base mr-2"></i>
                             <span class="item-name"> Order Products </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/chat">
+                        <router-link tag="a" class to="/dashboards/myproducts">
                             <i class="nav-icon i-Checkout-Basket text-base mr-2"></i>
                             <span class="item-name"> My Products </span>
                         </router-link>
