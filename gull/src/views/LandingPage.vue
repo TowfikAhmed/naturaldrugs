@@ -4,6 +4,8 @@ import Footer from '../layout/FooterMain.vue'
 import Testimonials from '../components/landing/Testimonials.vue'
 import Ecommerce from '../components/landing/Ecommerce.vue'
 import Animation from '../components/landing/Animation.vue'
+import Background from '../components/Background.vue'
+import Background2 from '../components/Background2.vue'
 
 import * as THREE from "three";
 
@@ -15,15 +17,13 @@ const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.inner
 camera.position.z = 8;
 scene.add( camera );
 
-const light = new THREE.PointLight( 0xffffff, 1, 100 );
+const light = new THREE.PointLight( 0xffffff, 1, 10 );
 light.position.set( 0, 20, 25 );
 const light2 = new THREE.AmbientLight( 0xffffff, 0.2 );
 light2.position.set( 0, -100, 100 );
 scene.add( light, light2 );
 
 
-
-// sphare 3, 64, 64 with soften edges
 const geometry = new THREE.SphereGeometry( 2, 64, 64 );
 const texture = new THREE.TextureLoader().load( '/static/dashboard/t.png' );
 const material = new THREE.MeshPhongMaterial( {
@@ -34,7 +34,6 @@ const material = new THREE.MeshPhongMaterial( {
     alphaTest: 0.5,
 } );
 const mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
 
 const geometry2 = new THREE.SphereGeometry( 3, 188, 188 );
 const texture2 = new THREE.TextureLoader().load( '/static/dashboard/c1.png' );
@@ -46,7 +45,7 @@ const material2 = new THREE.MeshPhongMaterial( {
     alphaTest: 0.5,
 } );
 const mesh2 = new THREE.Mesh( geometry2, material2 );
-scene.add( mesh2 );
+
 
 const geometry3 = new THREE.SphereGeometry( 5, 188, 188 );
 const texture3 = new THREE.TextureLoader().load( '/static/dashboard/c.png' );
@@ -58,7 +57,6 @@ const material3 = new THREE.MeshPhongMaterial( {
     alphaTest: 0.5,
 } );
 const mesh3 = new THREE.Mesh( geometry3, material3 );
-scene.add( mesh3 );
 
 const geometry4 = new THREE.SphereGeometry( 2.1, 288, 288 );
 const texture4 = new THREE.TextureLoader().load( '/static/dashboard/c2.png' );
@@ -70,7 +68,7 @@ const material4 = new THREE.MeshPhongMaterial( {
     alphaTest: 0.5,
 } );
 const mesh4 = new THREE.Mesh( geometry4, material4 );
-scene.add( mesh4 );
+
 
 const geometry5 = new THREE.SphereGeometry( 9, 188, 188 );
 const texture5 = new THREE.TextureLoader().load( '/static/dashboard/sky.png' );
@@ -85,6 +83,31 @@ const mesh5 = new THREE.Mesh( geometry5, material5 );
 scene.add( mesh5 );
 
 
+const geometry6 = new THREE.SphereGeometry( 0, 32, 32 );
+const material6 = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const sphere = new THREE.Mesh( geometry6, material6 );
+const light3 = new THREE.DirectionalLight( 0x5cd8fa, 1.4);
+sphere.add( light3 );
+sphere.position.z = 1;
+sphere.rotation.x=.5;
+light3.castShadow = true;
+
+const group = new THREE.Group();
+group.add( mesh );
+group.add( mesh2 );
+group.add( mesh3 );
+group.add( mesh4 );
+group.add( sphere );
+scene.add(group)
+
+const mouse = new THREE.Vector2();
+const onMouseMove = ( event ) => {
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    sphere.position.x = mouse.x;
+    sphere.position.y = mouse.y;
+};
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.render( scene, camera );
@@ -92,12 +115,14 @@ renderer.render( scene, camera );
 
 function animate() {
     requestAnimationFrame( animate );
-  mesh.rotation.y -= 0.008;
-  mesh2.rotation.y += 0.015;
+    mesh.rotation.y -= 0.008;
+    mesh2.rotation.y += 0.015;
     mesh3.rotation.y -= 0.02;
     mesh4.rotation.y -= 0.01;
     mesh5.rotation.y += 0.001;
-  renderer.render( scene, camera );
+    camera.lookAt( group.position );
+    renderer.clear();
+    renderer.render( scene, camera );
 }
 
 
@@ -106,6 +131,7 @@ onMounted(() => {
     console.log(canvas);
     canvas.appendChild( renderer.domElement );
     animate();
+    window.addEventListener( 'mousemove', onMouseMove, false );
 })
 
 
@@ -383,7 +409,9 @@ const landingPageItems = ref([
 ])
 </script>
 <template>
-    <header class="header mx-auto py-10 px-4 lg:px-12 bg-[#112031]">
+    <Background2  style="position:fixed;z-index:-10;opacity:.6"/>
+    <!-- <Background style="position:fixed;z-index:-10;opacity:.4" /> -->
+    <header class="header mx-auto pt-10 px-4 lg:px-12 bg-[#112031]">
         <div id="canvas" class="canvas"></div>
         <div class="container mx-auto">
             <nav class="flex justify-between items-center">
@@ -817,4 +845,5 @@ header {
         justify-content: center;
     }
 }
+
 </style>
