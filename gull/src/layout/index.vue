@@ -35,7 +35,7 @@ onMounted(() => {
             store.commit('setUser', response.data);
         })
     } else if ((!store.state.user && !jwt)){
-        router.push('/sessions/signin-two')
+        router.push('/signin')
     }
 })
 function getCookie(cname) {
@@ -87,7 +87,6 @@ function getCookie(cname) {
                     </div>
                     <div class="flex-grow-1"></div>
                     <Footer />
-                    {{store.state.user}}
                 </div>
             </main>
         </div>

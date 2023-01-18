@@ -7,9 +7,17 @@
                     class="flex justify-center items-center flex-wrap lg:justify-between"
                 >
                     <div class="mb-2 flex">
+                        <router-link tag="a" to="/dashboards/admin/addproduct">
+                            <BaseBtn
+                                rounded
+                                class="mr-2 my-1 border border-primary text-white bg-primary"
+                            >
+                                <i class="text-lg i-Add"></i>
+                            </BaseBtn>
+                        </router-link>
                         <BaseBtn
                             @click="isOpen = !isOpen"
-                            class="mr-2 bg-primary text-white ul-ecommerce-toggle-button lg:hidden block"
+                            class="mr-2 my-1 bg-primary text-white ul-ecommerce-toggle-button lg:hidden block"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +36,7 @@
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="mr-2 my-1 border border-primary text-primary hover:bg-primary hover:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +55,7 @@
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="mr-2 my-1 border border-primary text-primary hover:bg-primary hover:text-white"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +73,10 @@
                             </svg>
                         </BaseBtn>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 flex">
                         <form class="flex">
                             <input
-                                class="rounded-l-lg p-3 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white focus:outline-none"
+                                class="rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white focus:outline-none"
                                 placeholder="Search..."
                             />
                             <button
@@ -96,42 +104,7 @@
             </div>
         </div>
         <div class="ul-ecommerce-wrapper relative">
-            <div class="ul-ecommerce-sidebar" :class="isOpen ? 'open' : ''">
-                <BaseCard>
-                    <p class="text-primary font-bold mb-2">Your Cart </p>
-                    <p class="my-3" v-if="cart.length == 0">Your Cart Is Empty!</p>
-                    <div class="cart">
-                        <div class="border-b pt-4 pb-2 rounded flex items-center gap-2 relative" v-for="pr in cart" :key="pr.id">
-                            <div
-                                @click="removeFromCart(pr)" 
-                                class="absolute top-[0px] right-[-5px] text-rose-600 cursor-pointer"
-                                >
-                                    <i class="nav-icon i-Remove-Cart text-base mr-2"></i>
-                            </div>
-                            <img :src="baseUrl+pr.productimage_set[0].thumbnail" alt="" class="h-[45px] w-[45px] rounded">
-                            <div class="flex-1">
-                                <h5 class="font-bold capitalize">{{pr.title}}</h5>
-                                <div class="flex justify-between items-center text-gray-600">
-                                    <div class="flex gap-1">
-                                        <p>৳ {{pr.trade_price}}</p>
-                                        <p>X</p>
-                                        <input type="number" class="p-0 border border-gray-300 m-0 w-[50px] h-[23px]" max="99" v-model="pr.qty">
-                                    </div>
-                                    <p>৳ {{pr.trade_price*pr.qty}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center my-5">
-                        <BaseBtn class="bg-primary text-white mb-2 flex-1 py-[14px]" block>
-                            Checkout
-                            <span class="bg-warning px-3 rounded py-3 text-white ml-3" >৳ {{cartTotal}}</span>
-                        </BaseBtn>
-                    </div>
-                    
-                </BaseCard>
-            </div>
-            <div class="ul-ecommerce-container">
+            <div class="ul-ecommerce-container ml-0">
                 <div class="flex flex-wrap gap-5 mb-5">
                     <div
                         v-for="(item, index) in products"
@@ -268,5 +241,8 @@ export default {
     max-height: 220px;
     width: 100%;
     object-fit: cover;
+}
+.ul-ecommerce-container{
+    margin-left: 0 !important;
 }
 </style>

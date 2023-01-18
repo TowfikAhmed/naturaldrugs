@@ -57,7 +57,8 @@ def categorylist(request):
 @api_view(['GET', 'POST', 'DELETE'])
 def productlist(request):
     if request.method == 'POST':
-        data = request.data['data']
+        data = request.data
+        print(data)
         # {'name': 'asdfaddddd', 'description': 'asdfasdf', 'category': '', 'type': '', 'tradePrice': '', 'mrp': '', 'code': '', 'points': '', 'imagelist': [], 'customfunds': [{'name': 'Company’s Profit', 'percentage': 3}, {'name': 'Production Fund', 'percentage': 22}], 'specifications': [{'name': 'aaaaaaa', 'value': 'fffffffff'}, {'name': 'vv', 'value': 'aaaaaaa'}]}
         product = Product.objects.create(
             title = data['title'],
@@ -68,7 +69,7 @@ def productlist(request):
             mrp = Decimal(data['mrp']),
             code = data['code'],
             point = Decimal(data['point']),
-            features = data['specifications'],
+            features = data['features'],
             customfunds = data['customfunds'],
         )
         for image in data['imagelist']:

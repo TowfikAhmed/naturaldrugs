@@ -36,26 +36,32 @@ const routes = [
                     {
                         path: 'products',
                         name: 'products',
-                        component: () =>
-                            import('../views/dashboards/common/products.vue'),
+                        component: () => import('../views/dashboards/common/products.vue'),
                     },
                     {
                         path: 'myproducts',
                         name: 'myproducts',
-                        component: () =>
-                            import('../views/dashboards/common/myproducts.vue'),
+                        component: () => import('../views/dashboards/common/myproducts.vue'),
+                    },
+                    {                    // Admin
+                        path: 'admin/products',
+                        name: 'admin-products',
+                        component: () => import('../views/dashboards/admin/products.vue'),
+                    },
+                    {
+                        path: 'admin/addproduct',
+                        name: 'admin-addproduct',
+                        component: () => import('../views/dashboards/admin/addproduct.vue'),
                     },
                     {                    // MEMBER
                         path: 'member',
                         name: 'member-dash',
-                        component: () =>
-                            import('../views/dashboards/member/index.vue'),
+                        component: () => import('../views/dashboards/member/index.vue'),
                     },
                     {
                         path: 'member/tree',
                         name: 'tree',
-                        component: () =>
-                            import('../views/dashboards/member/tree.vue'),
+                        component: () => import('../views/dashboards/member/tree.vue'),
                     },
                 ],
             },

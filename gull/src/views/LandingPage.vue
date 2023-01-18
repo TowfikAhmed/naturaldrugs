@@ -25,13 +25,13 @@ scene.add( light, light2 );
 
 
 const geometry = new THREE.SphereGeometry( 2, 64, 64 );
-const texture = new THREE.TextureLoader().load( '/static/dashboard/t.png' );
+const texture = new THREE.TextureLoader().load( '/static/dashboard/t3.png' );
 const material = new THREE.MeshPhongMaterial( {
     map: texture,
     side: THREE.DoubleSide,
     transparent: true,
-    opacity: .9,
-    alphaTest: 0.5,
+    opacity: 1,
+    alphaTest: .5
 } );
 const mesh = new THREE.Mesh( geometry, material );
 
@@ -42,21 +42,9 @@ const material2 = new THREE.MeshPhongMaterial( {
     side: THREE.DoubleSide,
     transparent: true,
     opacity: .6,
-    alphaTest: 0.5,
+    alphaTest: 0.25,
 } );
 const mesh2 = new THREE.Mesh( geometry2, material2 );
-
-
-const geometry3 = new THREE.SphereGeometry( 5, 188, 188 );
-const texture3 = new THREE.TextureLoader().load( '/static/dashboard/c.png' );
-const material3 = new THREE.MeshPhongMaterial( {
-    map: texture3,
-    side: THREE.DoubleSide,
-    transparent: true,
-    opacity: .5,
-    alphaTest: 0.5,
-} );
-const mesh3 = new THREE.Mesh( geometry3, material3 );
 
 const geometry4 = new THREE.SphereGeometry( 2.1, 288, 288 );
 const texture4 = new THREE.TextureLoader().load( '/static/dashboard/c2.png' );
@@ -65,7 +53,7 @@ const material4 = new THREE.MeshPhongMaterial( {
     side: THREE.DoubleSide,
     transparent: true,
     opacity: .9,
-    alphaTest: 0.5,
+    alphaTest: .1,
 } );
 const mesh4 = new THREE.Mesh( geometry4, material4 );
 
@@ -95,7 +83,6 @@ light3.castShadow = true;
 const group = new THREE.Group();
 group.add( mesh );
 group.add( mesh2 );
-group.add( mesh3 );
 group.add( mesh4 );
 group.add( sphere );
 scene.add(group)
@@ -106,6 +93,7 @@ const onMouseMove = ( event ) => {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     sphere.position.x = mouse.x;
     sphere.position.y = mouse.y;
+    mesh5.rotation.y += 0.01;
 };
 
 const renderer = new THREE.WebGLRenderer();
@@ -117,8 +105,7 @@ function animate() {
     requestAnimationFrame( animate );
     mesh.rotation.y -= 0.008;
     mesh2.rotation.y += 0.015;
-    mesh3.rotation.y -= 0.02;
-    mesh4.rotation.y -= 0.01;
+    mesh4.rotation.y -= 0.006;
     mesh5.rotation.y += 0.001;
     camera.lookAt( group.position );
     renderer.clear();
@@ -145,10 +132,10 @@ function onWindowResize() {
 
 var router = useRouter()
 function animateLottieBtn(e, url){
-    e.target.load('https://assets3.lottiefiles.com/packages/lf20_u4rxwy4z.json');
     setTimeout(() => {
         router.push(url)
     }, 500);
+    e.target.load('https://assets3.lottiefiles.com/packages/lf20_u4rxwy4z.json');
 }
 
 const landingPageItems = ref([
@@ -416,7 +403,7 @@ const landingPageItems = ref([
         <div class="container mx-auto">
             <nav class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <h4 class="font-bold text-black-200">Natural Drugs</h4>
+                    <h4 class="font-bold text-white">Natural Drugs</h4>
                 </div>
 
                 <div class="flex items-center">

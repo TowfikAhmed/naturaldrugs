@@ -274,6 +274,7 @@ let toggleSubMenu = (e) => {
 
         <div
             @click="removeOverlay()"
+            @mouseover="removeOverlay()"
             class="sidebar-overlay"
             :class="{
                 open: store.state.largeSidebar.sidebarToggleProperties

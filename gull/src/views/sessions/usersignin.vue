@@ -1,6 +1,6 @@
 <template>
     <div
-        class="auth-layout-wrap flex justify-center min-h-screen flex-col bg-cover items-center bg-gray-800"
+        class="auth-layout-wrap flex justify-center min-h-screen flex-col bg-cover items-center"
     >
         <div class="container-session-v1 w-full max-w-sm">
             <BaseCard>
@@ -127,6 +127,7 @@
                 </div>
             </BaseCard>
         </div>
+        <Background2  style="position:fixed;z-index:-10;opacity:.6;background: teal"/>
     </div>
 </template>
 
@@ -137,6 +138,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios';
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
+import Background2 from '../../components/Background2.vue'
 const store = useStore()
 const router = useRouter()
 var loginInfo = {

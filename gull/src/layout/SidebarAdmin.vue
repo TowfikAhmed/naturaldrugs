@@ -1,9 +1,3 @@
-/* * File: Sidebar.vue * Project: Gull * File Created: Thursday, 18th November
-2021 5:15:07 pm * Author: Naime Hossain & ui-lib -> https://ui-lib.com/
-(support@ui-lib.com) * ----- * Last Modified: Wednesday, 19th October 2022
-5:38:29 pm * Modified By: Naime Hossain & ui-lib -> https://ui-lib.com/
-(support@ui-lib.com>) * ----- * Copyright 2019 - 2022 ui-lib , ui-lib (
-https://ui-lib.com/ ) */
 
 <script setup>
 import { useStore } from 'vuex'
@@ -136,58 +130,32 @@ let toggleSubMenu = (e) => {
                             @mouseenter="toggleSubMenu"
                             class="nav-item border-b border-gray-200 dark:border-dark"
                             :class="
-                                selectedParentMenu == 'apps' ? 'active' : ''
+                                selectedParentMenu == 'products' ? 'active' : ''
                             "
-                            data-item="apps"
+                            data-item="products"
                             :data-submenu="true"
                         >
                             <a class="nav-item-hold">
-                                <i class="i-Computer-Secure text-3xl"></i>
-                                <p>Apps</p>
+                                <i class="i-Shop-2 text-3xl"></i>
+                                <p>Products</p>
                             </a>
                         </li>
                         <li
                             @mouseenter="toggleSubMenu"
                             class="nav-item border-b border-gray-200 dark:border-dark"
                             :class="
-                                selectedParentMenu == 'components'
+                                selectedParentMenu == 'finance'
                                     ? 'active'
                                     : ''
                             "
-                            data-item="components"
+                            data-item="finance"
                             :data-submenu="true"
                         >
                             <a class="nav-item-hold"
                                 ><i class="i-Wallet text-3xl"></i>
-                                <p>Components</p>
+                                <p>Finance</p>
                             </a>
                         </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item border-b border-gray-200 dark:border-dark"
-                            :class="
-                                selectedParentMenu == 'widgets' ? 'active' : ''
-                            "
-                            data-item="widgets"
-                            :data-submenu="true"
-                        >
-                            <a class="nav-item-hold"
-                                ><i class="i-Atom text-3xl"></i>
-                                <p>Widgets</p>
-                            </a>
-                        </li>
-                        <!-- <li 
-                            @mouseenter="toggleSubMenu" 
-                            class="nav-item" 
-                            :class="selectedParentMenu == 'components' ? 'active' : ''"
-                            data-item="components"
-                            :data-submenu=true
-                        >
-                            <a class="nav-item-hold" 
-                                ><i class="i-Wallet text-3xl"></i>
-                                <p>Components</p>
-                            </a>
-                        </li> -->
                         <li
                             @mouseenter="toggleSubMenu"
                             class="nav-item border-b border-gray-200 dark:border-dark"
@@ -198,57 +166,9 @@ let toggleSubMenu = (e) => {
                             :data-submenu="true"
                         >
                             <a class="nav-item-hold"
-                                ><i class="i-Find-User text-3xl"></i>
-                                <p>Profile</p>
+                                ><i class="i-Business-ManWoman text-3xl"></i>
+                                <p>Users</p>
                             </a>
-                        </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item border-b border-gray-200 dark:border-dark"
-                            data-item="sessions"
-                            :data-submenu="true"
-                        >
-                            <a class="nav-item-hold"
-                                ><i class="i-Administrator text-3xl"></i>
-                                <p>Session</p>
-                            </a>
-                        </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item border-b border-gray-200 dark:border-dark"
-                            :class="
-                                selectedParentMenu == 'charts' ? 'active' : ''
-                            "
-                            data-item="charts"
-                            :data-submenu="true"
-                        >
-                            <a class="nav-item-hold"
-                                ><i class="i-Pie-Chart-2 text-3xl"></i>
-                                <p>Charts</p>
-                            </a>
-                        </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item"
-                            data-item="demo"
-                        >
-                            <router-link
-                                tag="a"
-                                to="/landingpage"
-                                class="nav-item-hold"
-                                ><i class="i-Pie-Chart-2 text-3xl"></i>
-                                <p>Demo</p>
-                            </router-link>
-                        </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item"
-                            data-item="doc"
-                        >
-                            <router-link tag="a" to="" class="nav-item-hold"
-                                ><i class="i-Pie-Chart-2 text-3xl"></i>
-                                <p>Doc</p>
-                            </router-link>
                         </li>
                     </ul>
                 </perfect-scrollbar>
@@ -269,430 +189,103 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link
-                            tag="a"
-                            to="/dashboards/dashboard-version-one"
-                        >
-                            <i class="nav-icon i-Clock mr-2"></i>
-                            <span class="item-name"> Version One </span>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Bar-Chart mr-2"></i>
+                            <span class="item-name"> Dashboard Overview </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link
-                            tag="a"
-                            class
-                            to="/dashboards/dashboard-version-two"
-                        >
-                            <i class="nav-icon i-Clock-4 mr-2"></i>
-                            <span class="item-name"> Version Two </span>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Joining Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link
-                            tag="a"
-                            class
-                            to="/dashboards/dashboard-version-three"
-                        >
-                            <i class="nav-icon i-Over-Time mr-2"></i>
-                            <span class="item-name"> Version Three </span>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Re-Purchase Gap Bonus </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link
-                            tag="a"
-                            class
-                            to="/dashboards/dashboard-version-four"
-                        >
-                            <i class="nav-icon i-Over-Time mr-2"></i>
-                            <span class="item-name"> Version Four </span>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Joining Sales Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link
-                            tag="a"
-                            class
-                            to="/dashboards/dashboard-version-five"
-                        >
-                            <i class="nav-icon i-Clock text-base mr-2"></i>
-                            <span class="item-name"> Version Five </span>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Re-Purchase Sales Report </span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Re-Purchase Report </span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                            <i class="nav-icon i-Receipt mr-2"></i>
+                            <span class="item-name"> Joining Gap Bonus </span>
                         </router-link>
                     </li>
                 </ul>
                 <ul
                     class="mb-4 childNav"
-                    data-parent="apps"
-                    :class="selectedParentMenu == 'apps' ? 'block' : 'hidden'"
+                    data-parent="products"
+                    :class="selectedParentMenu == 'products' ? 'block' : 'hidden'"
                 >
                     <li>
-                        <router-link tag="a" class to="/apps/chat">
-                            <i class="nav-icon i-Book text-base mr-2"></i>
-                            <span class="item-name"> Chat </span>
+                        <router-link tag="a" class to="/dashboards/admin/products">
+                            <i class="nav-icon i-Checkout-Basket text-base mr-2"></i>
+                            <span class="item-name"> All Products </span>
                         </router-link>
                     </li>
-
-                    <li class="dropdown-sidemenu">
-                        <Disclosure v-slot="{ open }">
-                            <DisclosureButton
-                                class="submenuLi hover:text-primary items-center flex justify-between w-full px-6 py-2 text-sm text-left focus:outline-none"
-                                :class="open ? 'bg-gray-100' : ''"
-                            >
-                                <div class="flex items-center">
-                                    <i
-                                        class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                                    ></i>
-                                    <span>Contact</span>
-                                </div>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    :class="open ? 'transform rotate-90 ' : ''"
-                                    class="h-4 w-4 submenuli-icon transition duration-300 ease-in-out"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </DisclosureButton>
-
-                            <DisclosurePanel
-                                class="dark:bg-dark px-6 py-2 pb-2 text-sm bg-gray-50 text-xs"
-                            >
-                                <ul class="">
-                                    <li class="py-2 hover:text-primary">
-                                        <router-link
-                                            to="/apps/contact-table"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Contact Table
-                                        </router-link>
-                                    </li>
-                                    <li class="py-2">
-                                        <router-link
-                                            to="/apps/contact-list"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Contact List
-                                        </router-link>
-                                    </li>
-                                    <li class="py-2">
-                                        <router-link
-                                            to="/apps/contact-grid"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Contact Grid
-                                        </router-link>
-                                    </li>
-                                </ul>
-                            </DisclosurePanel>
-                        </Disclosure>
-                    </li>
-
-                    <li class="dropdown-sidemenu">
-                        <Disclosure v-slot="{ open }">
-                            <DisclosureButton
-                                class="submenuLi hover:text-primary items-center flex justify-between w-full px-6 py-2 text-sm text-left focus:outline-none"
-                                :class="open ? 'bg-gray-100' : ''"
-                            >
-                                <div class="flex items-center">
-                                    <i
-                                        class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                                    ></i>
-                                    <span>Ecommerce</span>
-                                </div>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    :class="open ? 'transform rotate-90 ' : ''"
-                                    class="h-4 w-4 submenuli-icon transition duration-300 ease-in-out"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </DisclosureButton>
-
-                            <DisclosurePanel
-                                class="dark:bg-dark px-6 py-2 pb-2 text-sm bg-gray-50 text-xs"
-                            >
-                                <ul class="">
-                                    <li class="py-2 hover:text-primary">
-                                        <router-link
-                                            to="/apps/ecommerce"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Product
-                                        </router-link>
-                                    </li>
-                                    <li class="py-2">
-                                        <router-link
-                                            to="/apps/cart"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Cart
-                                        </router-link>
-                                    </li>
-                                    <li class="py-2">
-                                        <router-link
-                                            to="/apps/checkout"
-                                            class="flex align-center submneu-nested-link"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 mr-2"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                    clip-rule="evenodd"
-                                                />
-                                            </svg>
-                                            Checkout
-                                        </router-link>
-                                    </li>
-                                </ul>
-                            </DisclosurePanel>
-                        </Disclosure>
-                    </li>
                     <li>
-                        <router-link tag="a" class to="/apps/inbox">
-                            <i class="nav-icon i-Add-Cart text-base mr-2"></i>
-                            <span class="item-name"> Inbox </span>
+                        <router-link tag="a" to="/dashboards/admin/addproduct">
+                            <i class="nav-icon i-Add text-base mr-2"></i>
+                            <span class="item-name"> Add Product </span>
                         </router-link>
                     </li>
-                    <li class="dropdown-sidemenu">
-                        <Disclosure v-slot="{ open }">
-                            <DisclosureButton
-                                class="submenuLi hover:text-primary items-center flex justify-between w-full px-6 py-2 text-sm text-left focus:outline-none"
-                                :class="open ? 'bg-gray-100' : ''"
-                            >
-                                <div class="flex items-center">
-                                    <i
-                                        class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                                    ></i>
-                                    <span>Invoice</span>
-                                </div>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    :class="open ? 'transform rotate-90 ' : ''"
-                                    class="h-4 w-4 submenuli-icon transition duration-300 ease-in-out"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </DisclosureButton>
-                            <transition
-                                enter-active-class="transition duration-100 ease-out"
-                                enter-from-class="transform scale-95 opacity-0"
-                                enter-to-class="transform scale-100 opacity-100"
-                                leave-active-class="transition duration-75 ease-out"
-                                leave-from-class="transform scale-100 opacity-100"
-                                leave-to-class="transform scale-95 opacity-0"
-                            >
-                                <DisclosurePanel
-                                    class="dark:bg-dark px-6 py-2 pb-2 text-sm bg-gray-50 text-xs"
-                                >
-                                    <ul class="">
-                                        <li class="py-2 hover:text-primary">
-                                            <router-link
-                                                to="/apps/create-invoice"
-                                                class="flex align-center submneu-nested-link"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="h-5 w-5 mr-2"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                                Create Invoice
-                                            </router-link>
-                                        </li>
-                                        <li class="py-2 hover:text-primary">
-                                            <router-link
-                                                to="/apps/print-invoice"
-                                                class="flex align-center submneu-nested-link"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="h-5 w-5 mr-2"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                                Print Invoice
-                                            </router-link>
-                                        </li>
-                                    </ul>
-                                </DisclosurePanel>
-                            </transition>
-                        </Disclosure>
-                    </li>
-
                     <li>
-                        <router-link tag="a" class to="/apps/todo-list">
-                            <i class="nav-icon i-Book text-base mr-2"></i>
-                            <span class="item-name"> Todo List </span>
+                        <router-link tag="a" class to="/dashboards/products">
+                            <i class="nav-icon i-Shopping-Basket text-base mr-2"></i>
+                            <span class="item-name">  Product Orders</span>
                         </router-link>
                     </li>
                 </ul>
                 <ul
                     class="mb-4 childNav"
-                    data-parent="components"
+                    data-parent="finance"
                     :class="
-                        selectedParentMenu == 'components' ? 'block' : 'hidden'
+                        selectedParentMenu == 'finance' ? 'block' : 'hidden'
                     "
                 >
                     <li>
-                        <router-link tag="a" class to="/components/avatars">
-                            <i class="nav-icon i-Clock mr-2"></i>
-                            <span class="item-name"> Avatars </span>
+                        <router-link tag="a" class to="/dashboards/dealer/avatars">
+                            <i class="nav-icon i-Money-2 mr-2"></i>
+                            <span class="item-name"> Request Balance </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/components/button">
-                            <i class="nav-icon i-Clock mr-2"></i>
-                            <span class="item-name"> Buttons </span>
+                        <router-link tag="a" class to="/dashboards/dealer/button">
+                            <i class="nav-icon i-File-Download mr-2"></i>
+                            <span class="item-name"> Request History </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/components/badges">
-                            <i class="nav-icon i-Clock mr-2"></i>
-                            <span class="item-name"> Badges </span>
+                        <router-link tag="a" class to="/dashboards/dealer/badges">
+                            <i class="nav-icon i-Mail-Money mr-2"></i>
+                            <span class="item-name"> Withdraw Balance </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/components/accordions">
+                        <router-link tag="a" class to="/dashboards/dealer/accordions">
                             <i
-                                class="nav-icon i-Split-Horizontal-2-Window mr-2"
+                                class="nav-icon i-File-Upload mr-2"
                             ></i>
-                            <span class="item-name"> Accordions </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/components/alerts">
-                            <i class="nav-icon i-Bell1 mr-2"></i>
-                            <span class="item-name"> Alerts </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/components/tabs">
-                            <i class="nav-icon i-New-Tab mr-2"></i>
-                            <span class="item-name"> Tabs </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/components/typography">
-                            <i class="nav-icon i-Width-Window mr-2"></i>
-                            <span class="item-name"> Typoghraphy </span>
-                        </router-link>
-                    </li>
-                </ul>
-                <ul
-                    class="mb-4 childNav"
-                    data-parent="widgets"
-                    :class="
-                        selectedParentMenu == 'widgets' ? 'block' : 'hidden'
-                    "
-                >
-                    <li>
-                        <router-link tag="a" class to="/widgets/charts">
-                            <i class="nav-icon i-Clock-3 text-base mr-2"></i>
-                            <span class="item-name"> Charts </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/widgets/general">
-                            <i class="nav-icon i-Clock-3 text-base mr-2"></i>
-                            <span class="item-name"> General </span>
+                            <span class="item-name"> Withdraw History </span>
                         </router-link>
                     </li>
                 </ul>
@@ -704,189 +297,17 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" to="/profile/profileOne">
-                            <i class="nav-icon i-Find-User text-base mr-2"></i>
-                            <span class="item-name"> Profile Ver 1.0 </span>
+                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                            <i class="nav-icon i-MaleFemale text-base mr-2"></i>
+                            <span class="item-name"> My Profile </span>
                         </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/profile/profileTwo">
-                            <i class="nav-icon i-Find-User text-base mr-2"></i>
-                            <span class="item-name"> Profile Ver 2.0 </span>
+                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                            <i class="nav-icon i-Edit text-base mr-2"></i>
+                            <span class="item-name"> Edit Profile </span>
                         </router-link>
-                    </li>
-                </ul>
-                <ul
-                    class="mb-4 childNav"
-                    data-parent="sessions"
-                    :class="
-                        selectedParentMenu == 'sessions' ? 'block' : 'hidden'
-                    "
-                >
-                    <li>
-                        <router-link tag="a" to="/sessions/signin">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Signin </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signin-two">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Signin Two </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signin-three">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Signin Three </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signin-four">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Signin Four </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signup">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Sign Up </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signup-two">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Sign Up Two </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signup-three">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Sign Up Three </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/signup-four">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Sign Up Four </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/404">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> 404 </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" to="/sessions/forgot">
-                            <i
-                                class="nav-icon i-Checked-User text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Forgot </span>
-                        </router-link>
-                    </li>
-                </ul>
-                <ul
-                    class="mb-4 childNav"
-                    data-parent="charts"
-                    :class="selectedParentMenu == 'charts' ? 'block' : 'hidden'"
-                >
-                    <li>
-                        <router-link tag="a" class to="/charts/bar">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Bar </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/area">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Area </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/line">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Line </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/mix">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Mix </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/column">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Column Chart </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/pieDonut">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Pie Donut </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/radarChart">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Radar Chart </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/radialBar">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Radial Bar </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/scatter">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Scatter Chart </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/charts/sparkline">
-                            <i
-                                class="nav-icon i-Bar-Chart-2 text-base mr-2"
-                            ></i>
-                            <span class="item-name"> Sparkline </span>
+                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                            <i class="nav-icon i-Gears text-base mr-2"></i>
+                            <span class="item-name"> Profile Settings </span>
                         </router-link>
                     </li>
                 </ul>
@@ -895,6 +316,7 @@ let toggleSubMenu = (e) => {
 
         <div
             @click="removeOverlay()"
+            @mouseover="removeOverlay()"
             class="sidebar-overlay"
             :class="{
                 open: store.state.largeSidebar.sidebarToggleProperties
@@ -1022,7 +444,7 @@ let toggleSubMenu = (e) => {
         width: 220px;
         padding: 0.75rem 0;
         transition: left 0.24s ease-in-out;
-        box-shadow: 5px 0px 50px gray;
+        box-shadow: 5px 0px 100px rgb(136, 136, 136);
         // background: #fff;
 
         &.open {

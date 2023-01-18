@@ -42,6 +42,7 @@ def compressImage(uploadedImage, width, height):
 
 class Member(models.Model):
     TYPE_CHOICES = (
+        ('ADMIN', 'ADMIN'),
         ('MEMBER', 'MEMBER'),
         ('AGENT', 'AGENT'),
         ('DEALER', 'DEALER'),
