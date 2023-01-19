@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto">
-        <breadcrumbs parentTitle="Ecommerce" subParentTitle="Product" />
+        <breadcrumbs parentTitle="Order Product" subParentTitle="Product Requisation" />
         <div class="grid grid-cols-12 gap-5 mb-5">
             <div class="col-span-12">
                 <div
@@ -104,7 +104,7 @@
                         <div class="animate__animated animate__fadeInRight border-b pt-4 pb-2 rounded flex items-center gap-2 relative" v-for="pr in cart" :key="pr.id">
                             <div
                                 @click="removeFromCart(pr)" 
-                                class="absolute top-[0px] right-[-5px] text-rose-600 cursor-pointer"
+                                class="absolute top-[10px] right-[-5px] cursor-pointer text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-1 py-.5 text-center"
                                 >
                                     <i class="nav-icon i-Remove-Cart text-base mr-2"></i>
                             </div>
@@ -114,19 +114,22 @@
                                 <div class="flex justify-between items-center text-gray-600">
                                     <div class="flex gap-1">
                                         <p>৳ {{pr.trade_price}}</p>
-                                        <p>X</p>
-                                        <input type="number" class="p-0 border border-gray-300 m-0 w-[50px] h-[23px]" max="99" v-model="pr.qty">
+                                        <p>x</p>
+                                        <input type="number" class="p-0 px-1 border rounded border-gray-200 m-0 w-[50px] h-[23px]" max="99" v-model="pr.qty">
                                     </div>
                                     <p>৳ {{pr.trade_price*pr.qty}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="text-center my-5">
+                    <div class="text-center my-5" v-if="store.state.user">
                         <BaseBtn class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center" block>
-                            Checkout
+                            Confirm & Checkout
                             <span class="bg-warning px-3 rounded py-3 text-white ml-3" >৳ {{cartTotal}}</span>
                         </BaseBtn>
+                        <p class="my-2" :class="{ 'text-rose-500 font-bold': store.state.user.current_balance < cartTotal }">
+                            Current balance ৳ {{store.state.user.current_balance}}
+                        </p>
                     </div>
                     
                 </BaseCard>
@@ -210,6 +213,7 @@ import { baseUrl } from '@/config/main.js'
 import axios from 'axios'
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import 'swiper/css';
+import { useStore } from 'vuex'
 export default {
     components:{
         breadcrumbs: Breadcrumbs,
@@ -227,6 +231,7 @@ export default {
                 delay: 4000,
                 disableOnInteraction: false
             },
+            store: useStore(),
         }
     },
     mounted(){

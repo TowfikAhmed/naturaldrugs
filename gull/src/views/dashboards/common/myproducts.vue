@@ -104,7 +104,7 @@
                         <div class="animate__animated animate__fadeInRight border-b pt-4 pb-2 rounded flex items-center gap-2 relative" v-for="pr in cart" :key="pr.id">
                             <div
                                 @click="removeFromCart(pr)" 
-                                class="absolute top-[0px] right-[-5px] text-rose-600 cursor-pointer"
+                                class="absolute top-[10px] right-[-5px] cursor-pointer text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-1 py-.5 text-center"
                                 >
                                     <i class="nav-icon i-Remove-Cart text-base mr-2"></i>
                             </div>
@@ -114,8 +114,8 @@
                                 <div class="flex justify-between items-center text-gray-600">
                                     <div class="flex gap-1">
                                         <p>৳ {{pr.trade_price}}</p>
-                                        <p>X</p>
-                                        <input type="number" class="p-0 border border-gray-300 m-0 w-[50px] h-[23px]" max="99" v-model="pr.qty">
+                                        <p>x</p>
+                                        <input type="number" class="p-0 px-1 border rounded border-gray-200 m-0 w-[50px] h-[23px]" max="99" v-model="pr.qty">
                                     </div>
                                     <p>৳ {{pr.trade_price*pr.qty}}</p>
                                 </div>
