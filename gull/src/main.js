@@ -12,6 +12,7 @@ import PerfectScrollbar from 'vue3-perfect-scrollbar'
 import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 import VueApexCharts from "vue3-apexcharts";
 import axios from 'axios'
+import 'animate.css';
 import { baseUrl } from '@/config/main.js'
 axios.defaults.baseURL = baseUrl;
 // globally call 

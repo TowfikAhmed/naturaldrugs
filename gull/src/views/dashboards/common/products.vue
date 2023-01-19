@@ -6,10 +6,10 @@
                 <div
                     class="flex justify-center items-center flex-wrap lg:justify-between"
                 >
-                    <div class="mb-2 flex">
+                    <div class="mb-2 flex gap-1">
                         <BaseBtn
                             @click="isOpen = !isOpen"
-                            class="mr-2 bg-primary text-white ul-ecommerce-toggle-button lg:hidden block"
+                            class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden block"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@
                             />
                             <button
                                 role="button"
-                                class="px-4 bg-primary text-white rounded-r-lg border-t border-b border-r focus:outline-none"
+                                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@
                     <p class="text-primary font-bold mb-2">Your Cart </p>
                     <p class="my-3" v-if="cart.length == 0">Your Cart Is Empty!</p>
                     <div class="cart">
-                        <div class="border-b pt-4 pb-2 rounded flex items-center gap-2 relative" v-for="pr in cart" :key="pr.id">
+                        <div class="animate__animated animate__fadeInRight border-b pt-4 pb-2 rounded flex items-center gap-2 relative" v-for="pr in cart" :key="pr.id">
                             <div
                                 @click="removeFromCart(pr)" 
                                 class="absolute top-[0px] right-[-5px] text-rose-600 cursor-pointer"
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="text-center my-5">
-                        <BaseBtn class="bg-primary text-white mb-2 flex-1 py-[14px]" block>
+                        <BaseBtn class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center" block>
                             Checkout
                             <span class="bg-warning px-3 rounded py-3 text-white ml-3" >৳ {{cartTotal}}</span>
                         </BaseBtn>
@@ -142,7 +142,11 @@
                             <swiper
                                 :slides-per-view="1"
                                 :space-between="50"
-                                :autoplay="autoplay"
+                                @swiper="onSwiper"
+                                @slideChange="onSlideChange"
+                                :autoplay="{
+                                    delay: 2000,
+                                }"
                                 :loop="true"
                               > 
                                 <swiper-slide>
@@ -181,13 +185,13 @@
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-if="item.incart">
                                     <input type="number" class="rounded border border-gray-300 text-gray-300 hover:text-white mb-2" v-model="item.qty" min="0" max="99">
-                                    <BaseBtn class="bg-gray-300 text-white mb-2 flex-1">
+                                    <BaseBtn class="animate__animated animate__fadeInUp bg-gray-300 text-white mb-2 flex-1">
                                         <i class="nav-icon i-Checkout text-base mr-2"></i> Added
                                     </BaseBtn>
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-else>
-                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white mb-2" v-model="item.qty" min="0" max="99">
-                                    <BaseBtn class="bg-primary text-white mb-2 flex-1" @click="addToCart(item)">
+                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white my-.5" v-model="item.qty" min="0" max="99">
+                                    <BaseBtn @click="addToCart(item)" class="animate__animated animate__fadeInUp animate_faster text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex-1">
                                         <i class="nav-icon i-Add-Cart text-base mr-2"></i> Add To Cart
                                     </BaseBtn>
                                 </div>

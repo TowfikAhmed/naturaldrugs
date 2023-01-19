@@ -53,6 +53,16 @@ const routes = [
                         name: 'admin-addproduct',
                         component: () => import('../views/dashboards/admin/addproduct.vue'),
                     },
+                    {
+                        path: 'admin/stockiests',
+                        name: 'admin-stockiests',
+                        component: () => import('../views/dashboards/admin/stockiests.vue'),
+                    },
+                    {
+                        path: 'admin/members',
+                        name: 'admin-members',
+                        component: () => import('../views/dashboards/admin/members.vue'),
+                    },
                     {                    // MEMBER
                         path: 'member',
                         name: 'member-dash',

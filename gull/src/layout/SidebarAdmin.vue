@@ -144,6 +144,20 @@ let toggleSubMenu = (e) => {
                             @mouseenter="toggleSubMenu"
                             class="nav-item border-b border-gray-200 dark:border-dark"
                             :class="
+                                selectedParentMenu == 'profile' ? 'active' : ''
+                            "
+                            data-item="profile"
+                            :data-submenu="true"
+                        >
+                            <a class="nav-item-hold"
+                                ><i class="i-Business-ManWoman text-3xl"></i>
+                                <p>Users</p>
+                            </a>
+                        </li>
+                        <li
+                            @mouseenter="toggleSubMenu"
+                            class="nav-item border-b border-gray-200 dark:border-dark"
+                            :class="
                                 selectedParentMenu == 'finance'
                                     ? 'active'
                                     : ''
@@ -154,20 +168,6 @@ let toggleSubMenu = (e) => {
                             <a class="nav-item-hold"
                                 ><i class="i-Wallet text-3xl"></i>
                                 <p>Finance</p>
-                            </a>
-                        </li>
-                        <li
-                            @mouseenter="toggleSubMenu"
-                            class="nav-item border-b border-gray-200 dark:border-dark"
-                            :class="
-                                selectedParentMenu == 'profile' ? 'active' : ''
-                            "
-                            data-item="profile"
-                            :data-submenu="true"
-                        >
-                            <a class="nav-item-hold"
-                                ><i class="i-Business-ManWoman text-3xl"></i>
-                                <p>Users</p>
                             </a>
                         </li>
                     </ul>
@@ -297,17 +297,13 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                        <router-link tag="a" to="/dashboards/admin/stockiests">
                             <i class="nav-icon i-MaleFemale text-base mr-2"></i>
-                            <span class="item-name"> My Profile </span>
+                            <span class="item-name"> All Stockiests </span>
                         </router-link>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
-                            <i class="nav-icon i-Edit text-base mr-2"></i>
-                            <span class="item-name"> Edit Profile </span>
-                        </router-link>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
-                            <i class="nav-icon i-Gears text-base mr-2"></i>
-                            <span class="item-name"> Profile Settings </span>
+                        <router-link tag="a" to="/dashboards/admin/members">
+                            <i class="nav-icon i-MaleFemale text-base mr-2"></i>
+                            <span class="item-name"> All members </span>
                         </router-link>
                     </li>
                 </ul>

@@ -10,14 +10,14 @@
                         <router-link tag="a" to="/dashboards/admin/addproduct">
                             <BaseBtn
                                 rounded
-                                class="mr-2 my-1 border border-primary text-white bg-primary"
+                                class="mr-2 my-1 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 <i class="text-lg i-Add"></i>
                             </BaseBtn>
                         </router-link>
                         <BaseBtn
                             @click="isOpen = !isOpen"
-                            class="mr-2 my-1 bg-primary text-white ul-ecommerce-toggle-button lg:hidden block"
+                            class="mr-2 my-1 lg:hidden block text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
                         </BaseBtn>
                         <BaseBtn
                             rounded
-                            class="mr-2 my-1 border border-primary text-primary hover:bg-primary hover:text-white"
+                            class="mr-2 my-1 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@
                             />
                             <button
                                 role="button"
-                                class="px-4 bg-primary text-white rounded-r-lg border-t border-b border-r focus:outline-none"
+                                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,11 @@
                             <swiper
                                 :slides-per-view="1"
                                 :space-between="50"
-                                :autoplay="autoplay"
+                                @swiper="onSwiper"
+                                @slideChange="onSlideChange"
+                                :autoplay="{
+                                    delay: 2000,
+                                }"
                                 :loop="true"
                               > 
                                 <swiper-slide>
@@ -159,8 +163,8 @@
                                     </BaseBtn>
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-else>
-                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white mb-2" v-model="item.qty" min="0" max="99">
-                                    <BaseBtn class="bg-primary text-white mb-2 flex-1" @click="addToCart(item)">
+                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white my-.5" v-model="item.qty" min="0" max="99">
+                                    <BaseBtn @click="addToCart(item)" class="flex-1 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-1 text-center">
                                         <i class="nav-icon i-Add-Cart text-base mr-2"></i> Add To Cart
                                     </BaseBtn>
                                 </div>
@@ -192,10 +196,6 @@ export default {
             cart: [],
             cartTotal: 0.00,
             baseUrl: baseUrl,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false
-            },
         }
     },
     mounted(){
