@@ -41,3 +41,9 @@ class placementSerializer(serializers.ModelSerializer):
         model = Member
         fields = '__all__'
         depth = 4
+
+class Stockiest_invoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stockiest_invoice
+        fields = '__all__'
+        depth = 2

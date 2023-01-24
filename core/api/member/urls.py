@@ -6,4 +6,5 @@ urlpatterns = [
     path('productlist/', views.productlist),
     path('placement/', views.placement),
     path('products/', views.products),
+    path('stockiest-order/', views.stockiestOrder),
 ]

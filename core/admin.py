@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, Product, ProductImage, Category, Fund, Fund_transfer, Sales, Withdraw, Bonus
+from .models import *
 # Register your models here.
 admin.site.register(Member)
 admin.site.register(Category)
@@ -20,3 +20,8 @@ admin.site.register(Withdraw, WithdrawAdmin)
 class BonusAdmin(admin.ModelAdmin):
     list_display = ('Cash_in', 'Depot_bonus', 'Dealer_bonus', 'Agent_bonus', 'Total_payout')
 admin.site.register(Bonus, BonusAdmin)
+
+admin.site.register(Stockiest_product)
+admin.site.register(Stockiest_invoice)
+admin.site.register(Member_product)
+admin.site.register(Member_invoice)

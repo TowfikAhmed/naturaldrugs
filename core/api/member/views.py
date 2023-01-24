@@ -110,3 +110,17 @@ def products(request):
     qs = Product.objects.all()
     data = ProductSerializer(qs, many=True).data
     return Response(data, status=status.HTTP_200_OK)
+
+
+
+@api_view(['GET', 'POST'])
+def stockiestOrder(request):
+    user = request.user
+    member = Member.objects.get(user = request.user)
+    qs = Stockiest_invoice.objects.all()
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(qs, request)
+    serializer = Stockiest_invoiceSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
