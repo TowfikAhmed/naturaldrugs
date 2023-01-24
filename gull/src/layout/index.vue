@@ -12,9 +12,7 @@ import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios';
 import Header from './Header.vue'
 import SidebarAdmin from './SidebarAdmin.vue'
-import SidebarDepot from './SidebarDepot.vue'
-import SidebarDealer from './SidebarDealer.vue'
-import SidebarAgent from './SidebarAgent.vue'
+import SidebarStockiest from './SidebarStockiest.vue'
 import SidebarMember from './SidebarMember.vue'
 import Footer from './Footer.vue'
 
@@ -61,9 +59,9 @@ function getCookie(cname) {
         <Header />
         <SidebarAdmin v-if="store.state.user && store.state.user.type == 'ADMIN'" />
         <SidebarMember v-if="store.state.user && store.state.user.type == 'MEMBER'" />
-        <SidebarAgent v-if="store.state.user && store.state.user.type == 'AGENT'" />
-        <SidebarDealer v-if="store.state.user && store.state.user.type == 'DEALER'" />
-        <SidebarDepot v-if="store.state.user && store.state.user.type == 'DEPOT'" />
+        <SidebarStockiest v-if="store.state.user && store.state.user.type == 'AGENT'" />
+        <SidebarStockiest v-if="store.state.user && store.state.user.type == 'DEALER'" />
+        <SidebarStockiest v-if="store.state.user && store.state.user.type == 'DEPOT'" />
         
         <div
             :class="

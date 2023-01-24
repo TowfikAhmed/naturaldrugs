@@ -41,3 +41,11 @@ class placementSerializer(serializers.ModelSerializer):
         model = Member
         fields = '__all__'
         depth = 4
+
+class BalanceSerializer(serializers.ModelSerializer):
+    member = serializers.SerializerMethodField()
+    def get_member(self, obj):
+        return MemberSerializer(obj.member).data
+    class Meta:
+        model = Balance
+        fields = '__all__'

@@ -189,43 +189,43 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Bar-Chart mr-2"></i>
                             <span class="item-name"> Dashboard Overview </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Joining Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Re-Purchase Gap Bonus </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Joining Sales Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Re-Purchase Sales Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Re-Purchase Report </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/stockiest/overview" >
                             <i class="nav-icon i-Receipt mr-2"></i>
                             <span class="item-name"> Joining Gap Bonus </span>
                         </router-link>
@@ -237,19 +237,19 @@ let toggleSubMenu = (e) => {
                     :class="selectedParentMenu == 'products' ? 'block' : 'hidden'"
                 >
                     <li>
-                        <router-link tag="a" class to="/dashboards/products">
+                        <router-link tag="a" class to="/dashboards/stockiest/products">
                             <i class="nav-icon i-Shopping-Basket text-base mr-2"></i>
                             <span class="item-name"> Order Products </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/myproducts">
+                        <router-link tag="a" class to="/dashboards/stockiest/myproducts">
                             <i class="nav-icon i-Checkout-Basket text-base mr-2"></i>
                             <span class="item-name"> My Products </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/chat">
+                        <router-link tag="a" class to="/dashboards/stockiest/chat">
                             <i class="nav-icon i-Add-User text-base mr-2"></i>
                             <span class="item-name"> Member Registration </span>
                         </router-link>
@@ -263,25 +263,19 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/avatars">
+                        <router-link tag="a" class to="/dashboards/stockiest/balance">
                             <i class="nav-icon i-Money-2 mr-2"></i>
-                            <span class="item-name"> Request Balance </span>
+                            <span class="item-name"> Balance Request </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/button">
-                            <i class="nav-icon i-File-Download mr-2"></i>
-                            <span class="item-name"> Request History </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link tag="a" class to="/dashboards/dealer/badges">
+                        <router-link tag="a" class to="/dashboards/stockiest/withdraw">
                             <i class="nav-icon i-Mail-Money mr-2"></i>
-                            <span class="item-name"> Withdraw Balance </span>
+                            <span class="item-name"> Balance Withdraw </span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/accordions">
+                        <router-link tag="a" class to="/dashboards/stockiest/withdraw">
                             <i
                                 class="nav-icon i-File-Upload mr-2"
                             ></i>
@@ -297,15 +291,15 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                        <router-link tag="a" to="/dashboards/stockiest/profileOne">
                             <i class="nav-icon i-MaleFemale text-base mr-2"></i>
                             <span class="item-name"> My Profile </span>
                         </router-link>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                        <router-link tag="a" to="/dashboards/stockiest/profileOne">
                             <i class="nav-icon i-Edit text-base mr-2"></i>
                             <span class="item-name"> Edit Profile </span>
                         </router-link>
-                        <router-link tag="a" to="/dashboards/dealer/profileOne">
+                        <router-link tag="a" to="/dashboards/stockiest/profileOne">
                             <i class="nav-icon i-Gears text-base mr-2"></i>
                             <span class="item-name"> Profile Settings </span>
                         </router-link>

@@ -35,3 +35,11 @@ class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
         fields = '__all__'
+
+class BalanceSerializer(serializers.ModelSerializer):
+    member = serializers.SerializerMethodField()
+    def get_member(self, obj):
+        return MemberSerializer(obj.member).data
+    class Meta:
+        model = Balance
+        fields = '__all__'

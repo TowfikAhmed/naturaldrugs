@@ -263,9 +263,9 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" class to="/dashboards/dealer/avatars">
+                        <router-link tag="a" class to="/dashboards/admin/balance">
                             <i class="nav-icon i-Money-2 mr-2"></i>
-                            <span class="item-name"> Request Balance </span>
+                            <span class="item-name"> Balance Request </span>
                         </router-link>
                     </li>
                     <li>

@@ -193,3 +193,17 @@ def check_username(request):
     if user:
         return Response(('Username already exists'))
     return Response({'errors': [['Invalid Credentials']]}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def balances(request):
+    if request.method == 'PUT':
+        bal  = Balance.objects.get(id = request.data['id'])
+        serializers = BalanceSerializer(bal, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+    qs = Balance.objects.all()
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(qs, request)
+    data = BalanceSerializer(result_page, many=True).data
+    return paginator.get_paginated_response(data)
