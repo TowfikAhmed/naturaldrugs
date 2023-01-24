@@ -38,17 +38,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['name'] = user.username
         return token
 
-
-@api_view(['GET', 'POST', 'DELETE'])
-def productlist(request):
-    paginator = PageNumberPagination()
-    paginator.page_size = 10
-    products = Product.objects.all().order_by('-id')
-    result_page = paginator.paginate_queryset(products, request)
-    serializer = ProductSerializer(result_page, many=True)
-    return paginator.get_paginated_response(serializer.data)
-
-
 # aunthentication_classes JWTAuthenticationSafe
 @authentication_classes([JWTAuthenticationSafe])
 class LoginView(APIView):
@@ -107,12 +96,67 @@ def placement(request):
 
 
 # stockiest only 
+@api_view(['GET', 'POST'])
+def balances(request):
+    user = request.user
+    member = Member.objects.get(user = request.user)
+    if request.method == 'POST':
+        data = request.data
+        print(data)
+        balance = Balance.objects.create(member = member, amount = data['amount'], note = data['note'])
+        
+    qs = Balance.objects.filter(member = member).order_by('-id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(qs, request)
+    serializer = BalanceSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
-@api_view(['GET'])
+
+@api_view(['GET', 'POST', 'DELETE'])
 def products(request):
-    qs = Product.objects.all()
-    data = ProductSerializer(qs, many=True).data
-    return Response(data, status=status.HTTP_200_OK)
+    user = request.user
+    member = Member.objects.filter(user=user).first()
+    if request.method == 'POST':
+        data = request.data
+        print(data)
+        inv = Stockiest_invoice.objects.create(stockiest = member)
+        for item in data:
+            st_pr = Stockiest_product.objects.create(stockiest = member, product_id = item['id'], qty = item['qty'])
+            inv.Stockiests_products.add(st_pr)
+            inv.total += float(st_pr.product.trade_price * st_pr.qty)
+        inv.save()
+        member.current_balance -= Decimal(inv.total)
+        member.save()
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    products = Product.objects.all().order_by('-id')
+    result_page = paginator.paginate_queryset(products, request)
+    serializer = ProductSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def orders(request):
+    user = request.user
+    member = Member.objects.get(user = request.user)
+    ords = Stockiest_invoice.objects.filter(stockiest = member).order_by('-id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(ords, request)
+    serializer = Stockiest_invoiceSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+def myproducts(request):
+    user = request.user
+    member = Member.objects.filter(user=user).first()
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    products = Stockiest_product.objects.filter(completed=True)
+    result_page = paginator.paginate_queryset(products, request)
+    serializer = Stockiest_productSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 

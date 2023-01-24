@@ -3,9 +3,11 @@ from . import views
 urlpatterns = [
     path('login', views.LoginView.as_view()),
     path('verify_token', views.verify_token),
-    path('productlist/', views.productlist),
     path('placement/', views.placement),
     # stockiest only
+    path('balances/', views.balances),
     path('products/', views.products),
+    path('myproducts/', views.myproducts),
+    path('orders/', views.orders),
     path('stockiest-order/', views.stockiestOrder),
 ]

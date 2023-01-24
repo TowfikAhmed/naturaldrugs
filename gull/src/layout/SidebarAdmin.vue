@@ -189,7 +189,7 @@ let toggleSubMenu = (e) => {
                     "
                 >
                     <li>
-                        <router-link tag="a" to="/dashboards/dealer/overview" >
+                        <router-link tag="a" to="/dashboards/admin/overview" >
                             <i class="nav-icon i-Bar-Chart mr-2"></i>
                             <span class="item-name"> Dashboard Overview </span>
                         </router-link>
@@ -249,7 +249,7 @@ let toggleSubMenu = (e) => {
                         </router-link>
                     </li>
                     <li>
-                        <router-link tag="a" class to="/dashboards/products">
+                        <router-link tag="a" class to="/dashboards/admin/orders">
                             <i class="nav-icon i-Shopping-Basket text-base mr-2"></i>
                             <span class="item-name">  Product Orders</span>
                         </router-link>

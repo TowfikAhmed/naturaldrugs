@@ -115,6 +115,25 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-6 space-y-6">
+                        <div class="flex-1 space-y-0.5 min-w-[200px]">
+                            <div class="flex justify-between items-center">
+                                <label for="basic" class="font-medium text-gray-500"> Username</label>
+                                <div v-if="usernameValid == false" class="text-red-500 mr-2 flex items-center gap-1">
+                                    <i class="i-Close-Window"></i> Invalid
+                                </div>
+                                <div v-else-if="usernameValid" class="text-green-500 mr-2 flex items-center gap-1">
+                                    <i class="i-Yes"></i> {{usernameValid}}
+                                </div>
+                            </div>
+
+                          <input
+                            id="basic"
+                            v-model="newUser.username"
+                            @keyup="checkUsername"
+                            type="text"
+                            placeholder="Enter New Username"
+                            class="block w-full rounded-md border-gray-200 text-sm transition focus:border-blue-600 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75" />
+                        </div>
                         <div class="flex flex-wrap gap-1">
                             <div class="flex-1 space-y-0.5 min-w-[200px]">
                               <label for="basic" class="font-medium text-gray-500"> Full Name </label>
@@ -240,6 +259,7 @@ export default {
             stockiests: [],
             newUser: {
                 name: '',
+                username: '',
                 gender: 'male',
                 email: '',
                 mobile: '',
@@ -250,6 +270,7 @@ export default {
                 im: '',
             },
             sponsorValid: undefined,
+            usernameValid: undefined,
             error: '',
         };
     },
@@ -309,7 +330,19 @@ export default {
                 console.log(error);
                 this.sponsorValid = false;
             });
-        }
+        },
+        checkUsername(){
+            console.log('check username', this.newUser.username);
+            axios.get(baseUrl + '/api/admin/check-user?username=' + this.newUser.username)
+            .then(response => {
+                console.log(response.data);
+                this.usernameValid = false;
+            })
+            .catch(error => {
+                console.log(error);
+                this.usernameValid = "Valid";
+            });
+        },
     }
 }
 </script>

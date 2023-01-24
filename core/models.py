@@ -132,21 +132,29 @@ class Stockiest_product(models.Model):
     qty = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
     def __str__(self):
-        return self.stockiest.name + " " + self.product.title + str(self.product.qty)
+        return self.stockiest.name + " - " + self.product.title +' - '+ str(self.qty)
 
 class Stockiest_invoice(models.Model):
     status_choices = (
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
+        ('Cancelled', 'Cancelled'),
     )
     stockiest = models.ForeignKey(Member, on_delete=models.CASCADE)
-    Stockiests_products = models.ForeignKey(Stockiest_product, null=False, blank=False, on_delete=models.CASCADE)
+    Stockiests_products = models.ManyToManyField(Stockiest_product, null=False, blank=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=status_choices, default='Pending')
     completed = models.BooleanField(default=False)
     def __str__(self):
         return self.stockiest.name + " " + self.status + str(self.total)
+    def save(self, *args, **kwargs):
+        if self.completed != True and self.status == 'Approved':
+            for i in self.Stockiests_products.all():
+                i.completed = True
+                i.save()
+            self.completed = True
+        super(Stockiest_invoice, self).save(*args, **kwargs)
 
 # Member Order
 class Member_product(models.Model):
@@ -163,7 +171,7 @@ class Member_invoice(models.Model):
         ('Approved', 'Approved'),
     )
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    Members_products = models.ForeignKey(Member_product, null=False, blank=False, on_delete=models.CASCADE)
+    Members_products = models.ManyToManyField(Member_product, null=False, blank=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=status_choices, default='Pending')

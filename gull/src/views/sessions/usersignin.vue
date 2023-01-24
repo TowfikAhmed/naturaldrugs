@@ -158,7 +158,11 @@ function logIn(){
         console.log(response.data, 'user');
         store.commit('setUser', response.data);
         setCookie('jwt', response.data.api_token, 30)
-        router.push('/dashboards/member')
+        if(response.data.type == 'ADMIN'){
+            router.push('/dashboards/admin/overview')
+        }else{
+            router.push('/dashboards/member')
+        }
     })
 }
 function setCookie(cname, cvalue, exdays) {

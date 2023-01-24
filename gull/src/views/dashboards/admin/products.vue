@@ -107,7 +107,7 @@
             <div class="ul-ecommerce-container ml-0">
                 <div class="flex flex-wrap gap-5 mb-5">
                     <div
-                        v-for="(item, index) in products"
+                        v-for="(item, index) in products.results"
                         :key="index"
                         class="max-w-[300px]"
                     >
@@ -203,13 +203,9 @@ export default {
     },
     methods: {
         getProducts(){
-            axios.get('/api/member/products/').then((response)=>{
+            axios.get('/api/admin/products/').then((response)=>{
                 console.log(response);
                 this.products = response.data;
-                this.products.forEach(element => {
-                    element.qty = 1;
-                    element.incart = false;
-                });
             })
         },
         addToCart(pr){

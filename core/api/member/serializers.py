@@ -42,8 +42,24 @@ class placementSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 4
 
+# stokiest 
+
+class BalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Balance
+        fields = '__all__'
+
 class Stockiest_invoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stockiest_invoice
+        fields = '__all__'
+        depth = 2
+
+class Stockiest_productSerializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    def get_product(self, obj):
+        return ProductSerializer(obj.product).data
+    class Meta:
+        model = Stockiest_product
         fields = '__all__'
         depth = 2

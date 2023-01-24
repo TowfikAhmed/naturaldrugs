@@ -94,6 +94,21 @@ def productlist(request):
     return paginator.get_paginated_response(serializer.data)
 
 
+@api_view(['GET', 'POST', "PUT"])
+def orders(request):
+    if request.method == 'PUT':
+        data = request.data
+        order = Stockiest_invoice.objects.get(id = data['id'])
+        order.status = data['status']
+        order.save()
+        return Response('success')
+    ords = Stockiest_invoice.objects.all().order_by('-id')
+    paginator = PageNumberPagination()
+    paginator.page_size = 10
+    result_page = paginator.paginate_queryset(ords, request)
+    serializer = Stockiest_invoiceSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
 # aunthentication_classes JWTAuthenticationSafe
 @authentication_classes([JWTAuthenticationSafe])
 class LoginView(APIView):
@@ -135,9 +150,8 @@ def members(request):
         data = request.data
         print(data)
         # {'info': {'name': 'Towfik Ahmed', 'gender': 'MALE', 'mobile': '+8801727567764', 'email': 'shimul929@gmail.com', 'address': 'Lalon Shah mazar chewria', 'im': '', 'passwd': 'asdf', 'passwd2': 'asdf', 'sponsor': 'asdf', 'sponsorStatus': {'id': 1, 'type': 'MEMBER', 'name': 'Test 1', 'gender': 'MALE', 'mobile': None, 'email': None, 'address': None, 'im': None, 'passwd': None, 'image': None, 'created_at': 'November 15 2022, 04:27 PM', 'updated_at': 'November 15 2022, 04:28 PM', 'current_balance': '0.00', 'total_earned': '0.00', 'blocked': False, 'user': 1, 'sponsor_memeber': None, 'sponsor_agent': None, 'sponsor_dealer': None, 'sponsor_depot': None}}, 'type': 'Member'}
-        rand_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
         user = User.objects.create(
-            username = data['email']+rand_str,
+            username = data['username'],
             first_name = data['name'],
             email = data['email'],
             password = make_password(data['passwd']),
@@ -157,7 +171,7 @@ def members(request):
         )
         return Response('success')
     if request.method == 'DELETE':
-        member = Member.objects.get(id = request.GET.get('id'))
+        member = Member.objects.get(id = request.GET.get('id')).order_by('-id')
         user = member.user
         user.delete()
         return Response('success')
@@ -177,9 +191,14 @@ def members(request):
 @api_view(['GET'])
 @csrf_exempt
 def check_user(request):
+    print(777)
     username = request.GET.get('username')
     type = request.GET.get('type')
-    member = Member.objects.filter(user__username = username, type=type).first()
+    if type:
+        member = Member.objects.filter(user__username = username, type = type).first()
+    else:
+        member = Member.objects.filter(user__username = username).first()
+    
     if member:
         data  = MemberSerializer(member).data
         return Response(data)
@@ -201,7 +220,7 @@ def balances(request):
         serializers = BalanceSerializer(bal, data=request.data)
         if serializers.is_valid():
             serializers.save()
-    qs = Balance.objects.all()
+    qs = Balance.objects.all().order_by('-id')
     paginator = PageNumberPagination()
     paginator.page_size = 10
     result_page = paginator.paginate_queryset(qs, request)

@@ -34,6 +34,11 @@ const routes = [
                 },
                 children: [
                     {                    // Admin
+                        path: 'admin/overview',
+                        name: 'admin-overview',
+                        component: () => import('../views/dashboards/admin/overview.vue'),
+                    },
+                    {
                         path: 'admin/products',
                         name: 'admin-products',
                         component: () => import('../views/dashboards/admin/products.vue'),
@@ -42,6 +47,11 @@ const routes = [
                         path: 'admin/addproduct',
                         name: 'admin-addproduct',
                         component: () => import('../views/dashboards/admin/addproduct.vue'),
+                    },
+                    {
+                        path: 'admin/orders',
+                        name: 'admin-orders',
+                        component: () => import('../views/dashboards/admin/orders.vue'),
                     },
                     {
                         path: 'admin/stockiests',

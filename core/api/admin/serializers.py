@@ -43,3 +43,9 @@ class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
         fields = '__all__'
+
+class Stockiest_invoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stockiest_invoice
+        fields = '__all__'
+        depth = 2
