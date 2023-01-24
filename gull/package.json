@@ -9,6 +9,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.3",
     "@lottiefiles/lottie-interactivity": "^1.6.1",
+    "animate.css": "^4.1.1",
     "apexcharts": "^3.36.0",
     "axios": "^1.2.1",
     "lottie-vuejs": "^0.4.0",

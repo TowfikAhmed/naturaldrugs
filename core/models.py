@@ -225,6 +225,26 @@ class Withdraw(models.Model):
     paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     def __str__(self):
         return str(self.member_type)
+class Balance(models.Model):
+    STATUS_CHOICES = (
+        ('Pending', 'Pending'),
+        ('Paid', 'Paid'),
+        ('Rejected', 'Rejected'),
+    )
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='Pending')
+    paid = models.BooleanField(default=False)
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    note = models.CharField(max_length=500, null=True, blank=True)
+    def __str__(self):
+        return str(self.member.name)+ " - " + str(self.amount)
+    def save(self, *args, **kwargs):
+        if self.status == 'Paid' and self.paid == False:
+            self.member.current_balance += self.amount
+            self.member.save()
+            self.paid = True
+        super(Balance, self).save(*args, **kwargs)
 
 class Bonus(models.Model):
     Cash_in = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

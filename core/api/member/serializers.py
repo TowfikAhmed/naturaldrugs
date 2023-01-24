@@ -42,8 +42,18 @@ class placementSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 4
 
+<<<<<<< HEAD
 class Stockiest_invoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stockiest_invoice
         fields = '__all__'
         depth = 2
+=======
+class BalanceSerializer(serializers.ModelSerializer):
+    member = serializers.SerializerMethodField()
+    def get_member(self, obj):
+        return MemberSerializer(obj.member).data
+    class Meta:
+        model = Balance
+        fields = '__all__'
+>>>>>>> 0bc7fce5e3b35efa3f3170c1f64086e41213d9e6

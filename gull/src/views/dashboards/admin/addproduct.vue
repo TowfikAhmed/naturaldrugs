@@ -92,9 +92,9 @@
         </div>
         </BaseCard>
 
-          <div class="bg-gray-50 py-3 text-center">
+          <div class="bg-gray-100 py-3 text-center">
             <p class="py-4 text-rose-500" v-if="error">{{error}}</p>
-            <button @click="addProduct($event)" class="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-6 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-50 focus:ring-offset-2">Add New Product</button>
+            <button @click="addProduct($event)" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add New Product</button>
           </div>
     </div>
 </template>
@@ -159,6 +159,7 @@ export default {
             e.target.innerHTML="Please wait..."
             axios.post('/api/admin/products/', this.newProduct).then((response)=>{
                 console.log(response);
+                this.$router.push("/dashboards/admin/products")
             })
         },
         imageAdded(e){

@@ -9,4 +9,5 @@ urlpatterns = [
     path('members', views.members),
     path('check-user', views.check_user),
     path('check-username', views.check_username),
+    path('balances/', views.balances),
 ]

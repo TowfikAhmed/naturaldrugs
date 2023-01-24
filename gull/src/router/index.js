@@ -33,16 +33,6 @@ const routes = [
                     title: 'Dashboard',
                 },
                 children: [
-                    {
-                        path: 'products',
-                        name: 'products',
-                        component: () => import('../views/dashboards/common/products.vue'),
-                    },
-                    {
-                        path: 'myproducts',
-                        name: 'myproducts',
-                        component: () => import('../views/dashboards/common/myproducts.vue'),
-                    },
                     {                    // Admin
                         path: 'admin/products',
                         name: 'admin-products',
@@ -52,6 +42,41 @@ const routes = [
                         path: 'admin/addproduct',
                         name: 'admin-addproduct',
                         component: () => import('../views/dashboards/admin/addproduct.vue'),
+                    },
+                    {
+                        path: 'admin/stockiests',
+                        name: 'admin-stockiests',
+                        component: () => import('../views/dashboards/admin/stockiests.vue'),
+                    },
+                    {
+                        path: 'admin/members',
+                        name: 'admin-members',
+                        component: () => import('../views/dashboards/admin/members.vue'),
+                    },
+                    {
+                        path: 'admin/balance',
+                        name: 'admin-balance',
+                        component: () => import('../views/dashboards/admin/balance.vue'),
+                    },
+                    {                    // stockiest
+                        path: 'stockiest/products',
+                        name: 'stockiest-products',
+                        component: () => import('../views/dashboards/stockiest/products.vue'),
+                    },
+                    {
+                        path: 'stockiest/myproducts',
+                        name: 'stockiest-myproducts',
+                        component: () => import('../views/dashboards/stockiest/myproducts.vue'),
+                    },
+                    {
+                        path: 'stockiest/balance',
+                        name: 'stockiest-balance',
+                        component: () => import('../views/dashboards/stockiest/balance.vue'),
+                    },
+                    {
+                        path: 'stockiest/withdraw',
+                        name: 'stockiest-withdraw',
+                        component: () => import('../views/dashboards/stockiest/withdraw.vue'),
                     },
                     {                    // MEMBER
                         path: 'member',
