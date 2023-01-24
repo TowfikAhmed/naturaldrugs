@@ -64,6 +64,11 @@ const routes = [
                         component: () => import('../views/dashboards/stockiest/products.vue'),
                     },
                     {
+                        path: 'stockiest/myorders',
+                        name: 'stockiest-myorders',
+                        component: () => import('../views/dashboards/stockiest/myorders.vue'),
+                    },
+                    {
                         path: 'stockiest/myproducts',
                         name: 'stockiest-myproducts',
                         component: () => import('../views/dashboards/stockiest/myproducts.vue'),

@@ -114,7 +114,6 @@ def products(request):
     data = ProductSerializer(qs, many=True).data
     return Response(data, status=status.HTTP_200_OK)
 
-<<<<<<< HEAD
 
 
 @api_view(['GET', 'POST'])
@@ -128,19 +127,3 @@ def stockiestOrder(request):
     serializer = Stockiest_invoiceSerializer(result_page, many=True)
     return paginator.get_paginated_response(serializer.data)
 
-=======
-@api_view(['GET', 'POST'])
-def balances(request):
-    user = request.user
-    member = Member.objects.filter(user=user).first()
-    if request.method == 'POST':
-        data = request.data
-        # set member and seraliser valid save 
-        Balance.objects.create(member=member, amount=data['amount'], note = data['note'])
-    qs = Balance.objects.all()
-    paginator = PageNumberPagination()
-    paginator.page_size = 10
-    result_page = paginator.paginate_queryset(qs, request)
-    data = BalanceSerializer(result_page, many=True).data
-    return paginator.get_paginated_response(data)
->>>>>>> 0bc7fce5e3b35efa3f3170c1f64086e41213d9e6

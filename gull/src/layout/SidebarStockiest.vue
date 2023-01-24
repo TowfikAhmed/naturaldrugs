@@ -243,6 +243,12 @@ let toggleSubMenu = (e) => {
                         </router-link>
                     </li>
                     <li>
+                        <router-link tag="a" class to="/dashboards/stockiest/myorders">
+                            <i class="nav-icon i-Checkout-Basket text-base mr-2"></i>
+                            <span class="item-name"> Orders History </span>
+                        </router-link>
+                    </li>
+                    <li>
                         <router-link tag="a" class to="/dashboards/stockiest/myproducts">
                             <i class="nav-icon i-Checkout-Basket text-base mr-2"></i>
                             <span class="item-name"> My Products </span>
