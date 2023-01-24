@@ -171,17 +171,17 @@ def members(request):
         )
         return Response('success')
     if request.method == 'DELETE':
-        member = Member.objects.get(id = request.GET.get('id')).order_by('-id')
+        member = Member.objects.get(id = request.GET.get('id'))
         user = member.user
         user.delete()
         return Response('success')
     type = request.GET.get('type')
     if type == 'stockiest':
-        members = Member.objects.filter(Q(type = 'AGENT') |Q(type = 'DEALER') | Q(type = 'DEPOT'))
+        members = Member.objects.filter(Q(type = 'AGENT') |Q(type = 'DEALER') | Q(type = 'DEPOT')).order_by('-id')
     elif type:
-        members = Member.objects.filter(type = type)
+        members = Member.objects.filter(type = type).order_by('-id')
     else:
-        members = Member.objects.all()
+        members = Member.objects.all().order_by('-id')
     paginator = PageNumberPagination()
     paginator.page_size = 10
     result_page = paginator.paginate_queryset(members, request)

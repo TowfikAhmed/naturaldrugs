@@ -36,27 +36,27 @@
                             <div class="flex flex-wrap gap-2">
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">MRP</span>
-                                    <input v-model="newProduct.mrp" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.mrp" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Trade</span>
-                                    <input v-model="newProduct.trade_price" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.trade_price" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Points</span>
-                                    <input v-model="newProduct.point" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.point" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Stock</span>
-                                    <input v-model="newProduct.stock" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.stock" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Code</span>
-                                    <input v-model="newProduct.code" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.code" type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rating</span>
-                                    <input v-model="newProduct.Rating" type="number" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.Rating" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                             </div>
                           </div>
@@ -114,7 +114,7 @@ export default {
                 description : "",
                 category : "",
                 type : "Medical",
-                trade_price : 3.00,
+                trade_price : 0.00,
                 mrp : 0.00,
                 code : "",
                 point : "",
@@ -140,14 +140,14 @@ export default {
             this.error = "";
             console.log(this.newProduct)
             if(
-                !this.newProduct.title ||
-                !this.newProduct.description ||
-                !this.newProduct.category ||
-                !this.newProduct.type ||
-                !this.newProduct.trade_price ||
-                !this.newProduct.mrp ||
-                !this.newProduct.code ||
-                !this.newProduct.point
+                this.newProduct.title == '' ||
+                this.newProduct.description == '' ||
+                this.newProduct.category == '' ||
+                this.newProduct.type == '' ||
+                this.newProduct.trade_price == '' ||
+                this.newProduct.mrp == '' ||
+                this.newProduct.code == '' ||
+                this.newProduct.point == ''
             ){  
                 this.error = "Please fill all the fields!"
                 return

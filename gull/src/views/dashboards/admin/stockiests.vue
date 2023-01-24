@@ -61,7 +61,7 @@
                                         class="hover:text-primary"
                                         href=""
                                         >
-                                        Gender:{{stockiest.gender}} 
+                                        Username:{{stockiest.username}} 
                                     </a
                                     >
                                 </p>
@@ -81,9 +81,7 @@
                                     </a
                                     >
                                 </p>
-                                <p
-                                    class="text-xs text-gray-500 dark:text-gray-400 mt-1"
-                                >
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1" >
                                     Current balance:{{stockiest.current_balance}}
                                 </p>
                             </div>
