@@ -13,7 +13,7 @@
                         <col class="w-24">
                     </colgroup>
                     <tbody>
-                        <tr class="border-b border-opacity-20 border-gray-700 " v-for="ord in orders.results" :key="ord.id">
+                        <tr class="border-b border-opacity-20 border-gray-700 animate__animated animate__faster animate__fadeInLeft" v-for="ord in orders.results" :key="ord.id">
                             <td class="p-3">
                                 <p>ID#{{ord.id}}</p>
                                 <p>Date: {{ord.date}}</p>
@@ -32,7 +32,7 @@
                             </td>
                             <td class="p-3 text-right cursor-pointer" @click="details = ord">
                                 <p>{{ord.status}}</p>
-                                <p class="inline-block px-3 mt-1 py-1 font-semibold rounded-md bg-violet-400 text-white">
+                                <p class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 inline-block my-1  py-1 text-center">
                                     <span>View Details</span>
                                 </p>
                             </td>

@@ -15,7 +15,7 @@
                 class="divide-y divide-gray-300 dark:divide-black divide-dashed my-5"
                 v-if="stockiests && stockiests.results"
             >
-                <div class="py-4" v-for="stockiest in stockiests.results" :key="stockiest.id">
+                <div class="py-4 animate__animated animate__faster animate__fadeInLeft" v-for="stockiest in stockiests.results" :key="stockiest.id">
                     <div class="flex justify-between items-center">
                         <div class="flex w-full">
                             <img

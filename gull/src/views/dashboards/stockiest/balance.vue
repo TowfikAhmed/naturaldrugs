@@ -15,7 +15,10 @@
                 class="divide-y divide-gray-300 dark:divide-black divide-dashed my-5"
                 v-if="balances && balances.results"
             >
-                <div class="py-4" v-for="balance in balances.results" :key="balance.id">
+                <div class="font-medium p-4 my-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert" v-if="balances.results.length < 1">
+                    You do not have balance request history.
+                </div>
+                <div class="py-4 animate__animated animate__faster animate__fadeInLeft" v-for="balance in balances.results" :key="balance.id">
                     <div class="flex justify-between items-center">
                         <div class="flex w-full">
                             <div class="mr-4">ID#{{balance.id}}</div>

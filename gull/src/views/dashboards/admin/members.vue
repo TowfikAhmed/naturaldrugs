@@ -14,7 +14,7 @@
                 class="divide-y divide-gray-300 dark:divide-black divide-dashed my-5"
                 v-if="members && members.results"
             >
-                <div class="py-4" v-for="member in members.results" :key="member.id">
+                <div class="py-4 animate__animated animate__faster animate__fadeInLeft" v-for="member in members.results" :key="member.id">
                     <div class="flex justify-between items-center">
                         <div class="flex w-full">
                             <img
@@ -60,7 +60,7 @@
                                         class="hover:text-primary"
                                         href=""
                                         >
-                                        Gender:{{member.gender}} 
+                                        Username:{{member.username}} 
                                     </a
                                     >
                                 </p>

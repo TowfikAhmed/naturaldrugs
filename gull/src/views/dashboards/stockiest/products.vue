@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="text-center my-5" v-if="store.state.user">
-                        <BaseBtn @click="checkout" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center" block>
+                        <BaseBtn :class="{'hidden':store.state.user.current_balance < cartTotal}" @click="checkout" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center" block>
                             Confirm & Checkout
                             <span class="bg-warning px-3 rounded py-3 text-white ml-3" >৳ {{cartTotal}}</span>
                             <span class="ml-1 p-0" >
@@ -210,7 +210,7 @@
                                             />
                                         </svg>
                                     </div>
-                                    <p class="text-sm">STOCK: {{item.stock}}</p>
+                                    <p class="font-bold text-base mb-5 text-green-600" :class="{'text-rose-600':item.stock<1}">Stock: {{item.stock}}</p>
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-if="item.incart">
                                     <input type="number" class="rounded border border-gray-300 text-gray-300 hover:text-white mb-2" v-model="item.qty" min="0" :max="item.stock">

@@ -14,10 +14,27 @@ import VueApexCharts from "vue3-apexcharts";
 import axios from 'axios'
 import 'animate.css';
 import { baseUrl } from '@/config/main.js'
-axios.defaults.baseURL = baseUrl;
-// globally call 
 
-// app.component('BaseBtn', BaseBtn)
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+    }
+    }
+    return "";
+}
+var jwt = getCookie('jwt');
+if (jwt) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
+}
+axios.defaults.baseURL = baseUrl;
 
 
 createApp(App)

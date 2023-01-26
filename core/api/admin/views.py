@@ -56,7 +56,7 @@ def categorylist(request):
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET', 'POST', 'DELETE', 'PUT'])
 def productlist(request):
     if request.method == 'POST':
         data = request.data
@@ -82,6 +82,20 @@ def productlist(request):
                 product = product,
                 image = data,
             )
+    if request.method == 'PUT':
+        data = request.data
+        print(data)
+        product = Product.objects.get(id = data['id'])
+        product.title = data['title']
+        product.description = data['description']
+        product.code = data['code']
+        product.point = Decimal(data['point'])
+        product.trade_price = Decimal(data['trade_price'])
+        product.mrp = Decimal(data['mrp'])
+        product.type = data['type']
+        product.stock = data['stock']
+        product.category = Category.objects.get(id = data['category'])
+        product.save()
     if request.method == 'DELETE':
         product = Product.objects.get(id = request.GET.get('id'))
         product.delete()

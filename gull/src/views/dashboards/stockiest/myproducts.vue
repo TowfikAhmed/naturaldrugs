@@ -95,8 +95,11 @@
                 </div>
             </div>
         </div>
-        <div class="ul-ecommerce-wrapper relative">
+        <div class="ul-ecommerce-wrapper relative" v-if="products">
             <div class="ul-ecommerce-container mr-1" style="margin-left:0">
+                <div class="font-medium p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert" v-if="products.results.length < 1">
+                    You do not have any products yet. Please order products.
+                </div>
                 <div class="flex flex-wrap gap-5 mb-5">
                     <div
                         v-for="(item, index) in products.results"
@@ -152,7 +155,7 @@
                                             />
                                         </svg>
                                     </div>
-                                    <p class="text-sm">STOCK: {{item.qty}}</p>
+                                    <p class="font-bold text-base mb-5 text-green-600" :class="{'text-rose-600':item.qty<1}">Stock: {{item.qty}}</p>
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-if="item.incart">
                                     <input type="number" class="rounded border border-gray-300 text-gray-300 hover:text-white mb-2" v-model="item.qty" min="0" :max="item.stock">

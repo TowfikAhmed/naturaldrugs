@@ -7,12 +7,12 @@
                       <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                           <div class="col-span-3 sm:col-span-2">
                             <label for="company-website" class="block text-sm font-medium text-gray-700">Title</label>
-                            <input v-model="newProduct.title" type="text" name="company-website" id="company-website" class="block w-full flex-1 rounded-md rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm" placeholder="www.example.com">
+                            <input :class="{'border-rose-300':error && !newProduct.title}" v-model="newProduct.title" type="text" name="company-website" id="company-website" class="block w-full flex-1 rounded-md rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm" placeholder="www.example.com">
                           </div>
                           <div class="flex gap-1 flex-wrap">
                               <div class="col-span-3 sm:col-span-2 flex-1">
                                 <label for="company-website" class="block text-sm font-medium text-gray-700">Category</label>
-                                <select v-model="newProduct.category" name="" id="" class="block w-full flex-1 rounded-md rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                <select v-model="newProduct.category" :class="{'border-rose-300':error && !newProduct.category}" class="block w-full flex-1 rounded-md rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                     <option value="">Select Category</option>
                                     <option :value="cat.name" v-for="cat in categorylist" :key="cat.id">{{ cat.name }}</option>
                                 </select>
@@ -28,7 +28,7 @@
 
                         <div>
                             <label for="about" class="block text-sm font-medium text-gray-700">Product Description</label>
-                            <textarea v-model="newProduct.description" id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm" placeholder="..."></textarea>
+                            <textarea :class="{'border-rose-300':error && !newProduct.description}" v-model="newProduct.description" id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm" placeholder="..."></textarea>
                             <p class="mt-2 text-sm text-gray-500">Brief description for your product.</p>
                         </div>
 
@@ -52,11 +52,11 @@
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Code</span>
-                                    <input v-model="newProduct.code" type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input :class="{'border-rose-300':error && !newProduct.code}" v-model="newProduct.code" type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                                 <div class="flex-1 mt-1 flex rounded-md shadow-sm max-w-[200px] min-w-[180px]">
                                     <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rating</span>
-                                    <input v-model="newProduct.Rating" type="number" step=".01" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
+                                    <input v-model="newProduct.Rating" type="number" step=".01" min="1" max="5" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-50 sm:text-sm">
                                 </div>
                             </div>
                           </div>
@@ -72,7 +72,7 @@
                         <span class="remove bg-white absolute top-[2px] text-rose-500 left-[2px] border border-rose-500 px-3 py-[5px] rounded-full shadow cursor-pointer" @click="removeImage(image)">X</span>
                     </div>
                     <div class="w-[220px] h-[145px] relative">
-                      <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                      <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6" :class="{'border-rose-300':error && newProduct.imagelist.length<2}">
                         <div class="space-y-1 text-center">
                           <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -116,8 +116,9 @@ export default {
                 type : "Medical",
                 trade_price : 0.00,
                 mrp : 0.00,
+                point : 0,
                 code : "",
-                point : "",
+                Rating : 0.00,
                 features : [],
                 customfunds : [],
                 imagelist: [],
@@ -144,10 +145,7 @@ export default {
                 this.newProduct.description == '' ||
                 this.newProduct.category == '' ||
                 this.newProduct.type == '' ||
-                this.newProduct.trade_price == '' ||
-                this.newProduct.mrp == '' ||
-                this.newProduct.code == '' ||
-                this.newProduct.point == ''
+                this.newProduct.code == ''
             ){  
                 this.error = "Please fill all the fields!"
                 return

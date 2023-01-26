@@ -253,10 +253,10 @@ export default {
                     </div>
                 </BaseCard>
             </div>
-            <div class="ul-ecommerce-container">
+            <div class="ul-ecommerce-container" v-if="products && products.results">
                 <div class="grid grid-cols-12 gap-5 mb-5">
                     <div
-                        v-for="(item, index) in products"
+                        v-for="(item, index) in products.results"
                         :key="index"
                         class="col-span-6 xl:col-span-3 md:col-span-4"
                     >

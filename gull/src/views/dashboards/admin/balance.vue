@@ -14,7 +14,7 @@
                 class="divide-y divide-gray-300 dark:divide-black divide-dashed my-5"
                 v-if="balances && balances.results"
             >
-                <div class="py-4 cursor-ponter" v-for="balance in balances.results" :key="balance.id">
+                <div class="py-4 cursor-ponter animate__animated animate__faster animate__fadeInLeft" v-for="balance in balances.results" :key="balance.id">
                     <div class="flex justify-between items-center">
                         <div class="flex w-full">
                             <div class="mr-4">ID#{{balance.id}}</div>
@@ -36,8 +36,11 @@
                             </div>
                         </div>
                         <div class="min-w-[100px]">
-                            <button @click="modify=JSON.parse(JSON.stringify(balance))" type="button" class="text-dark bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-3 py-1 text-center mr-2 mb-2">
-                                {{balance.status}}
+                            <p type="button">
+                                Status: {{balance.status}}
+                            </p>
+                            <button @click="modify=JSON.parse(JSON.stringify(balance))" type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-1 text-center">
+                                Details
                             </button>
                         </div>
                     </div>
@@ -79,11 +82,12 @@
                                 v-model="modify.note"
                                 type="text"
                                 placeholder="Short Note"
-                                class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                         </div>
                         <div class="flex-1 space-y-0.5 min-w-[200px]">
-                            <select name="" class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="modify.status">
+                            <label for="basic" class="font-medium text-gray-500"> Status: </label>
+                            <select name="" class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-ponter" v-model="modify.status">
                                 <option value="Pending">Pending</option>
                                 <option value="Paid">Approved</option>
                                 <option value="Rejected">Rejected</option>

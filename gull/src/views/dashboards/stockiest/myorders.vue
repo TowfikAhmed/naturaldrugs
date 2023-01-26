@@ -13,7 +13,10 @@
                         <col class="w-24">
                     </colgroup>
                     <tbody>
-                        <tr class="border-b border-opacity-20 border-gray-700 " v-for="ord in orders.results" :key="ord.id">
+                        <div class="font-medium p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert" v-if="orders.results.length < 1">
+                          You do not have any orders yet.
+                        </div>
+                        <tr class="border-b border-opacity-20 border-gray-700 animate__animated animate__faster animate__fadeInLeft" v-for="ord in orders.results" :key="ord.id">
                             <td class="p-3">
                                 <p>ID#{{ord.id}}</p>
                                 <p>Date: {{ord.date}}</p>

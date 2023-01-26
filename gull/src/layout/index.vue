@@ -16,16 +16,19 @@ import SidebarStockiest from './SidebarStockiest.vue'
 import SidebarMember from './SidebarMember.vue'
 import Footer from './Footer.vue'
 
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['Accept'] = 'application/json';
 let store = useStore()
 const router = useRouter()
 
 onMounted(() => {
     var jwt = getCookie('jwt');
+    if(jwt){
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
+    }
     console.log(jwt);
     if(!store.state.user && jwt){
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
-        axios.defaults.headers.common['Content-Type'] = 'application/json';
-        axios.defaults.headers.common['Accept'] = 'application/json';
         axios.get('/api/member/verify_token')
         .then((response) => {
             console.log(response.data, 'user-lo');
@@ -37,20 +40,20 @@ onMounted(() => {
     }
 })
 function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+        c = c.substring(1);
     }
+    if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+    }
+    }
+    return "";
+}
 
 </script>
 

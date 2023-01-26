@@ -153,7 +153,7 @@ def myproducts(request):
     member = Member.objects.filter(user=user).first()
     paginator = PageNumberPagination()
     paginator.page_size = 10
-    products = Stockiest_product.objects.filter(completed=True)
+    products = Stockiest_product.objects.filter(completed=True, stockiest = member).order_by('-id')
     result_page = paginator.paginate_queryset(products, request)
     serializer = Stockiest_productSerializer(result_page, many=True)
     return paginator.get_paginated_response(serializer.data)
