@@ -26,13 +26,21 @@
     }
 }
 
-:root,
-#root,
-#docs-root {
-    --primary: #367ee9;
-    --secondary: #a0aec0;
-    --accent: #718096;
-    --background: #fff;
-    --main: #0d0106;
-    --header: #2d3748;
+
+label{
+    animation: moveing 5s linear infinite;
+    display: block;
+    color: black !important;
+}
+/* placeholder animation*/
+@keyframes moveing {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

@@ -58,7 +58,9 @@ function getCookie(cname) {
 </script>
 
 <template>
-    <div class="app-admin-wrap-layout-2">
+    <div class="app-admin-wrap-layout-2 relative">
+        <img src="https://play.tailwindcss.com/img/beams.jpg" alt="" class="-z-50 fixed top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
+        <div class="-z-50 fixed inset-0 bg-[url(https://play.tailwindcss.com/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
         <Header />
         <SidebarAdmin v-if="store.state.user && store.state.user.type == 'ADMIN'" />
         <SidebarMember v-if="store.state.user && store.state.user.type == 'MEMBER'" />
@@ -76,9 +78,7 @@ function getCookie(cname) {
             class="main-content-wrap"
         >
             <main>
-                <div
-                    class="main-content-wrap flex flex-col flex-grow print-area pt-10"
-                >
+                <div class="main-content-wrap flex flex-col flex-grow print-area pt-10" >
                     <div>
                         <router-view v-slot="{ Component }">
                             <transition name="scale" mode="out-in">

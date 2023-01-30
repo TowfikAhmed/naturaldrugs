@@ -256,7 +256,7 @@
                           </div>
                         </div>
                         <div class="sm:col-span-6">
-                          <label for="photo" class="block text-sm font-medium text-gray-700">Photo{{newMember.gender}}</label>
+                          <label for="photo" class="block text-sm font-medium text-gray-700">Profile Photo</label>
                           <div class="mt-1 flex items-center">
                             <span class="h-12 w-12 overflow-hidden rounded-full bg-gray-100">
                               <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24" v-if="newMember.gender == 'Male'">
@@ -279,7 +279,7 @@
                       </div>
                       <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                         <div class="sm:col-span-3">
-                          <label for="sponsor" class="block text-sm font-medium text-gray-700">Password</label>
+                          <label for="sponsor" class="block text-sm font-medium text-gray-700">Sponsor</label>
                           <div class="mt-1">
                             <input @keyup="checkUser" v-model="newMember.sponsor" :class="{'border-rose-400':!newMember.sponsor && newMember.error}" type="text" name="sponsor" id="sponsor" autocomplete="sponsor" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                           </div>
