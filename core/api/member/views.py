@@ -122,9 +122,15 @@ def products(request):
         print(data)
         inv = Stockiest_invoice.objects.create(stockiest = member)
         for item in data:
-            st_pr = Stockiest_product.objects.create(stockiest = member, product_id = item['id'], qty = item['qty'])
+            prod = Product.objects.get(id = item['id'])
+            prod.stock -= item['qty']
+            prod.save()
+            st_pr, created = Stockiest_product.objects.get_or_create(stockiest = member, product_id = item['id'])
+            st_pr.qty = item['qty']
+            st_pr.save()
             inv.Stockiests_products.add(st_pr)
             inv.total += float(st_pr.product.trade_price * st_pr.qty)
+            inv.totalbp += float(st_pr.product.point * st_pr.qty)
         inv.save()
         member.current_balance -= Decimal(inv.total)
         member.save()
@@ -153,7 +159,7 @@ def myproducts(request):
     member = Member.objects.filter(user=user).first()
     paginator = PageNumberPagination()
     paginator.page_size = 10
-    products = Stockiest_product.objects.filter(completed=True, stockiest = member).order_by('-id')
+    products = Stockiest_product.objects.filter(stock__gte = 1, stockiest = member).order_by('-id')
     result_page = paginator.paginate_queryset(products, request)
     serializer = Stockiest_productSerializer(result_page, many=True)
     return paginator.get_paginated_response(serializer.data)

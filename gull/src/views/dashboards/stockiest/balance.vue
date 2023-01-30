@@ -39,10 +39,10 @@
                                 <p class="text-dark">{{balance.note}}</p>
                             </div>
                         </div>
-                        <div class="min-w-[100px]">
-                            <button type="button" class="text-dark bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-3 py-1 text-center mr-2 mb-2">
+                        <div class="w-[100px]">
+                            <p :class="{'from-amber-200 via-amber-300': balance.status == 'Pending','from-green-200 via-green-300': balance.status == 'Paid','from-rose-200 via-rose-300': balance.status == 'Rejected'}" type="button" class="text-dark bg-gradient-to-r to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-3 py-1 text-center mr-2 mb-2 w-full">
                                 {{balance.status}}
-                            </button>
+                            </p>
                         </div>
                     </div>
                 </div>

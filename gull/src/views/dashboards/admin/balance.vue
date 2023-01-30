@@ -36,8 +36,8 @@
                             </div>
                         </div>
                         <div class="min-w-[100px]">
-                            <p type="button">
-                                Status: {{balance.status}}
+                            <p type="button" :class="{'text-amber-600': balance.status == 'Pending','text-green-500': balance.status == 'Paid','text-rose-500': balance.status == 'Rejected'}">
+                                {{balance.status}}
                             </p>
                             <button @click="modify=JSON.parse(JSON.stringify(balance))" type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-1 text-center">
                                 Details

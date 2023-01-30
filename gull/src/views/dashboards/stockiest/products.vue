@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="flex justify-between items-center text-gray-600 my-1">
                                     <div class="flex gap-1">
-                                        <p>BP: ৳ {{pr.point}}</p>
+                                        <p>BP: {{pr.point}}</p>
                                         <p>x</p>
                                         <p>{{pr.qty}}</p>
                                     </div>
@@ -127,7 +127,7 @@
                                     </p>
                                 </div>
                                 <div class="flex justify-between items-center text-gray-600">
-                                    <input type="number" class="py-2 px-1 border rounded border-gray-200 m-0 w-[70px] h-[27px]" min="1" :max="pr.stock" v-model="pr.qty">
+                                    <input type="number" class="py-2 px-1 border rounded border-gray-200 m-0 w-[70px] h-[27px]" @keyup="qtyChanged(pr)" min="1" :max="pr.stock" v-model="pr.qty">
                                     <div
                                         @click="removeFromCart(pr)" 
                                         class="flex items-center cursor-pointer text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-1 py-.5 text-center"
@@ -225,7 +225,7 @@
                                     </BaseBtn>
                                 </div>
                                 <div class="flex justify-between flex-wrap gap-1" v-else>
-                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white my-.5" v-model="item.qty" min="0" :max="item.stock">
+                                    <input type="number" class="rounded border border-primary text-primary hover:bg-primary hover:text-white my-.5" step="1" @keyup="qtyChanged(item)" v-model="item.qty" min="1" :max="item.stock">
                                     <BaseBtn @click="addToCart(item)" class="animate__animated animate__fadeInUp animate_faster text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-1 py-2.5 text-center flex-1">
                                         <i class="nav-icon i-Add-Cart text-base mr-2"></i> Add To Cart
                                     </BaseBtn>
@@ -280,6 +280,14 @@ export default {
                     element.incart = false;
                 });
             })
+        },
+        qtyChanged(item){
+            if(item.qty > item.stock){
+                item.qty = item.stock;
+            }
+            if(item.qty < 1){
+                item.qty = 1;
+            }
         },
         addToCart(pr){
             pr.incart = true;

@@ -25,8 +25,8 @@
                                 <p>Number Of Products: {{ord.Stockiests_products.length}}</p>
                                 <p class="text-gray-400">Total: ৳{{ord.total}}</p>
                             </td>
-                            <td class="p-3 text-right">
-                                <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-white">
+                            <td class="p-3 text-center w-[130px]">
+                                <span :class="{'from-amber-200 via-amber-300': ord.status == 'Pending','from-green-200 via-green-300': ord.status == 'Approved','from-rose-200 via-rose-300': ord.status == 'Cancelled'}" class="px-3 py-1 font-semibold rounded-md text-dark block bg-gradient-to-r to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-3 py-1 text-center">
                                     <span>{{ord.status}}</span>
                                 </span>
                             </td>

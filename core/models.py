@@ -129,8 +129,8 @@ class ProductImage(models.Model):
 class Stockiest_product(models.Model):
     stockiest = models.ForeignKey(Member, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    stock = models.IntegerField(default=0)
     qty = models.IntegerField(default=0)
-    completed = models.BooleanField(default=False)
     def __str__(self):
         return self.stockiest.name + " - " + self.product.title +' - '+ str(self.qty)
 
@@ -143,17 +143,17 @@ class Stockiest_invoice(models.Model):
     stockiest = models.ForeignKey(Member, on_delete=models.CASCADE)
     Stockiests_products = models.ManyToManyField(Stockiest_product, null=False, blank=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
+    totalbp = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=status_choices, default='Pending')
-    completed = models.BooleanField(default=False)
     def __str__(self):
         return self.stockiest.name + " " + self.status + str(self.total)
     def save(self, *args, **kwargs):
-        if self.completed != True and self.status == 'Approved':
+        if self.status == 'Approved':
             for i in self.Stockiests_products.all():
-                i.completed = True
+                i.stock += i.qty
+                i.qty = 0
                 i.save()
-            self.completed = True
         super(Stockiest_invoice, self).save(*args, **kwargs)
 
 # Member Order

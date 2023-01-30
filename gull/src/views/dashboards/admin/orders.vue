@@ -31,7 +31,7 @@
                                 </p>
                             </td>
                             <td class="p-3 text-right cursor-pointer" @click="details = ord">
-                                <p>{{ord.status}}</p>
+                                <p class="font-bold" :class="{'text-amber-600': ord.status == 'Pending','text-green-500': ord.status == 'Approved','text-rose-500': ord.status == 'Cancelled'}">{{ord.status}}</p>
                                 <p class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 inline-block my-1  py-1 text-center">
                                     <span>View Details</span>
                                 </p>
@@ -58,34 +58,68 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-6 space-y-6">
-                            <div class="animate__animated animate__fadeInUp animate__faster border-b pt-4 pb-2 rounded  relative" v-for="pr in details.Stockiests_products" :key="pr.id">
-                                <div class="flex gap-2">
-                                    <h5 class="font-bold capitalize">{{pr.product.title}}</h5>
+                            <div class="px-0">
+                              <div class="sm:flex sm:items-center">
+                                <div class="sm:flex-auto">
+                                  <h1 class="text-xl font-semibold text-gray-900">
+                                    {{details.stockiest.name}} 
+                                    <span class="text-muted fs-4 text-gray-400">@{{details.stockiest.user.username}}</span>
+                                  </h1>
+                                  <p class="mt-2 text-sm text-gray-700">{{details.date}} </p>
                                 </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-center text-gray-600">
-                                        <div class="flex gap-1">
-                                            <p>Price: ৳ {{pr.product.trade_price}}</p>
-                                            <p>x</p>
-                                            <p>{{pr.qty}}</p>
-                                        </div>
-                                        <p>৳ {{pr.product.trade_price*pr.qty}}</p>
-                                    </div>
-                                    <div class="flex justify-between items-center text-gray-600 my-1">
-                                        <div class="flex gap-1">
-                                            <p>BP: ৳ {{pr.product.point}}</p>
-                                            <p>x</p>
-                                            <p>{{pr.qty}}</p>
-                                        </div>
-                                        <p>
-                                            <span class="inline-block bg-orange-400 border-[3px] border-x-orange-300 border-y-orange-200 text-white text-xs font-bold w-[24px] h-[24px] leading-[18px] rounded-full text-center">BP</span> 
-                                            {{pr.product.point*pr.qty}}
-                                        </p>
-                                    </div>
+                                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                                  <p type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">{{details.status}}</p>
                                 </div>
+                              </div>
+                              <div class="-mx-4 mt-8 flex flex-col sm:-mx-6 md:mx-0">
+                                <table class="min-w-full divide-y divide-gray-300">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">Project</th>
+                                      <th scope="col" class="hidden py-3.5 px-3 text-right text-sm font-semibold text-gray-900 sm:table-cell">QTY</th>
+                                      <th scope="col" class="hidden py-3.5 px-3 text-right text-sm font-semibold text-gray-900 sm:table-cell">Rate</th>
+                                      <th scope="col" class="hidden py-3.5 px-3 text-right text-sm font-semibold text-gray-900 sm:table-cell">Points</th>
+                                      <th scope="col" class="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900 sm:pr-6 md:pr-0">Total BP</th>
+                                      <th scope="col" class="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900 sm:pr-6 md:pr-0">Total</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr class="border-b border-gray-200" v-for="pr in details.Stockiests_products" :key="pr.id">
+                                      <td class="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
+                                        <div class="font-medium text-gray-900">{{pr.product.title}}</div>
+                                      </td>
+                                      <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell">{{pr.qty}}</td>
+                                      <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell">৳ {{pr.product.trade_price}}</td>
+                                      <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell">{{pr.product.point}}</td>
+                                      <td class="py-4 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-6 md:pr-0">
+                                        <span class="inline-block bg-orange-400 border-[3px] border-x-orange-300 border-y-orange-200 text-white text-xs font-bold w-[24px] h-[24px] leading-[18px] rounded-full text-center">BP</span> 
+                                        {{pr.product.point * pr.qty}}
+                                      </td>
+                                      <td class="py-4 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-6 md:pr-0 font-bold">৳ {{pr.product.trade_price * pr.qty}}</td>
+                                    </tr>
+
+                                    <!-- More projects... -->
+                                  </tbody>
+                                  <tfoot>
+                                    <tr>
+                                      <th scope="row" colspan="5" class="hidden pl-6 pr-3 pt-6 text-right text-sm font-normal text-gray-500 sm:table-cell md:pl-0">Total BP</th>
+                                      <th scope="row" class="pl-4 pr-3 pt-6 text-left text-sm font-normal text-gray-500 sm:hidden">Total BP</th>
+                                      <td class="pl-3 pr-4 pt-6 text-right text-sm text-gray-500 sm:pr-6 md:pr-0">
+                                        <span class="inline-block bg-orange-400 border-[3px] border-x-orange-300 border-y-orange-200 text-white text-xs font-bold w-[24px] h-[24px] leading-[18px] rounded-full text-center">BP</span> 
+                                        {{details.totalbp}}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" colspan="5" class="hidden pl-6 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell md:pl-0">Total</th>
+                                      <th scope="row" class="pl-4 pr-3 pt-4 text-left text-sm font-semibold text-gray-900 sm:hidden">Total</th>
+                                      <td class="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-6 md:pr-0">৳ {{details.total}}</td>
+                                    </tr>
+                                  </tfoot>
+                                </table>
+                              </div>
                             </div>
                         <div class="flex-1 space-y-0.5 min-w-[200px]">
-                            <select name="" class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="details.status">
+                            <select name="" class="block w-full mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="details.status">
                                 <option value="Pending">Pending</option>
                                 <option value="Approved">Approved</option>
                                 <option value="Cancelled">Cancelled</option>
