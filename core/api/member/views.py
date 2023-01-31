@@ -177,3 +177,31 @@ def stockiestOrder(request):
     serializer = Stockiest_invoiceSerializer(result_page, many=True)
     return paginator.get_paginated_response(serializer.data)
 
+@api_view(['GET', 'POST'])
+def register(request):
+    user = request.user
+    member = Member.objects.filter(user=user).first()
+    if request.method == 'POST':
+        data = request.data
+        print(data)
+        # {'name': 'member10', 'username': 'member10', 'email': 'shimul929@gmail.com', 'phone': '+8801727567764', 'passwd': 'asdf', 'passwd2': 'asdf', 'gender': 'Male', 'sponsor': 'asdfs', 'sponsorValid': 'Towfik Ahmed 4', 'placement': 'asdfs', 'placementValid': 'Towfik Ahmed 4', 'usernameValid': 'Valid', 'error': ''}
+        new_member = Member.objects.create(
+            type = 'MEMBER',
+            user = User.objects.create_user(data['username'], data['email'], data['passwd']),
+            name = data['name'],
+            gender = data['gender'],
+            mobile = data['phone'],
+            email = data['email'],
+            passwd = data['passwd'],
+            sponsor_member = Member.objects.get(user__username = data['sponsor']),
+        )
+        placement = Member.objects.get(user__username = data['placement'])
+        if data['placement_position'] == 'A':
+            placement.placement_a = new_member
+        elif data['placement_position'] == 'B':
+            placement.placement_b = new_member
+        placement.save()
+
+        data = {}
+
+        return Response(data, status=status.HTTP_200_OK) 

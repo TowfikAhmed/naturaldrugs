@@ -317,11 +317,11 @@
                                     <div class="mt-1 flex gap-1 items-center">
                                         <div class="flex gap-1" v-if="newMember.placementValid">
                                             <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <input v-model="newMember.placement_position" id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 <label for="bordered-radio-1" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT A</label>
                                             </div>
                                             <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                                <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <input v-model="newMember.placement_position" checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 <label for="bordered-radio-2" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT B</label>
                                             </div>
                                         </div>
@@ -454,6 +454,7 @@ export default {
                 sponsor: "",
                 sponsorValid: null,
                 placement: "",
+                placement_position: '',
                 placementValid: null,
                 usernameValid: null,
                 error: "",
@@ -508,17 +509,8 @@ export default {
                 this.newMember.error = "Password does not match";
                 return;
             }
-            return;
-            var user = this.$store.state.user;
-            console.log(this.cart);
-            axios.post('/api/member/myproducts/', this.cart).then((response)=>{
+            axios.post('/api/member/register/', this.newMember).then((response)=>{
                 console.log(response);
-                this.cart.forEach(element => {
-                    user.current_balance -= element.qty * element.trade_price;
-                });
-                console.log(user.current_balance);
-                this.store.commit('setUser', user);
-                this.$router.push('/dashboards/stockiest/myorders');
             })
         },
         checkUsername(){
