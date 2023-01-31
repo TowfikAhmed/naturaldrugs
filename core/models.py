@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from decimal import Decimal
 from django.utils import timezone
 from io import BytesIO
 import sys
@@ -72,14 +73,71 @@ class Member(models.Model):
     sponsor_member = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='Sponsor_member')
     current_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     bp = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    collective_bp_a = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    collective_bp_b = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    matched_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     placement_a = models.ForeignKey("self", null=True, blank=True, on_delete=models.SET_NULL)
     placement_b = models.ForeignKey("self", null=True, blank=True, related_name="p_b", on_delete=models.SET_NULL)
     def save(self, *args, **kwargs):
+        if self.placement_a:
+            self.collective_bp_a = Decimal( self.placement_a.collective_bp_a + self.placement_a.collective_bp_b + self.placement_a.bp )
+        if self.placement_b:
+            self.collective_bp_b = Decimal( self.placement_b.collective_bp_a + self.placement_b.collective_bp_b + self.placement_b.bp )
+        if self.collective_bp_a - self.matched_total >= 20 and self.collective_bp_b - self.matched_total >= 20:
+            if self.collective_bp_a > self.collective_bp_b:
+                bp = self.collective_bp_b - self.matched_total
+            else:
+                bp = self.collective_bp_a - self.matched_total
+            MatchingBonus.objects.create(member=self, amount=((12/bp)*100)*20, bp=bp)
         if self.image:
             self.image = compressImage(self.image, 300, 300)
         super(Member, self).save(*args, **kwargs)
+        if Member.objects.filter(placement_a=self, type="MEMBER"):
+            Member.objects.filter(placement_a=self, type="MEMBER").first().save()
+        if Member.objects.filter(placement_b=self, type="MEMBER"):
+            Member.objects.filter(placement_b=self, type="MEMBER").first().save()
     def __str__(self):
         return self.name
+
+class MatchingBonus(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    bp = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.member.name
+    def save(self, *args, **kwargs):
+        self.member.current_balance += self.amount
+        self.member.total_earned += self.amount
+        self.member.matched_total += self.bp
+        self.member.save()
+        CarryForward.objects.create(
+            member=self.member,
+            amount_a=self.member.collective_bp_a - self.member.matched_total,
+            amount_b=self.member.collective_bp_b - self.member.matched_total,
+        )
+        super(MatchingBonus, self).save(*args, **kwargs)
+
+class CarryForward(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    amount_a = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    amount_b = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.member.name
+    def save(self, *args, **kwargs):
+        # today total matching 
+        td_bp = MatchingBonus.objects.filter(member=self.member, date__date=timezone.now().date(), date__month=timezone.now().month, date__year=timezone.now().year).aggregate(Sum('bp'))['bp__sum']
+        if td_bp >= 10000:
+            print('flushout')
+        
+class FlushOut(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    amount_a = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    amount_b = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.member.name
         
 # product 
 
@@ -160,11 +218,12 @@ class Stockiest_invoice(models.Model):
 # Member Order
 class Member_product(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    stockiest = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='stockiest', null=True, blank=True)
+    product = models.ForeignKey(Stockiest_product, on_delete=models.CASCADE)
     qty = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
     def __str__(self):
-        return self.member.name + " " + self.product.title + str(self.product.qty)
+        return self.member.name + " " + self.product.product.title + str(self.product.qty)
 
 class Member_invoice(models.Model):
     status_choices = (
@@ -172,8 +231,10 @@ class Member_invoice(models.Model):
         ('Approved', 'Approved'),
     )
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    stockiest = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='stockiest_seller', null=True, blank=True)
     Members_products = models.ManyToManyField(Member_product, null=False, blank=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
+    totalbp = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, default=0.00)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=status_choices, default='Pending')
     completed = models.BooleanField(default=False)

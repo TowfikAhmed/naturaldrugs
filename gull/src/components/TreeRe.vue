@@ -9,7 +9,15 @@
                 <img src="@/assets/images/man.png" alt="" class="avt">
             </span>
             <span class="text">
-                <h5>{{tree.name}}</h5>
+                <small>{{tree.name}}</small><br>
+                <span>
+                    <small>{{tree.current_balance}}</small>
+                    <small>{{tree.bp}}</small>
+                </span>
+                <span class="flex gap-1">
+                    <small>{{tree.collective_bp_a}}</small>
+                    <small>{{tree.collective_bp_b}}</small>
+                </span>
             </span>
             <svg class="conn" style="width: 50%;height: 150px;position:absolute;top:50px" preserveAspectRatio="none" width="754" height="166" viewBox="0 0 754 166" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M375.383 1.17188C328.073 124.958 -6.61087 89.837 1.13224 165.836" stroke="#F1579F"/>

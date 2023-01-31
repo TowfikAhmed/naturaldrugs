@@ -90,7 +90,7 @@ def check_username(request):
 @api_view(['GET'])
 @csrf_exempt
 def placement(request):
-    member = Member.objects.get(id=19)
+    member = Member.objects.get(user = request.user)
     data = placementSerializer(member).data
     return Response(data)
 
@@ -182,8 +182,9 @@ def register(request):
     user = request.user
     member = Member.objects.filter(user=user).first()
     if request.method == 'POST':
-        data = request.data
-        print(data)
+        data = request.data['member']
+        cart = request.data['cart']
+
         # {'name': 'member10', 'username': 'member10', 'email': 'shimul929@gmail.com', 'phone': '+8801727567764', 'passwd': 'asdf', 'passwd2': 'asdf', 'gender': 'Male', 'sponsor': 'asdfs', 'sponsorValid': 'Towfik Ahmed 4', 'placement': 'asdfs', 'placementValid': 'Towfik Ahmed 4', 'usernameValid': 'Valid', 'error': ''}
         new_member = Member.objects.create(
             type = 'MEMBER',
@@ -202,6 +203,17 @@ def register(request):
             placement.placement_b = new_member
         placement.save()
 
+        member_inv = Member_invoice.objects.create(stockiest = member, member = new_member)
+        for pr in cart:
+            stokiest_pr = Stockiest_product.objects.get(id = pr['id'])
+            pr = Member_product.objects.create(stockiest = member, member = new_member, product = stokiest_pr, qty = pr['qty'])
+            member_inv.Members_products.add(pr)
+            member_inv.total += float(pr.product.product.trade_price * pr.qty)
+            member_inv.totalbp += float(pr.product.product.point * pr.qty)
+            stokiest_pr.stock -= pr.qty
+            stokiest_pr.save()
+        member_inv.save()
+        new_member.bp = member_inv.totalbp
+        new_member.save()
         data = {}
-
         return Response(data, status=status.HTTP_200_OK) 

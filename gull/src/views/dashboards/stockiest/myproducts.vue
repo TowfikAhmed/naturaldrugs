@@ -314,15 +314,15 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                     </svg>
                                     <label for="last-name" class="block text-sm font-medium text-green-600 inline-block ml-1">{{newMember.placementValid}}</label>
-                                    <div class="mt-1 flex gap-1 items-center">
-                                        <div class="flex gap-1" v-if="newMember.placementValid">
-                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                                <input v-model="newMember.placement_position" id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="bordered-radio-1" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT A</label>
+                                    <div class="mt-1 flex gap-1 items-center ">
+                                        <div class="flex gap-1" :class="{'text-rose-400':!newMember.placement_position && newMember.error}" v-if="newMember.placementValid">
+                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700" :class="{'line-through':!newMember.placement_a_available}">
+                                                <input :disabled="!newMember.placement_a_available" v-model="newMember.placement_position" id="bordered-radio-1" type="radio" value="A" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="bordered-radio-1" class="w-full py-1 ml-2 text-sm font-medium cursor-pointer dark:text-gray-300">PLACEMENT A</label>
                                             </div>
-                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                                <input v-model="newMember.placement_position" checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="bordered-radio-2" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT B</label>
+                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700" :class="{'line-through':!newMember.placement_b_available}">
+                                                <input :disabled="!newMember.placement_b_available" v-model="newMember.placement_position" id="bordered-radio-2" type="radio" value="B" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="bordered-radio-2" class="w-full py-1 ml-2 text-sm font-medium cursor-pointer dark:text-gray-300">PLACEMENT B</label>
                                             </div>
                                         </div>
                                     </div>
@@ -343,7 +343,7 @@
                     <div class="flex justify-end">
                       <p v-if="newMember.error" class="text-rose-700 font-bold py-2 px-4">{{newMember.error}}</p>
                       <button @click="checkout=false" type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
-                      <button @click.prevent="register" type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+                      <button @click.prevent="register($event)" type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
                     </div>
                   </div>
                 </form>
@@ -455,6 +455,8 @@ export default {
                 sponsorValid: null,
                 placement: "",
                 placement_position: '',
+                placement_a_available: true,
+                placement_b_available: true,
                 placementValid: null,
                 usernameValid: null,
                 error: "",
@@ -491,9 +493,9 @@ export default {
             pr.incart = false;
             this.cart = this.cart.filter((item) => item.id !== pr.id);
         },
-        register(){
+        register(e){
             console.log(this.newMember);
-            if(this.newMember.name == "" || this.newMember.username == "" || this.newMember.email == "" || this.newMember.phone == "" || this.newMember.passwd == "" || this.newMember.passwd2 == "" || this.newMember.sponsor == ""){
+            if(this.newMember.name == "" || this.newMember.username == "" || this.newMember.email == "" || this.newMember.phone == "" || this.newMember.passwd == "" || this.newMember.passwd2 == "" || this.newMember.sponsor == "" || this.newMember.placement == "" || this.newMember.placement_position == "" ){
                 this.newMember.error = "All fields are required";
                 return;
             }
@@ -509,8 +511,13 @@ export default {
                 this.newMember.error = "Password does not match";
                 return;
             }
-            axios.post('/api/member/register/', this.newMember).then((response)=>{
+            e.target.innerHTML = "Please wait...";
+            axios.post('/api/member/register/', {
+                member: this.newMember,
+                cart: this.cart,
+            }).then((response)=>{
                 console.log(response);
+                e.target.innerHTML = "Successfull";
             })
         },
         checkUsername(){
@@ -547,6 +554,14 @@ export default {
             .then(response => {
                 console.log(response.data);
                 this.newMember.placementValid = response.data.name;
+                this.newMember.placement_a_available = true;
+                this.newMember.placement_b_available = true;
+                if (response.data.placement_a){
+                    this.newMember.placement_a_available = false;
+                }
+                if (response.data.placement_b){
+                    this.newMember.placement_b_available = false;
+                }
             })
             .catch(error => {
                 console.log(error);
