@@ -274,41 +274,69 @@
                     </div>
 
                     <div class="pt-8">
-                      <div>
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Sponsor Information</h3>
-                      </div>
-                      <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
-                          <label for="sponsor" class="block text-sm font-medium text-gray-700">Sponsor</label>
-                          <div class="mt-1">
-                            <input @keyup="checkUser" v-model="newMember.sponsor" :class="{'border-rose-400':!newMember.sponsor && newMember.error}" type="text" name="sponsor" id="sponsor" autocomplete="sponsor" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                          </div>
+                        <div>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Sponsor Information</h3>
                         </div>
-                        <div class="sm:col-span-3" v-if="newMember && newMember.sponsor.length || newMember.sponsorValid ==false">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-green-600 inline-block" v-if="newMember.sponsorValid">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-rose-400 inline-block" v-else>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                            </svg>
-                            <label for="last-name" class="block text-sm font-medium text-green-600 inline-block ml-1" v-if="newMember.sponsorValid">{{newMember.sponsorValid}}</label>
-                            <label for="last-name" class="block text-sm font-medium text-rose-700 inline-block ml-1" v-else>Invalid</label>
-                          <div class="mt-1 flex gap-1 items-center">
-                            <div class="flex gap-1" v-if="newMember.sponsorValid">
-                                <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                    <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-radio-1" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT A</label>
-                                </div>
-                                <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
-                                    <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-radio-2" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT B</label>
-                                </div>
+                        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                              <label for="sponsor" class="block text-sm font-medium text-gray-700">Sponsor</label>
+                              <div class="mt-1">
+                                <input @keyup="checkSponsor" v-model="newMember.sponsor" :class="{'border-rose-400':!newMember.sponsor && newMember.error}" type="text" name="sponsor" id="sponsor" autocomplete="sponsor" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                              </div>
                             </div>
-                          </div>
+                            <div class="sm:col-span-3" v-if="newMember && newMember.sponsor.length || newMember.sponsorValid ==false">
+                                <template v-if="newMember.sponsorValid">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-green-600 inline-block">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    </svg>
+                                    <label for="last-name" class="block text-sm font-medium text-green-600 inline-block ml-1">{{newMember.sponsorValid}}</label>
+                                    <p class="py-2">Sponsor Valid</p>
+                                </template>
+                                <template v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-rose-400 inline-block">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+                                    <label for="last-name" class="block text-sm font-medium text-rose-700 inline-block ml-1">Invalid</label>
+                                    <p class="py-2">Enter Valid Sponsor ID</p>
+                                </template>
+                            </div>
                         </div>
-                      </div>
+                        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                            <label for="placement" class="block text-sm font-medium text-gray-700">Placement</label>
+                            <div class="mt-1">
+                                <input @keyup="checkPlacement" v-model="newMember.placement" :class="{'border-rose-400':!newMember.placement && newMember.error}" type="text" name="placement" id="placement" autocomplete="placement" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
+                            </div>
+                            <div class="sm:col-span-3" v-if="newMember && newMember.placement.length || newMember.placementValid ==false">
+                                <template v-if="newMember.placementValid">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-green-600 inline-block">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    </svg>
+                                    <label for="last-name" class="block text-sm font-medium text-green-600 inline-block ml-1">{{newMember.placementValid}}</label>
+                                    <div class="mt-1 flex gap-1 items-center">
+                                        <div class="flex gap-1" v-if="newMember.placementValid">
+                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
+                                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="bordered-radio-1" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT A</label>
+                                            </div>
+                                            <div class="flex items-center p-2 py-1 border border-gray-200 rounded dark:border-gray-700">
+                                                <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="bordered-radio-2" class="w-full py-1 ml-2 text-sm font-medium text-gray-900 cursor-pointer dark:text-gray-300">PLACEMENT B</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-rose-400 inline-block">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+                                    <label for="last-name" class="block text-sm font-medium text-rose-700 inline-block ml-1">Invalid</label>
+                                    <p class="py-2">Enter Valid Pacement ID</p>
+                                </template>
+                            </div>
+                        </div>
                     </div>
-
                   </div>
 
                   <div class="pt-5">
@@ -424,8 +452,10 @@ export default {
                 passwd2: "",
                 gender: "male",
                 sponsor: "",
-                usernameValid: null,
                 sponsorValid: null,
+                placement: "",
+                placementValid: null,
+                usernameValid: null,
                 error: "",
             },
         }
@@ -507,7 +537,7 @@ export default {
             });
         },
 
-        checkUser(){
+        checkSponsor(){
             console.log('check user', this.newMember.sponsor);
             axios.get(baseUrl + '/api/admin/check-user?type=MEMBER&username=' + this.newMember.sponsor)
             .then(response => {
@@ -517,6 +547,18 @@ export default {
             .catch(error => {
                 console.log(error);
                 this.newMember.sponsorValid = false;
+            });
+        },
+        checkPlacement(){
+            console.log('check user', this.newMember.placement);
+            axios.get(baseUrl + '/api/admin/check-user?type=MEMBER&username=' + this.newMember.placement)
+            .then(response => {
+                console.log(response.data);
+                this.newMember.placementValid = response.data.name;
+            })
+            .catch(error => {
+                console.log(error);
+                this.newMember.placementValid = false;
             });
         },
     },
