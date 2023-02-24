@@ -9,14 +9,32 @@
                 <img src="@/assets/images/man.png" alt="" class="avt">
             </span>
             <span class="text">
-                <small>{{tree.name}}</small><br>
-                <span>
-                    <small>{{tree.current_balance}}</small>
-                    <small>{{tree.bp}}</small>
+                <span class="">
+                    <p>User ID</p>
+                    <p>Full Name</p>
+                    <p>Refer ID</p>
+                    <p>Gender</p>
+                    <p>Team A</p>
+                    <p>Team B</p>
+                    <p>Total BP</p>
                 </span>
-                <span class="flex gap-1">
-                    <small>{{tree.collective_bp_a}}</small>
-                    <small>{{tree.collective_bp_b}}</small>
+                <span class="">
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                </span>
+                <span class="">
+                    <p class="">{{tree.id}}</p>
+                    <p class="">{{tree.name}}</p>
+                    <p class="">{{tree.user.username}}</p>
+                    <p class="">{{tree.gender}}</p>
+                    <p class="">{{tree.collective_bp_a}} BP</p>
+                    <p class="">{{tree.collective_bp_b}} BP</p>
+                    <p class="">{{sum([tree.bp,tree.collective_bp_a,tree.collective_bp_b])}} BP</p>
                 </span>
             </span>
             <svg class="conn" style="width: 50%;height: 150px;position:absolute;top:50px" preserveAspectRatio="none" width="754" height="166" viewBox="0 0 754 166" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +78,13 @@ export default {
     },
     classnames: Boolean,
   },
+  methods:{
+    sum: function(nums){
+        let result = 0;
+        nums.forEach(function(n){ result += n * 1; });
+        return result.toFixed(2)
+    }
+  }
 };
 </script>
 
@@ -109,14 +134,35 @@ export default {
 }
 .info .text{
     background: rgb(255, 234, 251);
-    padding: 10px 25px;
+    padding: 5px 10px;
     z-index: 14;
     border-radius: 4px;
     box-shadow: 3px 3px 6px rgba(128, 128, 128, 0.37);
+    font-size: 13px;
+    display: flex;
+    z-index: 999;
+    overflow: hidden;
 }
-.head > div > div > div .text{
-    display: none;
+.info .text span{
+    flex: 1;
 }
+.info .text p{
+    white-space: nowrap;
+    text-align: left;
+}
+.info .text span:nth-child(2) p{
+    text-align: center;
+    padding: 0px 6px;
+}
+    .info .text{
+        display: none;
+    }
+    .head .text{
+        display: flex;
+    }
+    .head > div > div > div .text{
+        display: none;
+    }
     .info .avater img.pointer{
         height: 90px;
         width: 90px;

@@ -1,6 +1,7 @@
 <template>
     <section class="treeBody" @mousemove="mouseMove($event)" @scroll="pageScrolled($event)">
         <TreeRe :classnames="'start head'" :tree="tree" v-if="tree"></TreeRe>
+        <div style="min-height: 90vh;"></div>
     </section>
 </template>
 
@@ -78,6 +79,10 @@ export default defineComponent({
     .treeBody{
         height: 90vh;
         overflow-y: scroll;
+        padding-bottom: 20vh;
+    }
+    .treeBody > div{
+        padding-bottom: 20vh;
     }
     .treeBody::-webkit-scrollbar {
       display: none;
